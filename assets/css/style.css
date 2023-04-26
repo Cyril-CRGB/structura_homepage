@@ -9,6 +9,11 @@ ul {
 }
 
 a {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+li>a {
     border: 2px solid black;
     border-radius: 50%;
     width: 5rem;
