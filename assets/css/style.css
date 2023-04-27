@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
 body {
-    font-family: Arial;
+    font-family: Libre+Baskerville;
 }
 
 ul {
@@ -23,7 +31,6 @@ li>a {
     display: inline-block;
     margin: 4px 2px;
     border-radius: 16px;
-    font-family: Lato;
 }
 
 li {
@@ -35,6 +42,7 @@ nav {
     border-bottom: 2px solid black;
     margin: 0px 40px 40px 40px;
     padding-bottom: 20px;
+    font-family: Libre+Baskerville;
 }
 
 img {
@@ -48,7 +56,7 @@ img {
 }
 
 h1 {
-    font-family: Roboto, sans-serif;
+    font-family: Libre+Baskerville;
     text-align: center;
 }
 
