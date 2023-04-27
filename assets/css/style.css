@@ -31,10 +31,12 @@ li>a {
     display: inline-block;
     margin: 10px 4px 10px 4px;
     border-radius: 16px;
+    float: right;
 }
 
 li {
     display: inline;
+
 }
 
 nav {
@@ -73,7 +75,11 @@ figure {
     margin-top: 40px;
 }
 
-
 #title {
     float: left;
+}
+
+#choices {
+    font-size: 105%;
+    letter-spacing: 2px;
 }
