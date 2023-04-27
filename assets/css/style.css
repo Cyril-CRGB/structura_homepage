@@ -7,13 +7,13 @@
 }
 
 body {
-    font-family: Libre+Baskerville;
+    font-family: Libre+Baskerville, sans-serif;
+    font-weight: 400;
+    color: #413535;
 }
 
 ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
 }
 
 a {
@@ -22,14 +22,14 @@ a {
 }
 
 li>a {
-    border: 2px solid black;
+    border: 2px solid #413535;
     border-radius: 50%;
-    width: 5rem;
-    padding: 5px 10px;
+    width: 10rem;
+    padding: 2px 2px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin: 4px 2px;
+    margin: 10px 4px 10px 4px;
     border-radius: 16px;
 }
 
@@ -39,14 +39,14 @@ li {
 
 nav {
     text-align: center;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #413535;
     margin: 0px 40px 40px 40px;
     padding-bottom: 20px;
-    font-family: Libre+Baskerville;
+    font-family: Libre+Baskerville, sans-serif;
 }
 
 img {
-    border: 2px solid black;
+    border: 2px solid #413535;
     max-width: 60%;
     padding: 10px;
     display: block;
@@ -56,10 +56,24 @@ img {
 }
 
 h1 {
-    font-family: Libre+Baskerville;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+}
+
+h2 {
+    text-align: center;
+    text-transform: capitalize;
+    letter-spacing: 3px;
+
 }
 
 figure {
     margin-top: 40px;
+}
+
+
+#title {
+    float: left;
 }
