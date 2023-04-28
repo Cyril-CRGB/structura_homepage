@@ -28,23 +28,19 @@ li>a {
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
+    color: inherit;
     display: inline-block;
-    margin: 10px 4px 10px 4px;
+    margin: 2px 4px 2px 4px;
     border-radius: 16px;
     float: right;
 }
 
-li {
-    display: inline;
-
-}
-
 nav {
-    text-align: center;
     border-bottom: 2px solid #413535;
-    margin: 0px 40px 40px 40px;
-    padding-bottom: 20px;
+    height: 100px;
+    padding-top: 36px;
     font-family: Libre+Baskerville, sans-serif;
+    background-color: rgb(148, 186, 171)
 }
 
 img {
@@ -54,13 +50,7 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-
-}
-
-h1 {
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    margin-bottom: 20px;
 
 }
 
@@ -68,6 +58,7 @@ h2 {
     text-align: center;
     text-transform: capitalize;
     letter-spacing: 3px;
+    line-height: 50px;
 
 }
 
@@ -77,9 +68,58 @@ figure {
 
 #title {
     float: left;
+    line-height: 100px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #413535;
 }
 
 #choices {
-    font-size: 105%;
+    font-size: 110%;
     letter-spacing: 2px;
+}
+
+#choices a:hover {
+    background-color: rgb(65, 82, 75);
+    color: antiquewhite;
+}
+
+.active {
+    background-color: rgb(65, 82, 75);
+    color: antiquewhite
+}
+
+
+
+/* presentation image */
+
+#presentation-outer {
+    height: 600px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#presentation-image {
+    height: 600px;
+    width: 100%;
+    background: url('../images/Presentation.jpg') no-repeat center center;
+    background-color: blue;
+    /* animates*/
+    animation-name: presentation-zoom;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+/*creates the level of zoom for presentation-image*/
+
+@keyframes presentation-zoom {
+    from {
+        transfrom: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
+
+    }
 }
