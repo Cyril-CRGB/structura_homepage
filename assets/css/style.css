@@ -30,7 +30,7 @@ li>a {
     text-decoration: none;
     color: inherit;
     display: inline-block;
-    margin: 2px 4px 2px 4px;
+    margin: 15px 4px 2px 4px;
     border-radius: 16px;
     float: right;
 }
@@ -58,13 +58,11 @@ h2 {
     text-align: center;
     text-transform: capitalize;
     letter-spacing: 3px;
-    line-height: 50px;
+    line-height: 100px;
 
 }
 
-figure {
-    margin-top: 40px;
-}
+
 
 #title {
     float: left;
@@ -73,6 +71,9 @@ figure {
     text-transform: uppercase;
     letter-spacing: 3px;
     color: #413535;
+    padding-top: 14px;
+    margin-left: 20px;
+
 }
 
 #choices {
@@ -98,20 +99,21 @@ figure {
     height: 600px;
     width: 100%;
     overflow: hidden;
+    position: relative;
 }
 
 #presentation-image {
-    height: 600px;
+    height: 400px;
     width: 100%;
     background: url('../images/Presentation.jpg') no-repeat center center;
-    background-color: blue;
+
     /* animates*/
     animation-name: presentation-zoom;
     animation-duration: 5s;
     animation-fill-mode: forwards;
 }
 
-/*creates the level of zoom for presentation-image*/
+/*Zoom for presentation-image*/
 
 @keyframes presentation-zoom {
     from {
@@ -122,4 +124,48 @@ figure {
         transform: scale(1.2);
 
     }
+}
+
+/*cover text*/
+
+#presentation-text-right {
+    font-size: 130%;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: blanchedalmond;
+    text-align: left;
+
+    width: 240px;
+    height: 120px;
+
+    padding-top: 40px;
+    padding-left: 10px;
+
+    background-color: rgb(3, 44, 27);
+
+    bottom: 310px;
+    right: 150px;
+
+    position: absolute;
+}
+
+#presentation-text-left {
+    font-size: 130%;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: blanchedalmond;
+    text-align: right;
+
+    width: 240px;
+    height: 120px;
+
+    padding-top: 40px;
+    padding-left: 10px;
+
+    background-color: rgb(3, 44, 27);
+
+    bottom: 310px;
+    left: 150px;
+
+    position: absolute;
 }
