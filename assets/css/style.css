@@ -111,6 +111,7 @@ h2 {
     animation-name: presentation-zoom;
     animation-duration: 5s;
     animation-fill-mode: forwards;
+
 }
 
 /*Zoom for presentation-image*/
@@ -118,10 +119,12 @@ h2 {
 @keyframes presentation-zoom {
     from {
         transfrom: scale(1);
+        border-radius: 50%;
     }
 
     to {
         transform: scale(1.2);
+        border-radius: 50%;
 
     }
 }
@@ -168,4 +171,25 @@ h2 {
     left: 150px;
 
     position: absolute;
+}
+
+/*footer*/
+footer {
+    height: 50px;
+    text-align: center;
+    color: rgb(185, 173, 173);
+    background-color: rgb(57, 40, 40);
+    margin: 20px;
+    padding: 20px;
+}
+
+/*form*/
+#form-styling {
+    border: 2px solid #413535;
+
+    padding: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+
+
 }
