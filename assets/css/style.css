@@ -179,17 +179,29 @@ footer {
     text-align: center;
     color: rgb(185, 173, 173);
     background-color: rgb(57, 40, 40);
-    margin: 20px;
-    padding: 20px;
+    margin: 0 auto;
+    padding-top: 25px;
+
 }
 
 /*form*/
 #form-styling {
     border: 2px solid #413535;
 
-    padding: 100px;
-    margin-left: 100px;
-    margin-right: 100px;
+    background-color: rgba(60, 60, 60, 0.2);
+    height: 350px;
+    max-width: 400px;
+    left: 10%;
+    margin: 0 auto;
+    padding: 15px 32px 15px 32px;
 
 
+    text-align: center;
+    display: block;
+
+
+}
+
+br {
+    padding-bottom: 30px;
 }
