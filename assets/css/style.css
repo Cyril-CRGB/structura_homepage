@@ -7,8 +7,7 @@
 }
 
 body {
-    font-family: Libre+Baskerville, sans-serif;
-    font-weight: 400;
+    font-family: 'Libre Baskerville', serif;
     color: #413535;
 }
 
@@ -41,7 +40,7 @@ nav {
     border-bottom: 2px solid #413535;
     height: 100px;
     padding-top: 36px;
-    font-family: Libre+Baskerville, sans-serif;
+    font-family: 'Libre Baskerville', serif;
     background-color: rgb(148, 186, 171);
     clear: both;
 }
@@ -124,7 +123,7 @@ h2 {
 
 @keyframes presentation-zoom {
     from {
-        transfrom: scale(1);
+        transform: scale(1);
     }
 
     to {
