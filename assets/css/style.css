@@ -11,76 +11,136 @@ body {
     color: #413535;
 }
 
-ul {
-    list-style-type: none;
+/* presentation image */
+#presentation-outer {
+    height: 100vh; /* Full viewport height */
+    width: flex;
+    overflow: hidden;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
 }
 
-a {
-    list-style-type: none;
-    text-decoration: none;
-}
-
-li>a {
-    border: 2px solid #413535;
-    border-radius: 50%;
-    width: 10rem;
-    padding: 2px 2px;
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-    margin: 15px 4px 2px 4px;
-    border-radius: 16px;
-    float: right;
-
-
-}
-
-nav {
-    border-bottom: 2px solid #413535;
-    height: 100px;
-    padding-top: 36px;
-    font-family: 'Libre Baskerville', serif;
-    background-color: rgb(148, 186, 171);
-    clear: both;
-}
-
-img {
-    border: 2px solid #413535;
-    max-width: 60%;
-    padding: 10px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 100px;
-    margin-top: auto;
-}
-
-h2 {
-    text-align: center;
-    text-transform: capitalize;
-    letter-spacing: 3px;
-    line-height: 100px;
-
-}
-
-
-
-#title {
-    float: left;
-    line-height: 50px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #413535;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
-    padding-top: 20px;
-    background-color: rgb(148, 186, 171);
+#presentation-image {
+    height: 100%;
     width: 100%;
+    background: url('../images/structura_logo_upscaled_8x.png') no-repeat center center;
+    background-size: contain; /* or cover */
+    background-repeat: no-repeat;
+    /* animates*/
+    animation-name: presentation-zoom;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+
 }
 
+/*Zoom for presentation-image*/
+@keyframes presentation-zoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
+
+/* blue circle */
+.circle-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(135deg);
+}
+  
+.circle circle {
+    fill: none;
+    stroke: #083F67;
+    stroke-width: 2;
+    stroke-dasharray: 565.48; /* 2 * π * r for r=90 */
+    stroke-dashoffset: 565.48;
+    filter: drop-shadow(0 0 8px #21344A); /*Glow*/
+    animation: draw-circle 3s ease forwards;
+    animation-delay: 5s,
+}
+
+@keyframes draw-circle {
+    to {
+      stroke-dashoffset: 141.37; /* stops after 75% of the circle */
+    }
+}
+
+#prestentation-outer-x{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+#presentation-image-x{
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    animation-name: presentation-zoom;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    border:none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+.center-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.center-line line {
+    stroke: magenta;
+    stroke-width: 2;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 4px magenta);
+}
+
+/* blue button */
+.blue-layer {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+
+.blue-layer circle {
+    fill:#083F67;
+    stroke: none;
+}
+
+
+
+/* to be worked on
 #choices {
     font-size: 110%;
     letter-spacing: 2px;
@@ -97,47 +157,51 @@ h2 {
 }
 
 
+    @media screen and (max-width:1064px) {
+        #presentation-text-right {
+    
+        }
+    
+        #presentation-text-left {
+    
+        }
+    }
 
-/* presentation image */
+    */
+/*form
+#form-styling {
+    border: 2px solid #413535;
 
-#presentation-outer {
-    height: 100vh; /* Full viewport height */
-    width: flex;
-    overflow: hidden;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-}
+    background-color: rgba(60, 60, 60, 0.2);
+    height: 380px;
+    max-width: 400px;
+    left: 10%;
+    margin: 0 auto;
+    padding: 15px 32px 15px 32px;
+    margin-bottom: 100px;
 
-#presentation-image {
-    height: 77%;
+
+    text-align: center;
+    display: block;
+
+
+}*/
+
+/*footer
+footer {
+    height: 50px;
+    text-align: center;
+    color: rgb(185, 173, 173);
+    background-color: rgb(57, 40, 40);
+    bottom: 0;
+    right: 0;
+    padding: 1em;
     width: 100%;
-    background: url('../images/x.png') no-repeat center center;
-    background-size: contain; /* or cover */
-    background-repeat: no-repeat;
+    position: fixed;
+    z-index: 3;
+}*/
 
-    /* animates*/
-    animation-name: presentation-zoom;
-    animation-duration: 5s;
-    animation-fill-mode: forwards;
-
-}
-
-/*Zoom for presentation-image*/
-
-@keyframes presentation-zoom {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.2);
-    }
-}
-
-/*cover text*/
-
+/*cover text
 #presentation-text-right {
     font-size: 110%;
     text-transform: uppercase;
@@ -178,124 +242,4 @@ h2 {
     left: 150px;
 
     position: absolute;
-}
-
-/*footer*/
-footer {
-    height: 50px;
-    text-align: center;
-    color: rgb(185, 173, 173);
-    background-color: rgb(57, 40, 40);
-    bottom: 0;
-    right: 0;
-    padding: 1em;
-    width: 100%;
-    position: fixed;
-    z-index: 3;
-
-
-
-}
-
-/*form*/
-#form-styling {
-    border: 2px solid #413535;
-
-    background-color: rgba(60, 60, 60, 0.2);
-    height: 380px;
-    max-width: 400px;
-    left: 10%;
-    margin: 0 auto;
-    padding: 15px 32px 15px 32px;
-    margin-bottom: 100px;
-
-
-    text-align: center;
-    display: block;
-
-
-}
-
-br {
-    padding-bottom: 30px;
-    padding-top: 30px;
-}
-
-h3 {
-    text-align: center;
-}
-
-p {
-    text-align: center;
-}
-
-.btn {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 50%;
-    padding: 7.5px 16px 7.5px 16px;
-    text-align: center;
-    font-size: 100%;
-    background-color: #413535;
-    color: antiquewhite;
-    display: inline-block;
-    border: 2px solid #413535;
-}
-
-.btn:hover {
-    background-color: antiquewhite;
-    color: #413535;
-}
-
-
-@media screen and (max-width:1064px) {
-    #presentation-text-right {
-        width: 60%;
-        margin-bottom: 100px;
-        top: 240px;
-        height: 60px;
-        vertical-align: center;
-        font-size: 60%;
-        background-color: rgb(3, 44, 27, 0.4);
-
-    }
-
-    #presentation-text-left {
-        width: 60%;
-        margin: 0 auto;
-        top: 170px;
-        height: 60px;
-        vertical-align: center;
-        font-size: 60%;
-        background-color: rgb(3, 44, 27, 0.4);
-
-    }
-}
-
-.circle-wrapper {
-    position: relative;
-    width: 200px;
-    height: 200px;
-  }
-  
-  .circle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: rotate(-90deg);
-  }
-  
-  .circle circle {
-    fill: none;
-    stroke: rgba(0, 0, 0, 1);
-    stroke-width: 4;
-    stroke-dasharray: 565.48; /* 2 * π * r for r=90 */
-    stroke-dashoffset: 565.48;
-    animation: draw-circle 3s ease forwards;
-  }
-  
-  @keyframes draw-circle {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
+}*/
