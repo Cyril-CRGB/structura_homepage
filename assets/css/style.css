@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/* Montserrat */
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +7,8 @@
 }
 
 body {
-    font-family: 'Libre Baskerville', serif;
-    color: #413535;
+    font-family: 'Montserrat', serif;
+    color: #083F67;
 }
 
 /* presentation image */
@@ -71,7 +71,7 @@ body {
     stroke-width: 2;
     stroke-dasharray: 565.48; /* 2 * π * r for r=90 */
     stroke-dashoffset: 565.48;
-    filter: drop-shadow(0 0 8px #21344A); /*Glow*/
+    /*filter: drop-shadow(0 0 8px #21344A);*/ /*Glow*/
     animation: draw-circle 3s ease forwards;
     animation-delay: 5s,
 }
@@ -83,13 +83,13 @@ body {
 }
 
 #prestentation-outer-x{
-    height: 100vh;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    width: 100vw;
     background: #fff;
-    overflow: hidden;
+    /*overflow: hidden;*/
     position: relative;
 }
 
@@ -117,12 +117,12 @@ body {
     z-index: 2;
 }
 
-.center-line line {
+/*.center-line line {
     stroke: magenta;
     stroke-width: 2;
     stroke-linecap: round;
     filter: drop-shadow(0 0 4px magenta);
-}
+}*/
 
 /* blue button */
 .blue-layer {
@@ -138,6 +138,53 @@ body {
     stroke: none;
 }
 
+#blue-buttons-layer circle:hover {
+    fill: #EAE0C8 !important;
+    cursor: pointer;
+    transition: fill 0.01s ease;
+}
+
+#blue-buttons-layer circle {
+    stroke: #0a2f4d;
+    stroke-width: 0.5;
+}
+
+#info-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 60%); /* center it */
+    max-width: 520px; /* matches blue circle diameter in SVG units */
+    max-height: 10rem; /* matches 'structura' word height + margin */
+    background: #f8f6f0; /* pearl tone */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 0.5rem 1rem;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    line-height: 1;
+    overflow: hidden;
+    border-radius: 12px; /* optional: rounded top corners */
+    border: 2px solid #083F67;
+    opacity: 0;
+    pointer-events: none;
+    display: none; /* hide by default */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 10;
+  }
+  
+  #info-panel.active {
+    display: block;
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  #info-content h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  #info-content p {
+    margin: 0.5rem;
+  }
 
 
 /* to be worked on
