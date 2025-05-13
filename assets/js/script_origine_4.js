@@ -147,20 +147,23 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-// Add CONTACT US with sparkler effect and form popup
+// Add CONTACT ME text after all blue buttons
 setTimeout(() => {
   const svg = document.getElementById('blue-buttons-layer');
+
   const contactText = document.createElementNS("http://www.w3.org/2000/svg", "text");
   contactText.setAttribute("x", 100);
-  contactText.setAttribute("y", 180);
+  contactText.setAttribute("y", 185);
   contactText.setAttribute("text-anchor", "middle");
   contactText.setAttribute("alignment-baseline", "middle");
-  contactText.setAttribute("fill", "#083F67");
+  contactText.setAttribute("fill", "#EAE0C8");
   contactText.setAttribute("font-size", "4");
   contactText.setAttribute("font-family", "Montserrat, serif");
-  contactText.style.opacity = 1;
+  contactText.style.opacity = 0;
   contactText.style.cursor = "pointer";
-  contactText.textContent = "contact me";
+  contactText.textContent = "Contact me";
+
+  contactText.style.animation = "sparkle-reveal 2s ease forwards";
 
   contactText.addEventListener('click', () => {
     const formOverlay = document.createElement('div');
@@ -179,11 +182,10 @@ setTimeout(() => {
     const form = document.createElement('form');
     form.innerHTML = `
       <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
-        <h2>contact me</h2>
-        <br>
+        <h2>Contact Me</h2>
         <label>Name:<br><input type="text" name="name" required></label><br><br>
         <label>Email:<br><input type="email" name="email" required></label><br><br>
-        <label>Message:<br><textarea name="message" rows="6" required></textarea></label><br><br>
+        <label>Message:<br><textarea name="message" rows="4" required></textarea></label><br><br>
         <button type="submit">Send</button>
         <button type="button" onclick="document.getElementById('contact-overlay').remove()">Close</button>
       </div>
@@ -194,45 +196,14 @@ setTimeout(() => {
   });
 
   svg.appendChild(contactText);
+}, 6000); // After blue buttons
 
-  // Language switcher
-  const lang = document.documentElement.lang || 'en';
-  const langs = ['de', '/', 'fr', '/', 'en'];
-  langs.forEach((code, i) => {
-    const langText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    langText.setAttribute("x", 52 + (i - 1) * 4); // space out
-    langText.setAttribute("y", 180);
-    langText.setAttribute("text-anchor", "middle");
-    langText.setAttribute("alignment-baseline", "middle");
-    langText.setAttribute("fill", "#083F67");
-    langText.setAttribute("font-size", "4");
-    langText.setAttribute("font-family", "Montserrat, serif");
-    langText.style.cursor = "pointer";
-    langText.textContent = code;
-    if (code === lang) {
-      langText.setAttribute("text-decoration", "underline");
-    }
-    svg.appendChild(langText);
-  });
-
-  // LinkedIn logo
-    const container = document.getElementById('presentation-outer-x');
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'linkedin-fixed';
-
-    const link = document.createElement('a');
-    link.href = 'https://www.linkedin.com/in/cyril-bromberger-04317658/';
-    link.target = '_blank';
-    link.setAttribute('aria-label', 'LinkedIn profile');
-
-    const logo = document.createElement('img');
-    logo.src = 'assets/images/LI-Logo.png';
-    logo.alt = 'LinkedIn logo';
-    logo.className = 'linkedin-logo';
-
-    link.appendChild(logo);
-    wrapper.appendChild(link);
-    container.appendChild(wrapper);
-    
-}, 4000);
+// CSS Keyframes for sparkle animation
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes sparkle-reveal {
+  0% { opacity: 0; filter: brightness(2); letter-spacing: 0.2em; }
+  50% { opacity: 0.5; filter: brightness(3); }
+  100% { opacity: 1; filter: brightness(1); letter-spacing: 0; }
+}`;
+document.head.appendChild(style);

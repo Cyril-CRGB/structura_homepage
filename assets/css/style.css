@@ -10,6 +10,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   margin: 0;
+  /*background-color: #080808;*/
   background-color: #fff;
   height: 100vh;
   width: 100vw;
@@ -88,7 +89,11 @@ body {
 }
 
 #blue-buttons-layer circle:hover {
-  fill: #EAE0C8 !important;
+  stroke: #EAE0C8 !important;
+  cursor: pointer;
+}
+
+#blue-buttons-layer text {
   cursor: pointer;
 }
 
@@ -132,6 +137,29 @@ body {
   60%  { transform: rotate(-2deg); }
   100% { transform: rotate(0deg); }
 }
+
+.linkedin-fixed {
+  position: absolute;
+  bottom: 8.7%;
+  right: 23%;
+  width: 20%;
+  max-width: 100px;
+  z-index: 20;
+}
+
+.linkedin-logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  max-width: 100px;
+}
+
+.linkedin-logo:hover {
+  transform: scale(1.05);
+}
+
 
 /*.magenta-layer {
   position: absolute;
