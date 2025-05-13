@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/* Montserrat */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body {
+    font-family: 'Montserrat', serif;
+    color: #083F67;
+    height: 100vh;
+    overflow: hidden;
+    /*display: flex;
+    justify-content: center;
+    align-items: center;*/
+}
+
+/* presentation image */
+#presentation-outer {
+    height: 100vh; /* Full viewport height */
+    width: flex;
+    overflow: hidden;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+#presentation-image {
+    height: 100%;
+    width: 100%;
+    background: url('../images/structura_logo_upscaled_8x.png') no-repeat center center;
+    background-size: contain; /* or cover */
+    background-repeat: no-repeat;
+    /* animates*/
+    animation-name: presentation-zoom;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    top: 50%;
+    left: 50%;
+}
+
+/*Zoom for presentation-image*/
+@keyframes presentation-zoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
+
+/* blue circle */
+.circle-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(135deg);
+}
+  
+.circle circle {
+    fill: none;
+    stroke: #083F67;
+    stroke-width: 2;
+    stroke-dasharray: 565.48; /* 2 * π * r for r=90 */
+    stroke-dashoffset: 565.48;
+    /*filter: drop-shadow(0 0 8px #21344A);*/ /*Glow*/
+    animation: draw-circle 3s ease forwards;
+    animation-delay: 5s,
+}
+
+@keyframes draw-circle {
+    to {
+      stroke-dashoffset: 141.37; /* stops after 75% of the circle */
+    }
+}
+
+#prestentation-outer-x{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: #fff;
+    /*overflow: hidden;*/
+    position: relative;
+}
+
+#presentation-image-x{
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    animation-name: presentation-zoom;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    border:none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+.center-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/*.center-line line {
+    stroke: magenta;
+    stroke-width: 2;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 4px magenta);
+}*/
+
+/* blue button */
+.blue-layer {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+
+.blue-layer circle {
+    fill:#083F67;
+    stroke: none;
+}
+
+#blue-buttons-layer circle:hover {
+    fill: #EAE0C8 !important;
+    cursor: pointer;
+    transition: fill 0.01s ease;
+}
+
+#blue-buttons-layer circle {
+    stroke: #0a2f4d;
+    stroke-width: 0.5;
+}
+
+#info-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 60%); /* center it */
+    max-width: 520px; /* matches blue circle diameter in SVG units */
+    max-height: 10rem; /* matches 'structura' word height + margin */
+    background: #f8f6f0; /* pearl tone */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 0.5rem 1rem;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    line-height: 1;
+    overflow: hidden;
+    border-radius: 12px; /* optional: rounded top corners */
+    border: 2px solid #083F67;
+    opacity: 0;
+    pointer-events: none;
+    display: none; /* hide by default */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 10;
+  }
+  
+  #info-panel.active {
+    display: block;
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  #info-content h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  #info-content p {
+    margin: 0.5rem;
+  }
+
+
+/* to be worked on
+#choices {
+    font-size: 110%;
+    letter-spacing: 2px;
+}
+
+#choices a:hover {
+    background-color: rgb(65, 82, 75);
+    color: antiquewhite;
+}
+
+.active {
+    background-color: rgb(65, 82, 75);
+    color: antiquewhite;
+}
+
+
+    @media screen and (max-width:1064px) {
+        #presentation-text-right {
+    
+        }
+    
+        #presentation-text-left {
+    
+        }
+    }
+
+    */
+/*form
+#form-styling {
+    border: 2px solid #413535;
+
+    background-color: rgba(60, 60, 60, 0.2);
+    height: 380px;
+    max-width: 400px;
+    left: 10%;
+    margin: 0 auto;
+    padding: 15px 32px 15px 32px;
+    margin-bottom: 100px;
+
+
+    text-align: center;
+    display: block;
+
+
+}*/
+
+/*footer
+footer {
+    height: 50px;
+    text-align: center;
+    color: rgb(185, 173, 173);
+    background-color: rgb(57, 40, 40);
+    bottom: 0;
+    right: 0;
+    padding: 1em;
+    width: 100%;
+    position: fixed;
+    z-index: 3;
+}*/
+
+/*cover text
+#presentation-text-right {
+    font-size: 110%;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: blanchedalmond;
+    text-align: left;
+
+    width: 240px;
+    height: 120px;
+
+    padding-top: 40px;
+    padding-left: 10px;
+
+    background-color: rgb(3, 44, 27, 0.4);
+
+    top: 150px;
+    right: 150px;
+
+    position: absolute;
+}
+
+#presentation-text-left {
+    font-size: 110%;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: blanchedalmond;
+    text-align: right;
+
+    width: 240px;
+    height: 120px;
+
+    padding-top: 40px;
+    padding-left: 10px;
+
+    background-color: rgb(3, 44, 27, 0.4);
+
+    top: 150px;
+    left: 150px;
+
+    position: absolute;
+}*/

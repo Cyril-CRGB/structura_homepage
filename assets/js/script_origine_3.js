@@ -14,51 +14,43 @@ const descriptions = [
 
 const svg = document.getElementById('blue-buttons-layer');
 const placedButtons = [];
+const minDistance = 11; // Approximate minimum separation (adjust as needed)
 
 function isFarEnough(x, y, r) {
   return placedButtons.every(btn => {
     const dx = btn.x - x;
     const dy = btn.y - y;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    return dist >= btn.r + r + 1; // sum of radii + small buffer
+    return dist >= btn.r + r + 1; // sum of radii + buffer
   });
 }
 
 function createAnimatedButton(x, y, r, delay = 0, label, description) {
-  // Create circle (blue button)
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", x);
-  circle.setAttribute("cy", y - r * 1.5); // start above, like it's growing down
-  circle.setAttribute("r", 0); // invisible at start
+  circle.setAttribute("cy", y + r);
+  circle.setAttribute("r", 0);
   circle.setAttribute("fill", "#083F67");
-  circle.classList.add("blue-button");
-  circle.style.transition = "all 0.6s ease-out";
+  circle.style.transition = "all 0.01s ease-out";
   circle.style.transitionDelay = `${delay}ms`;
-  circle.style.transformOrigin = "center top";
-  circle.style.animation = "sway 4s ease-in-out forwards";
 
-  // Clip-path effect to simulate hiding behind leaves
-  //circle.style.clipPath = "inset(25% 0% 0% 0%)"; // top 25% clipped
-  circle.setAttribute("clip-path", "url(#leafMask)");
-
-  // Create label text
   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", x);
   text.setAttribute("y", y);
   text.setAttribute("text-anchor", "middle");
   text.setAttribute("alignment-baseline", "middle");
-  text.setAttribute("fill", "#083F67");
+  text.setAttribute("fill", "#EAE0C8");
   text.setAttribute("font-size", "3");
   text.setAttribute("font-family", "Montserrat, serif");
   text.textContent = label;
   text.style.opacity = 0;
-  text.style.transition = "opacity 0.6s ease-out, fill 0.3s ease";
-  text.style.transitionDelay = `${delay + 100}ms`;
+  text.style.transition = "opacity 0.01s ease-out";
+  text.style.transitionDelay = `${delay + 1}ms`;
 
-  // Activation logic
   function activateButton(circle, text, label, description) {
     document.querySelectorAll('.blue-button').forEach(btn => btn.classList.remove('selected'));
     document.querySelectorAll('#blue-buttons-layer text').forEach(txt => txt.style.fill = "#083F67");
+
     circle.classList.add('selected');
     text.style.fill = "#EAE0C8";
 
@@ -70,6 +62,7 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
 
   circle.addEventListener('click', () => activateButton(circle, text, label, description));
   text.addEventListener('click', () => activateButton(circle, text, label, description));
+
   circle.addEventListener('mouseenter', () => {
     if (!circle.classList.contains('selected')) text.style.fill = "#EAE0C8";
   });
@@ -87,7 +80,6 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
   svg.appendChild(text);
   placedButtons.push({ x, y, r });
 
-  // Animate appearance
   setTimeout(() => {
     circle.setAttribute("cy", y);
     circle.setAttribute("r", r);
@@ -95,7 +87,6 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
   }, delay + 50);
 }
 
-// Placement loop
 setTimeout(() => {
   let placed = 0;
   let attempts = 0;
@@ -106,13 +97,14 @@ setTimeout(() => {
     const angle = Math.random() * 2 * Math.PI;
     const x = base.cx + base.r * Math.cos(angle);
     const y = base.cy + base.r * Math.sin(angle);
-    const r = Math.floor(Math.random() * 3) + 5; // radius between 5 and 10
+    const r = Math.floor(Math.random() * 3) + 5; // radius 5 to 10
 
     if (isFarEnough(x, y, r)) {
       const { label, description } = descriptions[placed];
       createAnimatedButton(x, y, r, placed * 300, label, description);
       placed++;
     }
+
     attempts++;
   }
 
@@ -121,21 +113,16 @@ setTimeout(() => {
   }
 }, 3000);
 
-// Close panel on outside click
+// Close the panel when clicking outside of it
 document.addEventListener('click', (e) => {
   const panel = document.getElementById('info-panel');
   const content = document.getElementById('info-content');
-  if (
-    panel.classList.contains('active') &&
-    !content.contains(e.target) &&
-    !e.target.closest('circle') &&
-    !e.target.closest('text')
-  ) {
+  if (panel.classList.contains('active') && !content.contains(e.target) && !e.target.closest('circle') && !e.target.closest('text')) {
     panel.classList.remove('active');
   }
 });
 
-// Close panel on ESC
+// Close the panel when pressing ESC
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     document.getElementById('info-panel').classList.remove('active');
