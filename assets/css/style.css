@@ -86,11 +86,13 @@ body {
   fill: #083F67;
   stroke: #0a2f4d;
   stroke-width: 0.5;
+  transition: none;
 }
 
 #blue-buttons-layer circle:hover {
   stroke: #EAE0C8 !important;
   cursor: pointer;
+  transition: none;
 }
 
 #blue-buttons-layer text {
@@ -99,6 +101,7 @@ body {
 
 #blue-buttons-layer text:hover {
   font-weight: bold;
+  transition: none;
 }
 
 #blue-buttons-layer image:hover {

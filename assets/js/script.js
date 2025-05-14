@@ -33,7 +33,7 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
   circle.setAttribute("fill", "#083F67");
   circle.classList.add("blue-button");
   circle.style.transition = "all 0.6s ease-out";
-  circle.style.transitionDelay = `${delay}ms`;
+  circle.style.transitionDelay = `${delay+100}ms`;
   circle.style.transformOrigin = "center top";
   circle.style.animation = "sway 4s ease-in-out forwards";
 
@@ -52,40 +52,12 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
   text.setAttribute("font-family", "Montserrat, serif");
   text.textContent = label;
   text.style.opacity = 0;
-  text.style.transition = "opacity 0.6s ease-out, fill 0.3s ease";
-  text.style.transitionDelay = `${delay + 100}ms`;
-
-  // Activation logic
-  function activateButton(circle, text, label, description) {
-    document.querySelectorAll('.blue-button').forEach(btn => {
-      btn.classList.remove('selected');
-      //btn.setAttribute("stroke", "#0a2f4d");
-    });
-    document.querySelectorAll('#blue-buttons-layer text').forEach(txt => txt.setAttribute("fill", "#083F67"));
-    circle.classList.add('selected');
-    circle.setAttribute("stroke", "#EAE0C8");
-    text.setAttribute("fill", "#EAE0C8");
-
-    const panel = document.getElementById('info-panel');
-    document.getElementById('info-title').textContent = label;
-    document.getElementById('info-text').textContent = description;
-    panel.classList.add('active');
-  }
+  text.style.transition = "opacity 0.01s ease-out";//, fill 0.01s ease";
+  text.style.transitionDelay = `${delay + 1000}ms`;
 
   circle.addEventListener('click', () => activateButton(circle, text, label, description));
   text.addEventListener('click', () => activateButton(circle, text, label, description));
-  circle.addEventListener('mouseenter', () => {
-    if (!circle.classList.contains('selected')) text.style.fill = "#EAE0C8";
-  });
-  circle.addEventListener('mouseleave', () => {
-    if (!circle.classList.contains('selected')) text.style.fill = "#083F67";
-  });
-  text.addEventListener('mouseenter', () => {
-    if (!circle.classList.contains('selected')) text.style.fill = "#EAE0C8";
-  });
-  text.addEventListener('mouseleave', () => {
-    if (!circle.classList.contains('selected')) text.style.fill = "#083F67";
-  });
+  addHoverBehavior(circle, text);
 
   svg.appendChild(circle);
   svg.appendChild(text);
@@ -97,6 +69,50 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
     circle.setAttribute("r", r);
     text.style.opacity = 1;
   }, delay + 50);
+}
+
+function activateButton(circle, text, label, description) {
+  document.querySelectorAll('#blue-buttons-layer circle').forEach(c => c.setAttribute('stroke', '#0a2f4d'));
+  document.querySelectorAll('#blue-buttons-layer text').forEach(t => {
+    t.setAttribute('fill', '#083F67');
+    t.setAttribute('font-weight', 'normal');
+  });
+
+  circle.setAttribute('stroke', '#EAE0C8');
+  text.setAttribute('fill', '#EAE0C8');
+  text.setAttribute('font-weight', 'bold');
+
+  const panel = document.getElementById('info-panel');
+  document.getElementById('info-title').textContent = label;
+  document.getElementById('info-text').textContent = description;
+  panel.classList.add('active');
+}
+
+function addHoverBehavior(circle, text) {
+  const hoverIn = () => {
+    // Disable stroke transition temporarily
+    const originalTransition  = circle.style.transition;
+    circle.style.transition = "none";
+    // Immediate stroke update
+    circle.style.stroke = '#EAE0C8';
+    text.setAttribute('fill', '#EAE0C8');
+    text.setAttribute('font-weight', 'bold');
+  };
+
+  const hoverOut = () => {
+    // Immediate stroke update   
+    circle.style.stroke = '#0a2f4d'; 
+    text.setAttribute('fill', '#083F67');
+    text.setAttribute('font-weight', 'normal');
+    // Restore original transition after short delay
+    requestAnimationFrame(() => {
+      circle.style.transition = originalTransition ;
+    });
+  };
+  circle.addEventListener('mouseenter', hoverIn);
+  circle.addEventListener('mouseleave', hoverOut);
+  text.addEventListener('mouseenter', hoverIn);
+  text.addEventListener('mouseleave', hoverOut);
 }
 
 // Placement loop
@@ -216,11 +232,8 @@ setTimeout(() => {
     }
     svg.appendChild(langText);
   });
-//}, 4000);
 
   // LinkedIn logo
-//setTimeout(() => {
-//    const svg = document.getElementById('blue-buttons-layer');
 
     const linkedInImage = document.createElementNS("http://www.w3.org/2000/svg", "image");
     linkedInImage.setAttributeNS("http://www.w3.org/1999/xlink", "href", "assets/images/LI-Logo.png");
@@ -231,8 +244,8 @@ setTimeout(() => {
     linkedInImage.style.cursor = "pointer";
 
     linkedInImage.addEventListener("click", () => {
-      window.open("https://www.linkedin.com/in/cyril-bromberger-04317658/", "_blank");
+      window.open("https://www.linkedin.com/in/cyril-bromberger-04317658/?locale=en_US", "_blank");
     });
 
     svg.appendChild(linkedInImage);
-}, 4000);
+}, 6000);
