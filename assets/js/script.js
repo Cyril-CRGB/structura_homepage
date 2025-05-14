@@ -150,6 +150,7 @@ document.addEventListener('keydown', (e) => {
 // Add CONTACT US with sparkler effect and form popup
 setTimeout(() => {
   const svg = document.getElementById('blue-buttons-layer');
+  // Contact text
   const contactText = document.createElementNS("http://www.w3.org/2000/svg", "text");
   contactText.setAttribute("x", 100);
   contactText.setAttribute("y", 180);
@@ -178,14 +179,15 @@ setTimeout(() => {
 
     const form = document.createElement('form');
     form.innerHTML = `
-      <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
-        <h2>contact me</h2>
-        <br>
-        <label>Name:<br><input type="text" name="name" required></label><br><br>
-        <label>Email:<br><input type="email" name="email" required></label><br><br>
-        <label>Message:<br><textarea name="message" rows="6" required></textarea></label><br><br>
-        <button type="submit">Send</button>
-        <button type="button" onclick="document.getElementById('contact-overlay').remove()">Close</button>
+      <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3); min-width: 280px;">
+        <h2 style="margin-top: 0;">contact me</h2><br>
+        <label>Name:<br><input type="text" name="name" required style="width: 100%;"></label><br><br>
+        <label>Email:<br><input type="email" name="email" required style="width: 100%;"></label><br><br>
+        <label>Message:<br><textarea name="message" rows="4" required style="width: 100%;"></textarea></label><br><br>
+        <div style="display: flex; justify-content: space-between; gap: 1rem;">
+          <button type="submit" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Send</button>
+          <button type="button" onclick="document.getElementById('contact-overlay').remove()" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Close</button>
+        </div>
       </div>
     `;
 
