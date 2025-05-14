@@ -214,25 +214,23 @@ setTimeout(() => {
     }
     svg.appendChild(langText);
   });
+//}, 4000);
 
   // LinkedIn logo
-    const container = document.getElementById('presentation-outer-x');
+//setTimeout(() => {
+//    const svg = document.getElementById('blue-buttons-layer');
 
-    const wrapper = document.createElement('div');
-    wrapper.className = 'linkedin-fixed';
+    const linkedInImage = document.createElementNS("http://www.w3.org/2000/svg", "image");
+    linkedInImage.setAttributeNS("http://www.w3.org/1999/xlink", "href", "assets/images/LI-Logo.png");
+    linkedInImage.setAttribute("x", 134);        // Adjust X to align with "Contact us"
+    linkedInImage.setAttribute("y", 169.5);        // Adjust Y to match vertical alignment
+    linkedInImage.setAttribute("width", 20);     // Responsive within SVG viewBox (200x200)
+    linkedInImage.setAttribute("height", 20);
+    linkedInImage.style.cursor = "pointer";
 
-    const link = document.createElement('a');
-    link.href = 'https://www.linkedin.com/in/cyril-bromberger-04317658/';
-    link.target = '_blank';
-    link.setAttribute('aria-label', 'LinkedIn profile');
+    linkedInImage.addEventListener("click", () => {
+      window.open("https://www.linkedin.com/in/cyril-bromberger-04317658/", "_blank");
+    });
 
-    const logo = document.createElement('img');
-    logo.src = 'assets/images/LI-Logo.png';
-    logo.alt = 'LinkedIn logo';
-    logo.className = 'linkedin-logo';
-
-    link.appendChild(logo);
-    wrapper.appendChild(link);
-    container.appendChild(wrapper);
-    
+    svg.appendChild(linkedInImage);
 }, 4000);
