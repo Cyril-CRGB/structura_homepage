@@ -97,11 +97,12 @@ body {
 
 #blue-buttons-layer text {
   cursor: pointer;
+  pointer-events: all;
 }
 
 #blue-buttons-layer text:hover {
   font-weight: bold;
-  transition: none;
+  /*transition: none;*/
 }
 
 #blue-buttons-layer image:hover {

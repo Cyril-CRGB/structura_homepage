@@ -33,7 +33,7 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
   circle.setAttribute("fill", "#083F67");
   circle.classList.add("blue-button");
   circle.style.transition = "all 0.6s ease-out";
-  circle.style.transitionDelay = `${delay}ms`;
+  circle.style.transitionDelay = `${delay+100}ms`;
   circle.style.transformOrigin = "center top";
   circle.style.animation = "sway 4s ease-in-out forwards";
 
@@ -52,40 +52,12 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
   text.setAttribute("font-family", "Montserrat, serif");
   text.textContent = label;
   text.style.opacity = 0;
-  text.style.transition = "opacity 0.6s ease-out, fill 0.3s ease";
-  text.style.transitionDelay = `${delay + 100}ms`;
-
-  // Activation logic
-  function activateButton(circle, text, label, description) {
-    document.querySelectorAll('.blue-button').forEach(btn => {
-      btn.classList.remove('selected');
-      //btn.setAttribute("stroke", "#0a2f4d");
-    });
-    document.querySelectorAll('#blue-buttons-layer text').forEach(txt => txt.setAttribute("fill", "#083F67"));
-    circle.classList.add('selected');
-    circle.setAttribute("stroke", "#EAE0C8");
-    text.setAttribute("fill", "#EAE0C8");
-
-    const panel = document.getElementById('info-panel');
-    document.getElementById('info-title').textContent = label;
-    document.getElementById('info-text').textContent = description;
-    panel.classList.add('active');
-  }
+  text.style.transition = "opacity 0.01s ease-out";//, fill 0.01s ease";
+  text.style.transitionDelay = `${delay + 1000}ms`;
 
   circle.addEventListener('click', () => activateButton(circle, text, label, description));
   text.addEventListener('click', () => activateButton(circle, text, label, description));
-  circle.addEventListener('mouseenter', () => {
-    if (!circle.classList.contains('selected')) text.style.fill = "#EAE0C8";
-  });
-  circle.addEventListener('mouseleave', () => {
-    if (!circle.classList.contains('selected')) text.style.fill = "#083F67";
-  });
-  text.addEventListener('mouseenter', () => {
-    if (!circle.classList.contains('selected')) text.style.fill = "#EAE0C8";
-  });
-  text.addEventListener('mouseleave', () => {
-    if (!circle.classList.contains('selected')) text.style.fill = "#083F67";
-  });
+  addHoverBehavior(circle, text);
 
   svg.appendChild(circle);
   svg.appendChild(text);
@@ -97,6 +69,45 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
     circle.setAttribute("r", r);
     text.style.opacity = 1;
   }, delay + 50);
+}
+
+function activateButton(circle, text, label, description) {
+
+  circle.style.stroke = '#EAE0C8'; // not working
+  text.setAttribute('fill', '#EAE0C8'); // not working
+  text.setAttribute('font-weight', 'bold'); // not working
+
+  const panel = document.getElementById('info-panel');
+  document.getElementById('info-title').textContent = label;
+  document.getElementById('info-text').textContent = description;
+  panel.classList.add('active');
+}
+
+function addHoverBehavior(circle, text) {
+  const hoverIn = () => {
+    // Disable stroke transition temporarily
+    const originalTransition  = circle.style.transition;
+    circle.style.transition = "none";
+    // Immediate stroke update
+    circle.style.stroke = '#EAE0C8';
+    text.setAttribute('fill', '#EAE0C8');
+    text.setAttribute('font-weight', 'bold');
+  };
+
+  const hoverOut = () => {
+    // Immediate stroke update   
+    circle.style.stroke = '#0a2f4d'; 
+    text.setAttribute('fill', '#083F67');
+    text.setAttribute('font-weight', 'normal');
+    // Restore original transition after short delay
+    requestAnimationFrame(() => {
+      circle.style.transition = originalTransition ;
+    });
+  };
+  circle.addEventListener('mouseenter', hoverIn);
+  circle.addEventListener('mouseleave', hoverOut);
+  text.addEventListener('mouseenter', hoverIn);
+  text.addEventListener('mouseleave', hoverOut);
 }
 
 // Placement loop
@@ -147,23 +158,21 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-// Add CONTACT ME text after all blue buttons
+// Add CONTACT US with sparkler effect and form popup
 setTimeout(() => {
   const svg = document.getElementById('blue-buttons-layer');
-
+  // Contact text
   const contactText = document.createElementNS("http://www.w3.org/2000/svg", "text");
   contactText.setAttribute("x", 100);
-  contactText.setAttribute("y", 185);
+  contactText.setAttribute("y", 180);
   contactText.setAttribute("text-anchor", "middle");
   contactText.setAttribute("alignment-baseline", "middle");
-  contactText.setAttribute("fill", "#EAE0C8");
+  contactText.setAttribute("fill", "#083F67");
   contactText.setAttribute("font-size", "4");
   contactText.setAttribute("font-family", "Montserrat, serif");
-  contactText.style.opacity = 0;
+  contactText.style.opacity = 1;
   contactText.style.cursor = "pointer";
-  contactText.textContent = "Contact me";
-
-  contactText.style.animation = "sparkle-reveal 2s ease forwards";
+  contactText.textContent = "contact me";
 
   contactText.addEventListener('click', () => {
     const formOverlay = document.createElement('div');
@@ -181,13 +190,15 @@ setTimeout(() => {
 
     const form = document.createElement('form');
     form.innerHTML = `
-      <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
-        <h2>Contact Me</h2>
-        <label>Name:<br><input type="text" name="name" required></label><br><br>
-        <label>Email:<br><input type="email" name="email" required></label><br><br>
-        <label>Message:<br><textarea name="message" rows="4" required></textarea></label><br><br>
-        <button type="submit">Send</button>
-        <button type="button" onclick="document.getElementById('contact-overlay').remove()">Close</button>
+      <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3); min-width: 280px;">
+        <h2 style="margin-top: 0;">contact me</h2><br>
+        <label>Name:<br><input type="text" name="name" required style="width: 100%;"></label><br><br>
+        <label>Email:<br><input type="email" name="email" required style="width: 100%;"></label><br><br>
+        <label>Message:<br><textarea name="message" rows="4" required style="width: 100%;"></textarea></label><br><br>
+        <div style="display: flex; justify-content: space-between; gap: 1rem;">
+          <button type="submit" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Send</button>
+          <button type="button" onclick="document.getElementById('contact-overlay').remove()" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Close</button>
+        </div>
       </div>
     `;
 
@@ -196,14 +207,40 @@ setTimeout(() => {
   });
 
   svg.appendChild(contactText);
-}, 6000); // After blue buttons
 
-// CSS Keyframes for sparkle animation
-const style = document.createElement('style');
-style.innerHTML = `
-@keyframes sparkle-reveal {
-  0% { opacity: 0; filter: brightness(2); letter-spacing: 0.2em; }
-  50% { opacity: 0.5; filter: brightness(3); }
-  100% { opacity: 1; filter: brightness(1); letter-spacing: 0; }
-}`;
-document.head.appendChild(style);
+  // Language switcher
+  const lang = document.documentElement.lang || 'en';
+  const langs = ['de', '/', 'fr', '/', 'en'];
+  langs.forEach((code, i) => {
+    const langText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    langText.setAttribute("x", 52 + (i - 1) * 4); // space out
+    langText.setAttribute("y", 180);
+    langText.setAttribute("text-anchor", "middle");
+    langText.setAttribute("alignment-baseline", "middle");
+    langText.setAttribute("fill", "#083F67");
+    langText.setAttribute("font-size", "4");
+    langText.setAttribute("font-family", "Montserrat, serif");
+    langText.style.cursor = "pointer";
+    langText.textContent = code;
+    if (code === lang) {
+      langText.setAttribute("text-decoration", "underline");
+    }
+    svg.appendChild(langText);
+  });
+
+  // LinkedIn logo
+
+    const linkedInImage = document.createElementNS("http://www.w3.org/2000/svg", "image");
+    linkedInImage.setAttributeNS("http://www.w3.org/1999/xlink", "href", "assets/images/LI-Logo.png");
+    linkedInImage.setAttribute("x", 134);        // Adjust X to align with "Contact us"
+    linkedInImage.setAttribute("y", 169.5);        // Adjust Y to match vertical alignment
+    linkedInImage.setAttribute("width", 20);     // Responsive within SVG viewBox (200x200)
+    linkedInImage.setAttribute("height", 20);
+    linkedInImage.style.cursor = "pointer";
+
+    linkedInImage.addEventListener("click", () => {
+      window.open("https://www.linkedin.com/in/cyril-bromberger-04317658/?locale=en_US", "_blank");
+    });
+
+    svg.appendChild(linkedInImage);
+}, 6000);
