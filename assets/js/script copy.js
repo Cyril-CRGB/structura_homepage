@@ -14,6 +14,7 @@ const descriptions = [
 
 const svg = document.getElementById('blue-buttons-layer');
 const placedButtons = [];
+let activeCircle = null;
 
 function isFarEnough(x, y, r) {
   return placedButtons.every(btn => {
@@ -54,9 +55,11 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
   text.style.opacity = 0;
   text.style.transition = "opacity 0.01s ease-out";//, fill 0.01s ease";
   text.style.transitionDelay = `${delay + 1000}ms`;
+  text.style.pointerEvents = "all";
 
   circle.addEventListener('click', () => activateButton(circle, text, label, description));
   text.addEventListener('click', () => activateButton(circle, text, label, description));
+
   addHoverBehavior(circle, text);
 
   svg.appendChild(circle);
@@ -68,47 +71,79 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
     circle.setAttribute("cy", y);
     circle.setAttribute("r", r);
     text.style.opacity = 1;
+    createLineForButton(x, y, r, delay + 3600); 
   }, delay + 50);
 }
 
-function activateButton(circle, text, label, description) {
+// Add horizontal blue line just above the circle
+function createLineForButton(x, y, r, delay = 0) {
+  const clippedTopY = y - r * 0.58;
 
-  circle.style.stroke = '#EAE0C8'; // not working
-  text.setAttribute('fill', '#EAE0C8'); // not working
-  text.setAttribute('font-weight', 'bold'); // not working
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  line.setAttribute("x1", x - r - 1);
+  line.setAttribute("x2", x + r + 1);
+  line.setAttribute("y1", clippedTopY);
+  line.setAttribute("y2", clippedTopY);
+  line.setAttribute("stroke", "#083F67");
+  line.setAttribute("stroke-width", "0.7");
+  line.style.opacity = 0;
+  //line.style.transition = "opacity 0.3s ease";
+  line.style.transition = "opacity 0.3s ease-in-out";
+
+  svg.appendChild(line);
+
+  // Animate appearance after delay
+  setTimeout(() => {
+    line.style.opacity = 1;
+  }, delay);
+}
+
+function activateButton(circle, text, label, description) {
+  activeCircle = circle;
+  resetAllBlueButtons();
+  circle.style.stroke = '#EAE0C8';
+  text.setAttribute('fill', '#EAE0C8');
+  text.setAttribute('font-weight', 'bold');
 
   const panel = document.getElementById('info-panel');
-  document.getElementById('info-title').textContent = label;
-  document.getElementById('info-text').textContent = description;
+  document.getElementById('info-title').textContent = description;
+  //document.getElementById('info-text').textContent = description;
   panel.classList.add('active');
 }
 
 function addHoverBehavior(circle, text) {
+  let originalTransition;
+
   const hoverIn = () => {
-    // Disable stroke transition temporarily
-    const originalTransition  = circle.style.transition;
+    originalTransition = circle.style.transition;
     circle.style.transition = "none";
-    // Immediate stroke update
+
     circle.style.stroke = '#EAE0C8';
     text.setAttribute('fill', '#EAE0C8');
     text.setAttribute('font-weight', 'bold');
+
+    requestAnimationFrame(() => {
+      circle.style.transition = originalTransition;
+    });
   };
 
   const hoverOut = () => {
-    // Immediate stroke update   
-    circle.style.stroke = '#0a2f4d'; 
+    const panel = document.getElementById('info-panel');
+    if (panel.classList.contains('active') && activeCircle === circle) return;
+
+    circle.style.stroke = '#0a2f4d';
     text.setAttribute('fill', '#083F67');
     text.setAttribute('font-weight', 'normal');
-    // Restore original transition after short delay
-    requestAnimationFrame(() => {
-      circle.style.transition = originalTransition ;
-    });
   };
+  requestAnimationFrame(() => {
+    circle.style.transition = originalTransition;
+  });
   circle.addEventListener('mouseenter', hoverIn);
   circle.addEventListener('mouseleave', hoverOut);
   text.addEventListener('mouseenter', hoverIn);
   text.addEventListener('mouseleave', hoverOut);
 }
+
 
 // Placement loop
 setTimeout(() => {
@@ -136,29 +171,36 @@ setTimeout(() => {
   }
 }, 3000);
 
-// Close panel on outside click
+function resetAllBlueButtons() {
+  document.querySelectorAll('#blue-buttons-layer circle').forEach(c => c.style.stroke = '#0a2f4d');
+  document.querySelectorAll('#blue-buttons-layer text').forEach(t => {
+    t.setAttribute('fill', '#083F67');
+    t.setAttribute('font-weight', 'normal');
+  });
+}
+
+// Close the panel when clicking outside of it
 document.addEventListener('click', (e) => {
   const panel = document.getElementById('info-panel');
   const content = document.getElementById('info-content');
-  if (
-    panel.classList.contains('active') &&
-    !content.contains(e.target) &&
-    !e.target.closest('circle') &&
-    !e.target.closest('text')
-  ) {
+  if (panel.classList.contains('active') && !content.contains(e.target) && !e.target.closest('circle')) {
     panel.classList.remove('active');
+    activeCircle = null;
+    resetAllBlueButtons();
   }
 });
 
-// Close panel on ESC
+// Close the panel when pressing ESC
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     document.getElementById('info-panel').classList.remove('active');
+    activeCircle = null;
+    resetAllBlueButtons();
   }
 });
 
 
-// Add CONTACT US with sparkler effect and form popup
+// Add CONTACT US and form popup
 setTimeout(() => {
   const svg = document.getElementById('blue-buttons-layer');
   // Contact text
@@ -229,7 +271,6 @@ setTimeout(() => {
   });
 
   // LinkedIn logo
-
     const linkedInImage = document.createElementNS("http://www.w3.org/2000/svg", "image");
     linkedInImage.setAttributeNS("http://www.w3.org/1999/xlink", "href", "assets/images/LI-Logo.png");
     linkedInImage.setAttribute("x", 134);        // Adjust X to align with "Contact us"

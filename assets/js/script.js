@@ -4,16 +4,17 @@ const magentaCircles = [
   { cx: 120, cy: 80, r: 17 }
 ];
 
-const descriptions = [
-  { label: "ai", description: "Artificial Intelligence tools and insights." },
-  { label: "dr", description: "Director ad interim and Board member." },
-  { label: "fi/ac", description: "Finance and Accounting services." },
-  { label: "data", description: "Data extraction, cleaning, and visualization tools." },
-  { label: "web", description: "Web development and automation solutions." }
+const textualvariations = [
+  { label: "ai", title: "Data science, what I offer:", description: "Artificial Intelligence tools and insights.", points: ["ML models", "Chatbots", "Vision APIs"]},
+  { label: "cfo", title: "Chief Financial Officer, what I offer:", description:"Director ad interim or Board member.", points: ["Financial Management", "Strategic Decision Support", "Stakeholder"]},
+  { label: "fi/ac", title: "Certified Public Accountant, what I offer:", description:"Finance and Accounting services.", points: ["ERP proficiency", "Year/Quartal/Monthly end closing", "Payroll and social insurances declaration", "Direct & Indirect Taxes"]},
+  { label: "data", title: "Data engineering & analysis, what I offer:", description:"Data extraction, cleaning and visualization.", points: ["Database", "Processing", "Exploration & Visualization"]},
+  { label: "web", title: "Web Developer, what I offer:", description: "Web programmation and automation.", points: ["Frontend", "Backend", "Deployment", "Maintenance"]}
 ];
 
 const svg = document.getElementById('blue-buttons-layer');
 const placedButtons = [];
+let activeCircle = null;
 
 function isFarEnough(x, y, r) {
   return placedButtons.every(btn => {
@@ -24,7 +25,7 @@ function isFarEnough(x, y, r) {
   });
 }
 
-function createAnimatedButton(x, y, r, delay = 0, label, description) {
+function createAnimatedButton(x, y, r, delay = 0, label, title, description, points = []) {
   // Create circle (blue button)
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", x);
@@ -56,8 +57,8 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
   text.style.transitionDelay = `${delay + 1000}ms`;
   text.style.pointerEvents = "all";
 
-  circle.addEventListener('click', () => activateButton(circle, text, label, description));
-  text.addEventListener('click', () => activateButton(circle, text, label, description));
+  circle.addEventListener('click', () => activateButton(circle, text, label, title, description, points));
+  text.addEventListener('click', () => activateButton(circle, text, label, title, description, points));
 
   addHoverBehavior(circle, text);
 
@@ -74,7 +75,7 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
   }, delay + 50);
 }
 
-// Add horizontal blue line just behind the circle
+// Add horizontal blue line just above the circle
 function createLineForButton(x, y, r, delay = 0) {
   const clippedTopY = y - r * 0.58;
 
@@ -97,7 +98,7 @@ function createLineForButton(x, y, r, delay = 0) {
   }, delay);
 }
 
-function activateButton(circle, text, label, description) {
+function activateButton(circle, text, label, title, description, points = []) {
   activeCircle = circle;
   resetAllBlueButtons();
   circle.style.stroke = '#EAE0C8';
@@ -105,8 +106,36 @@ function activateButton(circle, text, label, description) {
   text.setAttribute('font-weight', 'bold');
 
   const panel = document.getElementById('info-panel');
-  document.getElementById('info-title').textContent = label;
-  document.getElementById('info-text').textContent = description;
+  document.getElementById('info-title').textContent = title;
+  document.getElementById('info-description').textContent = description;
+
+  // Handle multi-point textualvariations with expandable blocks
+  const infoCorpus = document.getElementById('info-corpus');
+  infoCorpus.innerHTML = '';
+  if (Array.isArray(points)) {
+    points.forEach((pt, i) => {
+      const details = document.createElement('details');
+      const summary = document.createElement('summary');
+      summary.textContent = pt;
+      const content = document.createElement('div');
+      content.textContent = "...";
+      summary.addEventListener("click", () => {
+        // Close all other <details> in the panel
+        const allDetails = infoCorpus.querySelectorAll("details");
+        allDetails.forEach(d => {
+          if (d !== details) {
+            d.removeAttribute("open");
+          }
+        });
+      });
+      details.appendChild(summary);
+      details.appendChild(content);
+      infoCorpus.appendChild(details);
+    });
+  } else {
+    infoCorpus.textContent = points;
+  }
+
   panel.classList.add('active');
 }
 
@@ -148,7 +177,7 @@ function addHoverBehavior(circle, text) {
 setTimeout(() => {
   let placed = 0;
   let attempts = 0;
-  const max = descriptions.length;
+  const max = textualvariations.length;
 
   while (placed < max && attempts < 1000) {
     const base = magentaCircles[Math.floor(Math.random() * magentaCircles.length)];
@@ -158,8 +187,8 @@ setTimeout(() => {
     const r = Math.floor(Math.random() * 3) + 5; // radius between 5 and 10
 
     if (isFarEnough(x, y, r)) {
-      const { label, description } = descriptions[placed];
-      createAnimatedButton(x, y, r, placed * 300, label, description);
+      const { label, title, description, points} = textualvariations[placed];
+      createAnimatedButton(x, y, r, placed * 300, label, title, description, points);
       placed++;
     }
     attempts++;
@@ -199,7 +228,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-// Add CONTACT US with sparkler effect and form popup
+// Add CONTACT US and form popup
 setTimeout(() => {
   const svg = document.getElementById('blue-buttons-layer');
   // Contact text
@@ -270,7 +299,6 @@ setTimeout(() => {
   });
 
   // LinkedIn logo
-
     const linkedInImage = document.createElementNS("http://www.w3.org/2000/svg", "image");
     linkedInImage.setAttributeNS("http://www.w3.org/1999/xlink", "href", "assets/images/LI-Logo.png");
     linkedInImage.setAttribute("x", 134);        // Adjust X to align with "Contact us"
