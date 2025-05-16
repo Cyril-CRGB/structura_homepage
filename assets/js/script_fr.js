@@ -4,12 +4,12 @@ const magentaCircles = [
   { cx: 120, cy: 80, r: 17 }
 ];
 
-const descriptions = [
-  { label: "ai", description: "Artificial Intelligence tools and insights." },
-  { label: "dr", description: "Director ad interim and Board member." },
-  { label: "fi/ac", description: "Finance and Accounting services." },
-  { label: "data", description: "Data extraction, cleaning, and visualization tools." },
-  { label: "web", description: "Web development and automation solutions." }
+const textualvariations = [
+  { label: "ia", titleX: "Science des données, ce que j'offre:", descriptionX: "Outils et perspectives en intelligence artificielle.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["fr_blabla1", "fr_blabla2", "fr_blabla3"]},
+  { label: "cfo", titleX: "Directeur Financier, ce que j'offre:", descriptionX:"Services financiers et de management.", points: ["Management financier", "Soutiens aux décisions stratégiques", "Actionnaires"], variation: ["fr_blabla4", "fr_blabla5", "fr_blabla6"]},
+  { label: "bff", titleX: "Brevet fédéral de spécialiste en finance et comptabilité, ce que j'offre:", descriptionX:"Services comptables.", points: ["Maîtrise ERP", "Clôture et Reporting mensuel/trimestriel/annuel", "Salaires et déclaration aux ass. sociales", "Taxes directes et indirectes"], variation: ["fr_blabla7", "fr_blabla8", "fr_blabla9", "fr_blabla10"]},
+  { label: "data", titleX: "Gestion et analyse de données, ce que j'offre:", descriptionX:"Extraction, nettoyage et visualisation des données.", points: ["Traitement de bases de données", "Exploration & Visualisation"], variation: ["fr_blabla11", "fr_blabla12"]},
+  { label: "web", titleX: "Dévelopeur web, ce que j'offre:", descriptionX: "Programmation et automatisation web.", points: ["Agile", "Frontend/Backend", "Déploiement/Maintenance"], variation: ["fr_blabla13", "fr_blabla14", "fr_blabla15"]}
 ];
 
 const svg = document.getElementById('blue-buttons-layer');
@@ -25,13 +25,15 @@ function isFarEnough(x, y, r) {
   });
 }
 
-function createAnimatedButton(x, y, r, delay = 0, label, description) {
+function createAnimatedButton(x, y, r, delay = 0, label, titleX, descriptionX, points = [], variation = []) {
   // Create circle (blue button)
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", x);
   circle.setAttribute("cy", y - r * 1.5); // start above, like it's growing down
   circle.setAttribute("r", 0); // invisible at start
   circle.setAttribute("fill", "#083F67");
+  circle.setAttribute("stroke", "#0a2f4d");
+  circle.setAttribute("stroke-width", "0.5");
   circle.classList.add("blue-button");
   circle.style.transition = "all 0.6s ease-out";
   circle.style.transitionDelay = `${delay+100}ms`;
@@ -41,38 +43,18 @@ function createAnimatedButton(x, y, r, delay = 0, label, description) {
   // Clip-path effect to simulate hiding behind leaves
   circle.style.clipPath = "inset(25% 0% 0% 0%)"; // top 25% clipped
   //circle.setAttribute("clip-path", "url(#leafMask)");
-
-  // Create label text
-  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  text.setAttribute("x", x);
-  text.setAttribute("y", y);
-  text.setAttribute("text-anchor", "middle");
-  text.setAttribute("alignment-baseline", "middle");
-  text.setAttribute("fill", "#083F67");
-  text.setAttribute("font-size", "3");
-  text.setAttribute("font-family", "Montserrat, serif");
-  text.textContent = label;
-  text.style.opacity = 0;
-  text.style.transition = "opacity 0.01s ease-out";//, fill 0.01s ease";
-  text.style.transitionDelay = `${delay + 1000}ms`;
-  text.style.pointerEvents = "all";
-
-  circle.addEventListener('click', () => activateButton(circle, text, label, description));
-  text.addEventListener('click', () => activateButton(circle, text, label, description));
-
-  addHoverBehavior(circle, text);
-
+  
   svg.appendChild(circle);
-  svg.appendChild(text);
   placedButtons.push({ x, y, r });
 
-  // Animate appearance
+  // Animate circle and draw line
   setTimeout(() => {
     circle.setAttribute("cy", y);
     circle.setAttribute("r", r);
-    text.style.opacity = 1;
     createLineForButton(x, y, r, delay + 3600); 
   }, delay + 50);
+
+  return circle;
 }
 
 // Add horizontal blue line just above the circle
@@ -98,7 +80,35 @@ function createLineForButton(x, y, r, delay = 0) {
   }, delay);
 }
 
-function activateButton(circle, text, label, description) {
+// Create label text
+function createAnimatedText(x, y, delay, label, titleX, descriptionX, points, variation, circle) {
+  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", x);
+  text.setAttribute("y", y);
+  text.setAttribute("text-anchor", "middle");
+  text.setAttribute("alignment-baseline", "middle");
+  text.setAttribute("fill", "#083F67");
+  text.setAttribute("font-size", "3");
+  text.setAttribute("font-family", "Montserrat, serif");
+  text.textContent = label;
+  text.style.opacity = 0;
+  text.style.transition = "opacity 0.01s ease-out";//, fill 0.01s ease";
+  text.style.transitionDelay = `${delay + 1000}ms`;
+  text.style.pointerEvents = "all";
+
+  circle.addEventListener('click', () => activateButton(circle, text, label, titleX, descriptionX, points, variation));
+  text.addEventListener('click', () => activateButton(circle, text, label, titleX, descriptionX, points, variation));
+
+  addHoverBehavior(circle, text);
+
+  svg.appendChild(text);
+
+  setTimeout(() => {
+    text.style.opacity = 1;
+  }, delay + 50);
+}
+
+function activateButton(circle, text, label, titleX, descriptionX, points = [], variation = []) {
   activeCircle = circle;
   resetAllBlueButtons();
   circle.style.stroke = '#EAE0C8';
@@ -106,8 +116,37 @@ function activateButton(circle, text, label, description) {
   text.setAttribute('font-weight', 'bold');
 
   const panel = document.getElementById('info-panel');
-  document.getElementById('info-title').textContent = description;
-  //document.getElementById('info-text').textContent = description;
+  document.getElementById('info-title').textContent = titleX;
+  document.getElementById('info-description').textContent = descriptionX;
+
+  // Handle multi-point textualvariations with expandable blocks
+  const infoCorpus = document.getElementById('info-corpus');
+  infoCorpus.innerHTML = '';
+  if (Array.isArray(points) && Array.isArray(variation)) {
+    points.forEach((pt, i) => {
+      const details = document.createElement('details');
+      const summary = document.createElement('summary');
+      summary.textContent = pt;
+      const content = document.createElement('div');
+      content.textContent = variation[i];
+      // Ensure only one <details> is open at a time
+      summary.addEventListener("click", () => {
+        // Close all other <details> in the panel
+        const allDetails = infoCorpus.querySelectorAll("details");
+        allDetails.forEach(d => {
+          if (d !== details) {
+            d.removeAttribute("open");
+          }
+        });
+      });
+      details.appendChild(summary);
+      details.appendChild(content);
+      infoCorpus.appendChild(details);
+    });
+  } else {
+    infoCorpus.textContent = points;
+  }
+
   panel.classList.add('active');
 }
 
@@ -149,7 +188,7 @@ function addHoverBehavior(circle, text) {
 setTimeout(() => {
   let placed = 0;
   let attempts = 0;
-  const max = descriptions.length;
+  const max = textualvariations.length;
 
   while (placed < max && attempts < 1000) {
     const base = magentaCircles[Math.floor(Math.random() * magentaCircles.length)];
@@ -159,8 +198,9 @@ setTimeout(() => {
     const r = Math.floor(Math.random() * 3) + 5; // radius between 5 and 10
 
     if (isFarEnough(x, y, r)) {
-      const { label, description } = descriptions[placed];
-      createAnimatedButton(x, y, r, placed * 300, label, description);
+      const { label, titleX, descriptionX, points, variation } = textualvariations[placed];
+      const circle = createAnimatedButton(x, y, r, placed * 300, label, titleX, descriptionX, points, variation);
+      createAnimatedText(x, y, placed * 300, label, titleX, descriptionX, points, variation, circle);
       placed++;
     }
     attempts++;
@@ -214,7 +254,7 @@ setTimeout(() => {
   contactText.setAttribute("font-family", "Montserrat, serif");
   contactText.style.opacity = 1;
   contactText.style.cursor = "pointer";
-  contactText.textContent = "contact me";
+  contactText.textContent = "contactez-moi";
 
   contactText.addEventListener('click', () => {
     const formOverlay = document.createElement('div');
@@ -233,13 +273,13 @@ setTimeout(() => {
     const form = document.createElement('form');
     form.innerHTML = `
       <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3); min-width: 280px;">
-        <h2 style="margin-top: 0;">contact me</h2><br>
-        <label>Name:<br><input type="text" name="name" required style="width: 100%;"></label><br><br>
-        <label>Email:<br><input type="email" name="email" required style="width: 100%;"></label><br><br>
+        <h2 style="margin-top: 0;">contactez-moi</h2><br>
+        <label>Nom:<br><input type="text" name="name" required style="width: 100%;"></label><br><br>
+        <label>Courriel:<br><input type="email" name="email" required style="width: 100%;"></label><br><br>
         <label>Message:<br><textarea name="message" rows="4" required style="width: 100%;"></textarea></label><br><br>
         <div style="display: flex; justify-content: space-between; gap: 1rem;">
-          <button type="submit" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Send</button>
-          <button type="button" onclick="document.getElementById('contact-overlay').remove()" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Close</button>
+          <button type="submit" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Envoyer</button>
+          <button type="button" onclick="document.getElementById('contact-overlay').remove()" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Fermer</button>
         </div>
       </div>
     `;
@@ -251,11 +291,11 @@ setTimeout(() => {
   svg.appendChild(contactText);
 
   // Language switcher
-  const lang = document.documentElement.lang || 'en';
-  const langs = ['de', '/', 'fr', '/', 'en'];
+  const currentLang = document.documentElement.lang || 'fr';
+  const langs = ['de ', 'fr ', 'en '];
   langs.forEach((code, i) => {
     const langText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    langText.setAttribute("x", 52 + (i - 1) * 4); // space out
+    langText.setAttribute("x", 48 + i * 6); // space out horizontally
     langText.setAttribute("y", 180);
     langText.setAttribute("text-anchor", "middle");
     langText.setAttribute("alignment-baseline", "middle");
@@ -264,9 +304,23 @@ setTimeout(() => {
     langText.setAttribute("font-family", "Montserrat, serif");
     langText.style.cursor = "pointer";
     langText.textContent = code;
-    if (code === lang) {
+  
+    // Underline the current language
+    if (code === currentLang) {
       langText.setAttribute("text-decoration", "underline");
     }
+  
+    // On click, redirect to corresponding static page
+    langText.addEventListener("click", () => {
+      if (code === 'en ') {
+        window.location.href = 'index.html';
+      } else if (code === 'de ') {
+        window.location.href = 'de.html';
+      } else {
+        window.location.href = 'fr.html';
+      }
+    });
+  
     svg.appendChild(langText);
   });
 
@@ -280,7 +334,7 @@ setTimeout(() => {
     linkedInImage.style.cursor = "pointer";
 
     linkedInImage.addEventListener("click", () => {
-      window.open("https://www.linkedin.com/in/cyril-bromberger-04317658/?locale=en_US", "_blank");
+      window.open("https://www.linkedin.com/in/cyril-bromberger-04317658/", "_blank");
     });
 
     svg.appendChild(linkedInImage);

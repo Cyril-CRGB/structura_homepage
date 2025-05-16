@@ -5,11 +5,11 @@ const magentaCircles = [
 ];
 
 const textualvariations = [
-  { label: "ai", titleX: "Data science, what I offer:", descriptionX: "Artificial Intelligence tools and insights.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["blabla1", "blabla2", "blalba3"]},
-  { label: "cfo", titleX: "Chief Financial Officer, what I offer:", descriptionX:"Finance and Management services", points: ["Financial Management", "Strategic Decision Support", "Stakeholder"], variation: ["blabla4", "blabla5", "blalba6"]},
-  { label: "cpa", titleX: "Certified Public Accountant, what I offer:", descriptionX:"Accounting services.", points: ["ERP proficiency", "Year/Quartal/Monthly end closing", "Payroll and social insurances declaration", "Direct & Indirect Taxes"], variation: ["blabla7", "blabla8", "blalba9", "blalba10"]},
-  { label: "data", titleX: "Data engineering & analysis, what I offer:", descriptionX:"Data extraction, cleaning and visualization.", points: ["Database Processing", "Exploration & Visualization"], variation: ["blabla11", "blabla12"]},
-  { label: "web", titleX: "Web Developer, what I offer:", descriptionX: "Web programmation and automation.", points: ["Agile", "Frontend/Backend", "Deployment/Maintenance"], variation: ["blabla13", "blabla14", "blalba15"]}
+  { label: "ki", titleX: "Data Science, was ich anbiete:", descriptionX: "Künstliche Intelligenz für Finanzen.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["de_blabla1", "de_blabla2", "de_blabla3"]},
+  { label: "cfo", titleX: "Leiter Finanzen, was ich anbiete:", descriptionX:"Finanz- und Managementdienstleistungen.", points: ["Finanzmanagement", "Unterstützung bei strategischen Entscheidungen", "Aktionären"], variation: ["de_blabla4", "de_blabla5", "de_blabla6"]},
+  { label: "ffr", titleX: "Fachausweis im Finanz- und Rechnungswesen, was ich anbiete:", descriptionX:"Buchhaltungsdienstleistungen.", points: ["ERP Beherrschung", "monat/quartal/jahresabschluss & Berichterstattung", "Lohn- und Sozialversicherungen", "Direkte & indirekte Steuern"], variation: ["de_blabla7", "de_blabla8", "de_blabla9", "de_blabla10"]},
+  { label: "daten", titleX: "Datenverwaltung und -analyse, was ich anbiete:", descriptionX:"Datenextraktion, Datenreinigung und Visualisierung.", points: ["Bearbeitung von Datenbanken", "Untersuchung & Visualisierung"], variation: ["de_blabla11", "de_blabla12"]},
+  { label: "web", titleX: "Webentwickler, was ich anbiete:", descriptionX: "Web-Programmierung und -Automatisierung.", points: ["Agile", "Frontend/Backend", "Bereitstellung/Wartung"], variation: ["de_blabla13", "de_blabla14", "de_blabla15"]}
 ];
 
 const svg = document.getElementById('blue-buttons-layer');
@@ -254,7 +254,7 @@ setTimeout(() => {
   contactText.setAttribute("font-family", "Montserrat, serif");
   contactText.style.opacity = 1;
   contactText.style.cursor = "pointer";
-  contactText.textContent = "contact me";
+  contactText.textContent = "kontaktieren Sie mich";
 
   contactText.addEventListener('click', () => {
     const formOverlay = document.createElement('div');
@@ -273,13 +273,13 @@ setTimeout(() => {
     const form = document.createElement('form');
     form.innerHTML = `
       <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3); min-width: 280px;">
-        <h2 style="margin-top: 0;">contact me</h2><br>
+        <h2 style="margin-top: 0;">kontaktieren Sie mich</h2><br>
         <label>Name:<br><input type="text" name="name" required style="width: 100%;"></label><br><br>
-        <label>Email:<br><input type="email" name="email" required style="width: 100%;"></label><br><br>
-        <label>Message:<br><textarea name="message" rows="4" required style="width: 100%;"></textarea></label><br><br>
+        <label>E-Mail:<br><input type="email" name="email" required style="width: 100%;"></label><br><br>
+        <label>Nachricht:<br><textarea name="message" rows="4" required style="width: 100%;"></textarea></label><br><br>
         <div style="display: flex; justify-content: space-between; gap: 1rem;">
-          <button type="submit" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Send</button>
-          <button type="button" onclick="document.getElementById('contact-overlay').remove()" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Close</button>
+          <button type="submit" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Senden</button>
+          <button type="button" onclick="document.getElementById('contact-overlay').remove()" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Schließen</button>
         </div>
       </div>
     `;
@@ -291,7 +291,7 @@ setTimeout(() => {
   svg.appendChild(contactText);
 
   // Language switcher
-  const currentLang = document.documentElement.lang || 'en';
+  const currentLang = document.documentElement.lang || 'de';
   const langs = ['de ', 'fr ', 'en '];
   langs.forEach((code, i) => {
     const langText = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -312,12 +312,12 @@ setTimeout(() => {
   
     // On click, redirect to corresponding static page
     langText.addEventListener("click", () => {
-      if (code === 'de ') {
-        window.location.href = 'de.html';
+      if (code === 'en ') {
+        window.location.href = 'index.html';
       } else if (code === 'fr ') {
         window.location.href = 'fr.html';
       } else {
-        window.location.href = 'index.html';
+        window.location.href = 'de.html';
       }
     });
   
@@ -334,7 +334,7 @@ setTimeout(() => {
     linkedInImage.style.cursor = "pointer";
 
     linkedInImage.addEventListener("click", () => {
-      window.open("https://www.linkedin.com/in/cyril-bromberger-04317658/?locale=en_US", "_blank");
+      window.open("https://www.linkedin.com/in/cyril-bromberger-04317658/?locale=de_DE", "_blank");
     });
 
     svg.appendChild(linkedInImage);

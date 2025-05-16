@@ -1,89 +1,44 @@
 const translations = {
   en: {
-    title: "Structura web fiduciary",
+    title: "Web Fiduciary Structura",
     description: "Accounting, Finance, Data, AI",
-    buttons: [
-      { label: "ai", description: "Artificial Intelligence tools and insights." },
-      { label: "dr", description: "Director ad interim and Board member." },
-      { label: "fi/ac", description: "Finance and Accounting services." },
-      { label: "data", description: "Data extraction and visualization." },
-      { label: "web", description: "Web development and automation." }
-    ]
   },
   fr: {
-    title: "Structura Fiduciaire Web",
+    title: "Fiduciaire Web Structura",
     description: "Comptabilité, Finances, Données, IA",
-    buttons: [
-      { label: "ia", description: "Outils et perspectives en intelligence artificielle." },
-      { label: "dr", description: "Directeur intérimaire et membre du conseil." },
-      { label: "fi/ac", description: "Services financiers et comptables." },
-      { label: "données", description: "Extraction et visualisation de données." },
-      { label: "web", description: "Développement web et automatisation." }
-    ]
   },
   de: {
-    title: "Structura Web Treuhand",
+    title: "Web Treuhand Structura",
     description: "Rechnungswesen, Finanzen, Datein, KI",
-    buttons: [
-      { label: "ki", description: "Künstliche Intelligenz für Finanzen." },
-      { label: "dr", description: "Interimsdirektor und Vorstandsmitglied." },
-      { label: "fi/ac", description: "Finanz- und Buchhaltungsdienste." },
-      { label: "daten", description: "Datenextraktion und Visualisierung." },
-      { label: "web", description: "Webentwicklung und Automatisierung." }
-    ]
   }
 };
 
-
-/*const descriptions = [
-  { label: "ai", description: "Artificial Intelligence tools and insights." },
-  { label: "dr", description: "Director ad interim and Board member." },
-  { label: "fi/ac", description: "Finance and Accounting services." },
-  { label: "data", description: "Data extraction, cleaning, and visualization tools." },
-  { label: "web", description: "Web development and automation solutions." }
-];
-
-const translations = {
+const translations1 = {
   en: {
-    ai: "AI tools and insights.",
-    dr: "Interim director and board member.",
-    // ...
+    textualvariations: [
+      { label: "ai", titleX: "Data science, what I offer:", descriptionX: "Artificial Intelligence tools and insights.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["blabla1", "blabla2", "blalba3"]},
+      { label: "cfo", titleX: "Chief Financial Officer, what I offer:", descriptionX:"Finance and Management services.", points: ["Financial Management", "Strategic Decision Support", "Stakeholder"], variation: ["blabla4", "blabla5", "blalba6"]},
+      { label: "csa", titleX: "Chartered Specialist in Accounting & Finance, what I offer:", descriptionX:"Accounting services.", points: ["ERP proficiency", "Month/Quartal/Year end closing", "Payroll and social insurances declaration", "Direct & Indirect Taxes"], variation: ["blabla7", "blabla8", "blalba9", "blalba10"]},
+      { label: "data", titleX: "Data management & analysis, what I offer:", descriptionX:"Data extraction, cleaning and visualization.", points: ["Database Processing", "Exploration & Visualization"], variation: ["blabla11", "blabla12"]},
+      { label: "web", titleX: "Web Developer, what I offer:", descriptionX: "Web programmation and automation.", points: ["Agile", "Frontend/Backend", "Deployment/Maintenance"], variation: ["blabla13", "blabla14", "blalba15"]}
+    ]
   },
   fr: {
-    ai: "Outils et perspectives d'IA.",
-    dr: "Directeur intérimaire et membre du conseil.",
-    // ...
+    textualvariations: [
+      { label: "ia", titleX: "Science des données, ce que j'offre:", descriptionX: "Outils et perspectives en intelligence artificielle.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["fr_blabla1", "fr_blabla2", "fr_blabla3"]},
+      { label: "cfo", titleX: "Directeur Financier, ce que j'offre:", descriptionX:"Services financiers et de management.", points: ["Management financier", "Soutiens aux décisions stratégiques", "Actionnaires"], variation: ["fr_blabla4", "fr_blabla5", "fr_blabla6"]},
+      { label: "bff", titleX: "Brevet fédéral de spécialiste en finance et comptabilité, ce que j'offre:", descriptionX:"Services comptables.", points: ["Maîtrise ERP", "Clôture et Reporting mensuel/trimestriel/annuel", "Salaires et déclaration aux ass. sociales", "Taxes directes et indirectes"], variation: ["fr_blabla7", "fr_blabla8", "fr_blabla9", "fr_blabla10"]},
+      { label: "données", titleX: "Gestion et analyse de données, ce que j'offre:", descriptionX:"Extraction, nettoyage et visualisation des données.", points: ["Traitement de bases de données", "Exploration & Visualisation"], variation: ["fr_blabla11", "fr_blabla12"]},
+      { label: "web", titleX: "Dévelopeur web, ce que j'offre:", descriptionX: "Programmation et automatisation web.", points: ["Agile", "Frontend/Backend", "Déploiement/Maintenance"], variation: ["fr_blabla13", "fr_blabla14", "fr_blabla15"]}
+    ]
   },
   de: {
-    ai: "KI-Tools und Erkenntnisse.",
-    dr: "Interimsdirektor und Vorstandsmitglied.",
-    // ...
+    textualvariations: [
+      { label: "ki", titleX: "Data Science, was ich anbiete:", descriptionX: "Künstliche Intelligenz für Finanzen.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["de_blabla1", "de_blabla2", "de_blabla3"]},
+      { label: "cfo", titleX: "Leiter Finanzen, was ich anbiete:", descriptionX:"Finanz- und Managementdienstleistungen.", points: ["Finanzmanagement", "Unterstützung bei strategischen Entscheidungen", "Aktionären"], variation: ["de_blabla4", "de_blabla5", "de_blabla6"]},
+      { label: "ffr", titleX: "Fachausweis im Finanz- und Rechnungswesen, was ich anbiete:", descriptionX:"Buchhaltungsdienstleistungen.", points: ["ERP Beherrschung", "monat/quartal/jahresabschluss & Berichterstattung", "Lohn- und Sozialversicherungen", "Direkte & indirekte Steuern"], variation: ["de_blabla7", "de_blabla8", "de_blabla9", "de_blabla10"]},
+      { label: "daten", titleX: "Datenverwaltung und -analyse, was ich anbiete:", descriptionX:"Datenextraktion, Datenreinigung und Visualisierung.", points: ["Bearbeitung von Datenbanken", "Untersuchung & Visualisierung"], variation: ["de_blabla11", "de_blabla12"]},
+      { label: "web", titleX: "Webentwickler, was ich anbiete:", descriptionX: "Web-Programmierung und -Automatisierung.", points: ["Agile", "Frontend/Backend", "Bereitstellung/Wartung"], variation: ["de_blabla13", "de_blabla14", "de_blabla15"]}
+    ]
   }
-};*/
-
-function translate(currentLang) {
-  if currentLang = 'en' {
-
-    const textualvariations = [
-      { label: "ai", title: "Data scientist", description: "Artificial Intelligence tools and insights.", details: ai_details},
-      { label: "dr", title: "Chief Financial Officer", description:"Director ad interim or Board member.", details: dr_details},
-      { label: "fi/ac", title: "Certified Public Accountant", description:"Finance and Accounting services.", details: fi_details},
-      { label: "data", title: "Data Engenieer & Data Analyst", description:"Data extraction, cleaning and visualization.", details: data_details},
-      { label: "web", title: "Web developer", description: "Web programmation and automation solutions.", details: web_details}
-    ];
-  }  
-  const ai_details = {
-    document.getElementById('info-text').innerHTML = `
-      <details>
-        <summary>About AI</summary>
-        <p>I am a Data scientist in becoming. I use libraries like TensorFlow and Sicitlearn to build Machine Learing modeles integrated in web applications, 
-        which you can access anytime anywhere. 
-        Artificial Intelligence tools and insights to boost financial automation and decision making.</p>
-      </details>
-      <details>
-        <summary>Use Cases</summary>
-        <p>Invoice reading, anomaly detection, predictive reporting, and more.</p>
-      </details>
-    `;
-  }
-}
+};
