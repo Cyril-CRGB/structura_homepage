@@ -1,27 +1,39 @@
 
-# STRUCTURA - STATIC PERSONAL WEBPAGE 
-## Why 'STRUCTURA'
+# MY STATIC PERSONAL WEBPAGE 
+## structura-homepage
 
-<img src="assets/images/Portfolio1_AmIResponsive.JPG" alt="ReadmePicture1">
+<img src="assets/images/structura_homepage.jpg" alt="ReadmePicture1">
 
 ## Project description:
 This website is designed for **my personal use**. 
 
+'Structura' means 'structure' in Latin, and I believe structure is essential for growth. The talent of structuring is crucial to prevent an organization from stagnating. A good 'structure' is like the roots of a tree: they may not be visible, but they are vital.
+
+'Heart' symbolizes 'health.' For an organization, 'cash' is like blood; it needs a strong system (accounts receivable) to receive and redistribute it (through investments) for the organization to thrive. 
+
+'Tree' represents growth and productivity through its fruits. The right people, like branches, produce the right results."
+
 ## Features:
-xxxx
+'fruits', on click gives away what i can do.
+
+'de fr en', on click reload the page with translations.
+
+'linkedIn', on click redirect on my linkedIn page.
+
+'contact me', on click send me a message. 
 
 ## Testing:
 
 ### Tests
-- I tested the HTML code with https://validator.w3.org/#validate_by_input, all ok <img src="assets/images/Portfolio1_validatorw3.jpg" alt="ReadmePicture6">
+- I tested the HTML code with https://validator.w3.org/#validate_by_input, all ok
 - I tested the CSS code with https://jigsaw.w3.org/css-validator/#validate_by_input, all ok
-<img src="assets/images/Portfolio1_jigsaww3.jpg" alt="ReadmePicture7">
-- I tested different web browsers Chrome and Edge
-- I tested different screen sizes
-  
-## The performances of my first project:
+- I tested the Javascript, there are a few 'old version' code. 
+- I tested different web browsers Chrome and Edge, all ok
+- I tested different screen sizes, all ok (the site is responsive)
 
-<img src="assets/images/structura_Lighthouse performances.jpg" alt="ReadmePicture8">
+### The performances
+- I tested my code with Lighthouse:
+<img src="assets/images/structura_Lighthouse performances.jpg" alt="ReadmePicture3">
 
 ### Technologies Used
 - HTML5
@@ -41,11 +53,11 @@ xxxx
 - All content was written by myself 
 
 ### Media
-- I was inspired by the figue tree from Paul Klee
+- I was inspired by the fig tree from Paul Klee
 <img src="assets/images/Fig Tree, by Paul Klee.jfif" alt="ReadmePicture9">
 
 ## Deployment:
-1. Log in to GitHub and locat the [GitHub Repository](https://github.com/Cyril-CRGB/Portfolio1)
+1. Log in to GitHub and locat the [GitHub Repository](https://github.com/Cyril-CRGB/structura_homepage)
 2. At the top of the Repository, locate the "Settings" Button on the menu.
 3. At the left of the new window, find the "Page" Button under "Code and automation"
 4. At the section "Branch" select "Main", then "Root" and clic "Save"
