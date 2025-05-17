@@ -5,11 +5,11 @@ const magentaCircles = [
 ];
 
 const textualvariations = [
-  { label: "ki", titleX: "Data Science, was ich anbiete:", descriptionX: "Künstliche Intelligenz für Finanzen.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["de_blabla1", "de_blabla2", "de_blabla3"]},
-  { label: "cfo", titleX: "Leiter Finanzen, was ich anbiete:", descriptionX:"Finanz- und Managementdienstleistungen.", points: ["Finanzmanagement", "Unterstützung bei strategischen Entscheidungen", "Aktionären"], variation: ["de_blabla4", "de_blabla5", "de_blabla6"]},
-  { label: "ffr", titleX: "Fachausweis im Finanz- und Rechnungswesen, was ich anbiete:", descriptionX:"Buchhaltungsdienstleistungen.", points: ["ERP Beherrschung", "monat/quartal/jahresabschluss & Berichterstattung", "Lohn- und Sozialversicherungen", "Direkte & indirekte Steuern"], variation: ["de_blabla7", "de_blabla8", "de_blabla9", "de_blabla10"]},
-  { label: "daten", titleX: "Datenverwaltung und -analyse, was ich anbiete:", descriptionX:"Datenextraktion, Datenreinigung und Visualisierung.", points: ["Bearbeitung von Datenbanken", "Untersuchung & Visualisierung"], variation: ["de_blabla11", "de_blabla12"]},
-  { label: "web", titleX: "Webentwickler, was ich anbiete:", descriptionX: "Web-Programmierung und -Automatisierung.", points: ["Agile", "Frontend/Backend", "Bereitstellung/Wartung"], variation: ["de_blabla13", "de_blabla14", "de_blabla15"]}
+  { label: "ki", titleX: "Data Science, was ich anbiete:", descriptionX: "Künstliche Intelligenz für Finanzen.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["de_1", "de_2", "de_3"]},
+  { label: "cfo", titleX: "Leiter Finanzen, was ich anbiete:", descriptionX:"Finanz- und Managementdienstleistungen.", points: ["Finanzmanagement", "Unterstützung bei strategischen Entscheidungen", "Aktionären"], variation: ["de_4", "de_5", "de_6"]},
+  { label: "ffr", titleX: "Fachausweis im Finanz- und Rechnungswesen, was ich anbiete:", descriptionX:"Buchhaltungsdienstleistungen.", points: ["ERP Beherrschung", "monat/quartal/jahresabschluss & Berichterstattung", "Lohn- und Sozialversicherungen", "Direkte & indirekte Steuern"], variation: ["de_7", "de_8", "de_9", "de_10"]},
+  { label: "daten", titleX: "Datenverwaltung und -analyse, was ich anbiete:", descriptionX:"Datenextraktion, Datenreinigung und Visualisierung.", points: ["Bearbeitung von Datenbanken", "Untersuchung & Visualisierung"], variation: ["de_11", "de_12"]},
+  { label: "web", titleX: "Webentwickler, was ich anbiete:", descriptionX: "Web-Programmierung und -Automatisierung.", points: ["Agile", "Frontend/Backend", "Bereitstellung/Wartung"], variation: ["de_13", "de_14", "de_15"]}
 ];
 
 const svg = document.getElementById('blue-buttons-layer');

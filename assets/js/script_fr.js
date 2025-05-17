@@ -5,11 +5,11 @@ const magentaCircles = [
 ];
 
 const textualvariations = [
-  { label: "ia", titleX: "Science des données, ce que j'offre:", descriptionX: "Outils et perspectives en intelligence artificielle.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["fr_blabla1", "fr_blabla2", "fr_blabla3"]},
-  { label: "cfo", titleX: "Directeur Financier, ce que j'offre:", descriptionX:"Services financiers et de management.", points: ["Management financier", "Soutiens aux décisions stratégiques", "Actionnaires"], variation: ["fr_blabla4", "fr_blabla5", "fr_blabla6"]},
-  { label: "bff", titleX: "Brevet fédéral de spécialiste en finance et comptabilité, ce que j'offre:", descriptionX:"Services comptables.", points: ["Maîtrise ERP", "Clôture et Reporting mensuel/trimestriel/annuel", "Salaires et déclaration aux ass. sociales", "Taxes directes et indirectes"], variation: ["fr_blabla7", "fr_blabla8", "fr_blabla9", "fr_blabla10"]},
-  { label: "data", titleX: "Gestion et analyse de données, ce que j'offre:", descriptionX:"Extraction, nettoyage et visualisation des données.", points: ["Traitement de bases de données", "Exploration & Visualisation"], variation: ["fr_blabla11", "fr_blabla12"]},
-  { label: "web", titleX: "Dévelopeur web, ce que j'offre:", descriptionX: "Programmation et automatisation web.", points: ["Agile", "Frontend/Backend", "Déploiement/Maintenance"], variation: ["fr_blabla13", "fr_blabla14", "fr_blabla15"]}
+  { label: "ia", titleX: "Science des données, ce que j'offre:", descriptionX: "Outils et perspectives en intelligence artificielle.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["fr_1", "fr_2", "fr_3"]},
+  { label: "cfo", titleX: "Directeur Financier, ce que j'offre:", descriptionX:"Services financiers et de management.", points: ["Management financier", "Soutiens aux décisions stratégiques", "Actionnaires"], variation: ["fr_4", "fr_5", "fr_6"]},
+  { label: "bff", titleX: "Brevet fédéral de spécialiste en finance et comptabilité, ce que j'offre:", descriptionX:"Services comptables.", points: ["Maîtrise ERP", "Clôture et Reporting mensuel/trimestriel/annuel", "Salaires et déclaration aux ass. sociales", "Taxes directes et indirectes"], variation: ["fr_7", "fr_8", "fr_9", "fr_10"]},
+  { label: "data", titleX: "Gestion et analyse de données, ce que j'offre:", descriptionX:"Extraction, nettoyage et visualisation des données.", points: ["Traitement de bases de données", "Exploration & Visualisation"], variation: ["fr_11", "fr_12"]},
+  { label: "web", titleX: "Dévelopeur web, ce que j'offre:", descriptionX: "Programmation et automatisation web.", points: ["Agile", "Frontend/Backend", "Déploiement/Maintenance"], variation: ["fr_13", "fr_14", "fr_15"]}
 ];
 
 const svg = document.getElementById('blue-buttons-layer');

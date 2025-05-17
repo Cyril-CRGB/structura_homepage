@@ -5,11 +5,11 @@ const magentaCircles = [
 ];
 
 const textualvariations = [
-  { label: "ai", titleX: "Data science, what I offer:", descriptionX: "Artificial Intelligence tools and insights.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["blabla1", "blabla2", "blalba3"]},
-  { label: "cfo", titleX: "Chief Financial Officer, what I offer:", descriptionX:"Finance and Management services", points: ["Financial Management", "Strategic Decision Support", "Stakeholder"], variation: ["blabla4", "blabla5", "blalba6"]},
-  { label: "cpa", titleX: "Certified Public Accountant, what I offer:", descriptionX:"Accounting services.", points: ["ERP proficiency", "Year/Quartal/Monthly end closing", "Payroll and social insurances declaration", "Direct & Indirect Taxes"], variation: ["blabla7", "blabla8", "blalba9", "blalba10"]},
-  { label: "data", titleX: "Data engineering & analysis, what I offer:", descriptionX:"Data extraction, cleaning and visualization.", points: ["Database Processing", "Exploration & Visualization"], variation: ["blabla11", "blabla12"]},
-  { label: "web", titleX: "Web Developer, what I offer:", descriptionX: "Web programmation and automation.", points: ["Agile", "Frontend/Backend", "Deployment/Maintenance"], variation: ["blabla13", "blabla14", "blalba15"]}
+  { label: "ai", titleX: "Data science, what I offer:", descriptionX: "Artificial Intelligence tools and insights.", points: ["ML models", "Chatbots", "Vision APIs"], variation: ["1", "2", "3"]},
+  { label: "cfo", titleX: "Chief Financial Officer, what I offer:", descriptionX:"Finance and Management services", points: ["Financial Management", "Strategic Decision Support", "Stakeholder"], variation: ["4", "5", "6"]},
+  { label: "cpa", titleX: "Certified Public Accountant, what I offer:", descriptionX:"Accounting services.", points: ["ERP proficiency", "Year/Quartal/Monthly end closing", "Payroll and social insurances declaration", "Direct & Indirect Taxes"], variation: ["7", "8", "9", "10"]},
+  { label: "data", titleX: "Data engineering & analysis, what I offer:", descriptionX:"Data extraction, cleaning and visualization.", points: ["Database Processing", "Exploration & Visualization"], variation: ["11", "12"]},
+  { label: "web", titleX: "Web Developer, what I offer:", descriptionX: "Web programmation and automation.", points: ["Agile", "Frontend/Backend", "Deployment/Maintenance"], variation: ["13", "14", "15"]}
 ];
 
 const svg = document.getElementById('blue-buttons-layer');

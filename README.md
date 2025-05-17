@@ -20,7 +20,7 @@ This website is designed for **my personal use**.
 
 'linkedIn', on click redirect on my linkedIn page.
 
-'contact me', on click send me a message. 
+'contact me', on click send me a message. https://formspree.io/
 
 ## Testing:
 
