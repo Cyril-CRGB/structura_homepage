@@ -1,21 +1,14 @@
 
-# Portfolio 1 - HTML/CSS Essentials 
-## Hiking in the Emerald Land
+# STRUCTURA - STATIC PERSONAL WEBPAGE 
+## Why 'STRUCTURA'
 
 <img src="assets/images/Portfolio1_AmIResponsive.JPG" alt="ReadmePicture1">
 
 ## Project description:
-This website is designed for **my personal use**. I do love hiking and I enjoy the place I live in.
-I intend to use this site to publish my own journey. 
-And help newbees like me find nice and enjoyable walking paths to follow.
+This website is designed for **my personal use**. 
 
 ## Features:
-This website offers 4 different pages. The navigational link highlights when the visitor is on the active page.
-
-An introduction page: <img src="assets/images/Portfolio1_feature1.jpg" alt="ReadmePicture2">
-A list of hikes: <img src="assets/images/Portfolio1_feature2.jpg" alt="ReadmePicture3">
-A gallery with pictures: <img src="assets/images/Portfolio1_feature3.jpg" alt="ReadmePicture4">
-And a contact page: <img src="assets/images/Portfolio1_feature4.jpg" alt="ReadmePicture5">
+xxxx
 
 ## Testing:
 
@@ -28,11 +21,12 @@ And a contact page: <img src="assets/images/Portfolio1_feature4.jpg" alt="Readme
   
 ## The performances of my first project:
 
-<img src="assets/images/Portfolio1_Lighthouse performances.JPG" alt="ReadmePicture8">
+<img src="assets/images/structura_Lighthouse performances.jpg" alt="ReadmePicture8">
 
 ### Technologies Used
 - HTML5
 - CSS3
+- JAVASCRIPT
 
 ### Special library
 - none
@@ -47,7 +41,8 @@ And a contact page: <img src="assets/images/Portfolio1_feature4.jpg" alt="Readme
 - All content was written by myself 
 
 ### Media
-- Most of the pictures used are from https://www.terredemeraudetourisme.com/
+- I was inspired by the figue tree from Paul Klee
+<img src="assets/images/Fig Tree, by Paul Klee.jfif" alt="ReadmePicture9">
 
 ## Deployment:
 1. Log in to GitHub and locat the [GitHub Repository](https://github.com/Cyril-CRGB/Portfolio1)
@@ -56,8 +51,13 @@ And a contact page: <img src="assets/images/Portfolio1_feature4.jpg" alt="Readme
 4. At the section "Branch" select "Main", then "Root" and clic "Save"
 5. Wait until the link shows up, there you go !
 
+## Gitpod:
+1. Open new Workspace with this repository adresse.
+2. Enter in the terminal: 'python3 -m http.server'
+3. There you go !
+
 ## Find this web site:
 
-[My First Project is live here](https://cyril-crgb.github.io/Portfolio1/)
+[My personal website is live here](https://cyril-crgb.github.io/structura_homepage/index.html)
 
-[My page on GitHub is here](https://github.com/Cyril-CRGB/Portfolio1)
+[My page on GitHub is here](https://github.com/Cyril-CRGB/structura_homepage)
