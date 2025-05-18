@@ -53,7 +53,7 @@ body {
   stroke-width: 2;
   stroke-dasharray: 565.48;
   stroke-dashoffset: 565.48;
-  animation: draw-circle 2.5s ease forwards;
+  animation: draw-circle 1.5s ease forwards;
   /*animation-delay: 5s;*/
 }
 
@@ -72,7 +72,7 @@ body {
   object-fit: contain;
   width: 100%;
   height: 100%;
-  animation: grow-from-bottom 3s ease-out forwards;
+  animation: grow-from-bottom 1.5s ease-out forwards;
   clip-path: inset(100% 0 0 0); /* Start completely hidden from bottom */
 }
 
@@ -137,7 +137,6 @@ body {
 }
 
 #info-content h3 {
-  /*margin-bottom: 0.5rem;*/
   margin: 0.4rem 0;
 }
 
@@ -160,7 +159,8 @@ body {
   background: #ffffff;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 0.9rem;
+  font-size: clamp(0.6rem, 1.4vw, 0.85rem);
+  /*font-size: 0.9rem;*/
   cursor: pointer;
 }
 
@@ -169,6 +169,8 @@ body {
   color: #083f67;
   cursor: pointer;
   outline: none;
+  font-size: clamp(0.6rem, 1.4vw, 0.85rem);
+  /*font-size: 0.9rem;*/
 }
 
 #info-panel details[open] {
@@ -176,19 +178,13 @@ body {
 }
 
 
-@keyframes sway {
+/*@keyframes sway {
   0%   { transform: rotate(0deg); }
   30%  { transform: rotate(2deg); }
   60%  { transform: rotate(-2deg); }
   100% { transform: rotate(0deg); }
-}
-
-/*#lang-switch {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 1000;
 }*/
+
 
 /*.magenta-layer {
   position: absolute;
@@ -197,9 +193,99 @@ body {
   width: 100%;
   height: 100%;
   z-index: 1;
-}*/
+}
 
-/*.magenta-layer circle {
+.magenta-layer circle {
   fill: magenta;
   filter: drop-shadow(0 0 5px magenta);
 }*/
+
+
+/*// Add these CSS classes to your stylesheet for better performance than inline styles*/
+
+.contact-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.form-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  min-width: 280px;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-actions button {
+  padding: 0.4rem 1.2rem;
+  font-size: 1rem;
+  border: 1px solid #083F67;
+  background: #f8f8f8;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-actions button:hover {
+  background: #083F67;
+  color: white;
+}
+
+
+/* === media query that targets ultra-small screens below 200px width === */
+#tiny-screen-warning {
+  display: none;
+  background-color: #ffdddd;
+  color: #a00;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  word-break: break-all;
+  /*overflow-wrap: break-word;*/
+}
+
+@media (max-width: 199px) {
+  #tiny-screen-warning {
+    display: block;
+  }
+
+  body > *:not(#tiny-screen-warning) {
+    display: none !important;
+  }
+}
