@@ -33,7 +33,7 @@ This website is designed for **my personal use**.
 
 ### The performances
 - I tested my code with Lighthouse:
-<img src="assets/images/structura_Lighthouse performances 2.jpg" alt="ReadmePicture3">
+<img src="assets/images/structura_Lighthouse performances 3.jpg" alt="ReadmePicture3">
 
 ### Technologies Used
 - HTML5
@@ -53,7 +53,7 @@ This website is designed for **my personal use**.
 - All content was written by myself 
 
 ### Media
-- I was inspired by the fig tree from Paul Klee
+- I was inspired by the fig tree from Paul Klee, I used https://squoosh.app/ to convert the format into WebP.
 <img src="assets/images/Fig Tree, by Paul Klee.jfif" alt="ReadmePicture9">
 
 ## Deployment:
