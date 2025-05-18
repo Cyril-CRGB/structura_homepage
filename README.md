@@ -33,7 +33,7 @@ This website is designed for **my personal use**.
 
 ### The performances
 - I tested my code with Lighthouse:
-<img src="assets/images/structura_Lighthouse performances 3.jpg" alt="ReadmePicture3">
+<img src="assets/images/structura_Lighthouse performances 4.jpg" alt="ReadmePicture3">
 
 ### Technologies Used
 - HTML5

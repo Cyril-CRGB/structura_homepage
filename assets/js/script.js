@@ -194,7 +194,7 @@ function createCircleElement(id, x, y, r, delay) {
 }
 
 function createLineElement(id, x, y, r, delay) {
-  const clippedTopY = y - r * 0.58;
+  const clippedTopY = y - r * 0.56;
   const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
   line.setAttribute("data-id", id);
   line.setAttribute("x1", x - r - 1);
@@ -399,15 +399,6 @@ function addOptimizedStyles() {
   document.head.appendChild(styleSheet);
 }
 
-/*    .animate-in {
-      animation: sway 4s ease-in-out forwards;
-    }
-    @keyframes sway {
-      0%, 100% { transform: translateY(0); }
-      25% { transform: translateY(-1px); }
-      75% { transform: translateY(1px); }
-    }*/
-
 // Initialize everything when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
@@ -419,117 +410,13 @@ if (document.readyState === 'loading') {
   initializeVisual();
 }
 
-
-// Add CONTACT US and form popup
-/*setTimeout(() => {
-  const svg = document.getElementById('blue-buttons-layer');
-  // Contact text
-  const contactText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  contactText.setAttribute("x", 100);
-  contactText.setAttribute("y", 180);
-  contactText.setAttribute("text-anchor", "middle");
-  contactText.setAttribute("alignment-baseline", "middle");
-  contactText.setAttribute("fill", "#083F67");
-  contactText.setAttribute("font-size", "4");
-  contactText.setAttribute("font-family", "Montserrat, serif");
-  contactText.style.opacity = 1;
-  contactText.style.cursor = "pointer";
-  contactText.textContent = "contact me";
-
-  contactText.addEventListener('click', () => {
-    const formOverlay = document.createElement('div');
-    formOverlay.id = 'contact-overlay';
-    formOverlay.style.position = 'fixed';
-    formOverlay.style.top = 0;
-    formOverlay.style.left = 0;
-    formOverlay.style.width = '100vw';
-    formOverlay.style.height = '100vh';
-    formOverlay.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-    formOverlay.style.display = 'flex';
-    formOverlay.style.justifyContent = 'center';
-    formOverlay.style.alignItems = 'center';
-    formOverlay.style.zIndex = 9999;
-
-    const form = document.createElement('form');
-    form.setAttribute('action', 'https://formspree.io/f/xwpoyara');
-    form.setAttribute('method', 'POST');
-    form.innerHTML = `
-      <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3); min-width: 280px;">
-        <h2 style="margin-top: 0;">contact me</h2><br>
-        <label>Name:<br><input type="text" name="name" required style="width: 100%;"></label><br><br>
-        <label>Email:<br><input type="email" name="email" required style="width: 100%;"></label><br><br>
-        <label>Message:<br><textarea name="message" rows="4" required style="width: 100%;"></textarea></label><br><br>
-        <div style="display: flex; justify-content: space-between; gap: 1rem;">
-          <button type="submit" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Send</button>
-          <button type="button" onclick="document.getElementById('contact-overlay').remove()" style="padding: 0.4rem 1.2rem; font-size: 1rem;">Close</button>
-        </div>
-      </div>
-    `;
-
-    formOverlay.appendChild(form);
-    document.body.appendChild(formOverlay);
-  });
-
-  svg.appendChild(contactText);
-
-  // Language switcher
-  const currentLang = document.documentElement.lang || 'en';
-  const langs = ['de ', 'fr ', 'en '];
-  langs.forEach((code, i) => {
-    const langText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    langText.setAttribute("x", 48 + i * 6); // space out horizontally
-    langText.setAttribute("y", 180);
-    langText.setAttribute("text-anchor", "middle");
-    langText.setAttribute("alignment-baseline", "middle");
-    langText.setAttribute("fill", "#083F67");
-    langText.setAttribute("font-size", "4");
-    langText.setAttribute("font-family", "Montserrat, serif");
-    langText.style.cursor = "pointer";
-    langText.textContent = code;
-  
-    // Underline the current language
-    if (code === currentLang) {
-      langText.setAttribute("text-decoration", "underline");
-    }
-  
-    // On click, redirect to corresponding static page
-    langText.addEventListener("click", () => {
-      if (code === 'de ') {
-        window.location.href = 'de.html';
-      } else if (code === 'fr ') {
-        window.location.href = 'fr.html';
-      } else {
-        window.location.href = 'index.html';
-      }
-    });
-  
-    svg.appendChild(langText);
-  });
-
-  // LinkedIn logo
-    const linkedInImage = document.createElementNS("http://www.w3.org/2000/svg", "image");
-    linkedInImage.setAttributeNS("http://www.w3.org/1999/xlink", "href", "assets/images/LI-Logo.png");
-    linkedInImage.setAttribute("x", 134);        // Adjust X to align with "Contact us"
-    linkedInImage.setAttribute("y", 169.5);        // Adjust Y to match vertical alignment
-    linkedInImage.setAttribute("width", 20);     // Responsive within SVG viewBox (200x200)
-    linkedInImage.setAttribute("height", 20);
-    linkedInImage.style.cursor = "pointer";
-
-    linkedInImage.addEventListener("click", () => {
-      window.open("https://www.linkedin.com/in/cyril-bromberger-04317658/?locale=en_US", "_blank");
-    });
-
-    svg.appendChild(linkedInImage);
-}, 1000);*/
-
-
 // Optimized contact form and language switcher implementation
 document.addEventListener('DOMContentLoaded', () => {
   // Wait for SVG to be ready before adding elements
   const addSvgElements = () => {
     const svg = document.getElementById('blue-buttons-layer');
     if (!svg) {
-      // If SVG isn't ready yet, try again in 100ms (more efficient than 1000ms)
+      // If SVG isn't ready yet, try again in 100ms
       setTimeout(addSvgElements, 100);
       return;
     }
