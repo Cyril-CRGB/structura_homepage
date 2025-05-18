@@ -94,10 +94,16 @@ function createAnimatedText(x, y, delay, label, titleX, descriptionX, points, va
   text.style.opacity = 0;
   text.style.transition = "opacity 0.01s ease-out";//, fill 0.01s ease";
   text.style.transitionDelay = `${delay + 1000}ms`;
-  text.style.pointerEvents = "all";
+
+  // SVG text need this to receive click events
+  text.style.cursor = "pointer";
+  text.style.pointerEvents = "auto";
 
   circle.addEventListener('click', () => activateButton(circle, text, label, titleX, descriptionX, points, variation));
-  text.addEventListener('click', () => activateButton(circle, text, label, titleX, descriptionX, points, variation));
+  text.addEventListener('click', (e) => {
+    e.stopPropagation(); // prevent event bubbling
+    activateButton(circle, text, label, titleX, descriptionX, points, variation);
+  });
 
   addHoverBehavior(circle, text);
 
