@@ -48,6 +48,7 @@ This website is designed for **my personal use**.
 ### Code
 - I found help on <https://stackoverflow.com/>
 - I also used CodeInstitute examples 
+- Thanks to https://favicon.io/favicon-converter/ for helping with formating the favicon
 
 ### Content
 - All content was written by myself 
