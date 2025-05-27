@@ -22,6 +22,21 @@ This website is designed for **my personal use**.
 
 'contact me', on click send me a message. https://formspree.io/
 
+## Color theme
+#E54656
+#F75759
+#1E97D7
+#1786D2
+#0C75C7
+#083F67
+#0a2f4d
+#f8f6f0
+#f2f2f2
+rgba(0, 0, 0, 0.2)
+#B1B1B1
+
+<img src="assets/images/structura_logo_upscaled_1x.webp" alt="Your Company Logo" class="h-32 md:h-32 mx-auto rounded-lg shadow-lg bg-white p-2">
+
 ## Testing:
 
 ### Tests
