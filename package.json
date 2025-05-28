@@ -1,0 +1,43 @@
+{
+  "name": "structura_homepage",
+  "version": "1.0.0",
+  "description": "<img src=\"assets/images/structura_homepage.jpg\" alt=\"ReadmePicture1\">",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli init -p",
+    "build": "tailwindcss -i ./src/input.css -o ./public/output.css --minify",
+    "start": "serve public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cyril-CRGB/structura_homepage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cyril-CRGB/structura_homepage/issues"
+  },
+  "homepage": "https://github.com/Cyril-CRGB/structura_homepage#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.7",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "browserslist": "^4.24.5",
+    "caniuse-lite": "^1.0.30001718",
+    "electron-to-chromium": "^1.5.159",
+    "escalade": "^3.2.0",
+    "fraction.js": "^4.3.7",
+    "nanoid": "^3.3.11",
+    "node-releases": "^2.0.19",
+    "normalize-range": "^0.1.2",
+    "picocolors": "^1.1.1",
+    "postcss-value-parser": "^4.2.0",
+    "source-map-js": "^1.2.1",
+    "update-browserslist-db": "^1.1.3"
+  }
+}
