@@ -23,13 +23,17 @@ This website is designed for **my personal use**.
 'contact me', on click send me a message. https://formspree.io/
 
 ## Color theme
+
+#D03C4B
 #E54656
 #F75759
+#FC6B6D
 #1E97D7
 #1786D2
 #0C75C7
 #083F67
 #0a2f4d /rgba(10, 47, 77, 0.9)
+#ffffff
 #f8f6f0
 #f2f2f2
 rgba(0, 0, 0, 0.2)

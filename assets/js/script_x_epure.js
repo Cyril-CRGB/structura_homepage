@@ -139,12 +139,12 @@ function createCircleElement(id, x, y, r, delay) {
   circle.setAttribute("cx", x);
   circle.setAttribute("cy", y - r * 1.5); // Start position for animation
   circle.setAttribute("r", 0);
-  circle.setAttribute("fill", "magenta");
+  // circle.setAttribute("fill", "magenta");
   circle.setAttribute("stroke", "#0a2f4d");
-  circle.setAttribute("stroke-width", "0.5");
+  circle.setAttribute("stroke-width", "0.2");
   circle.setAttribute("clip-path", "inset(25% 0% 0% 0%)");
   circle.classList.add("blue-button");
-  circle.style.cursor = "pointer";
+  // circle.style.cursor = "pointer";
   return circle;
 }
 
@@ -156,8 +156,8 @@ function createLineElement(id, x, y, r, delay) {
   line.setAttribute("x2", x + r + 1);
   line.setAttribute("y1", clippedTopY);
   line.setAttribute("y2", clippedTopY);
-  line.setAttribute("stroke", "#083F67");
-  line.setAttribute("stroke-width", "0.7");
+  line.setAttribute("stroke", "#0a2f4d");
+  line.setAttribute("stroke-width", "0.2");
   line.style.opacity = "0";
   line.style.transition = "opacity 0.3s ease-in-out";
   return line;
