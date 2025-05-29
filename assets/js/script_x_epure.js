@@ -149,7 +149,7 @@ function createCircleElement(id, x, y, r, delay) {
 }
 
 function createLineElement(id, x, y, r, delay) {
-  const clippedTopY = y - r * 0.56;
+  const clippedTopY = y - r * 0.53;
   const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
   line.setAttribute("data-id", id);
   line.setAttribute("x1", x - r - 1);

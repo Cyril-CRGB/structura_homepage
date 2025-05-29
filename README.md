@@ -28,6 +28,8 @@ This website is designed for **my personal use**.
 #E54656
 #F75759
 #FC6B6D
+#3FB6F0
+#2BA6E6
 #1E97D7
 #1786D2
 #0C75C7
