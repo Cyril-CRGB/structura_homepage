@@ -60,13 +60,32 @@ or also
 - I tested my code with Lighthouse:
 <img src="assets/images/structura_Lighthouse performances 4.jpg" alt="ReadmePicture3">
 
+### SEO 
+- Google Search Console, adding a 'sitemap.xml' a 'ld+json' in the head of the page
+- [see also google Marketing Platform](https://marketingplatform.google.com/) for google analytics and Tag manager
+
+### Privacy / Terms / Cookies
+- I used https://termly.com/
+
+- Privacy Policy (Essential) - Must disclose:
+* That contact form data goes to Formspree
+* What happens to submitted information
+* That you don't collect other personal data
+* Basic visitor rights
+
+- Terms of Service (Recommended) - Protects you from liability and sets usage rules
+
+- Cookie Policy - Only if you add Google Analytics, Facebook Pixel, or other tracking later
+
 ### Technologies Used
 - HTML5
 - CSS3
 - JAVASCRIPT
 
 ### Special library
-- none
+- Tailwindcss
+- because i have "build": "tailwindcss -i ./src/input.css -o ./public/output.css --minify" inside package.json, i can only command 'npm install' (if not already done)
+  then 'npm run dev', finally 'npm run build'. For instance after modification of 'src/input.css'
 
 ## Credits:
 

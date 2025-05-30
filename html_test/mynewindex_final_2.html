@@ -48,6 +48,185 @@
         "description": "Chartered Specialist in Accounting and Financial Management with Federal Diploma of Higher Education & Full Stack Developer"
       }
     </script>
+    <style>
+        /* Base font for the entire body */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Gradient text styling for headings */
+        .gradient-text {
+            background: linear-gradient(55deg, #E54656, #1E97D7); /* Red and blue gradient */
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Gradient text styling for headings */
+        .gradient-text_1 {
+            background: linear-gradient(135deg, #0a2f4d, #3FB6F0, #ffffff); /* Red and blue gradient */
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Gradient text styling for headings */
+        .gradient-text_2 {
+            background: linear-gradient(135deg, #3FB6F0, #0a2f4d, #ffffff); /* Red and blue gradient */
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Floating card animation */
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Alternate delay for floating cards */
+        .floating-card:nth-child(even) {
+            animation-delay: -3s;
+        }
+
+        /* Keyframe animation for floating effect */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        /* Glassmorphism effect */
+        .glass-morphism {
+            background: rgba(0, 0, 0, 0.1); /* Semi-transparent dark background */
+            /* backdrop-filter: blur(16px);*/
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Glow button effect */
+        .glow-button {
+            box-shadow: 0 0 20px rgba(229, 70, 86, 0.3); /* Red glow */
+            transition: all 0.3s ease;
+        }
+
+        /* Glow button hover effect */
+        .glow-button:hover {
+            box-shadow: 0 0 30px rgba(229, 70, 86, 0.6); /* More intense red glow */
+            transform: translateY(-2px);
+        }
+
+        /* Scroll progress indicator styling */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #E54656, #1E97D7); /* Red to blue gradient */
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        /* Service icon hover effect */
+        .service-icon {
+            transition: all 0.3s ease;
+        }
+
+        /* Service card hover effect on icon */
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Fade-in animation for elements on scroll */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Keyframe animation for fade-in effect */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Language dropdown specific styles */
+        .language-dropdown-menu {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Align to the right of the parent */
+            top: 100%; /* Position below the parent */
+            border-radius: 0.5rem; /* rounded-lg */
+            overflow: hidden; /* Ensures rounded corners apply to content */
+            margin-top: 0.5rem; /* Space below the button */
+        }
+
+        .language-dropdown-menu a {
+            color: #374151;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            transition: background-color 0.3s ease;
+        }
+
+        .language-dropdown-menu a:hover {
+            background-color: #f3f4f6;
+        }
+
+        .language-dropdown-menu a.active {
+            background-color: #e0e7ff;
+            font-weight: 600; 
+            color: #1E97D7;
+        }
+
+        .language-dropdown-menu.show {
+            display: block;
+        }
+
+        .circle {
+            transform: rotate(135deg);
+        }
+
+        .circle circle {
+            fill: none;
+            stroke: url(#myGradient);
+            stroke-width: 4;
+            stroke-dasharray: 565.48; /* Adjust based on your circle's circumference (2 * PI * R) */
+            stroke-dashoffset: 565.48; /*stroke-dasharray and stroke-dashoffset: The values for stroke-dasharray and stroke-dashoffset should correspond to the circumference of your circle (2πr). If your r (radius) is 90, the circumference is 2∗3.14159∗90≈565.48. Adjust these values if your circle's radius changes.*/
+            animation: draw-circle 1.5s ease forwards;
+        }
+
+        @keyframes draw-circle {
+            to {
+              /* This value determines how much of the stroke is drawn */
+              /* it's roughly 1/4 of the circumference (565.48 / 4) */
+                stroke-dashoffset: 141.37; 
+            }
+        }
+
+        #blue-buttons-layer circle {
+            fill: url(#myGradient1);
+            stroke: #0a2f4d;
+            stroke-width: 0.2;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100 text-gray-900 overflow-x-hidden">
@@ -148,7 +327,7 @@
                             <circle cx="100" cy="100" r="90" />
                         </svg>
                         <!-- image webp middle -->
-                        <img src="assets/images/structura_logo_upscaled_1x.webp" alt="My Company Logo" loading= "lazy" decoding="async" class="h-120 w-120 rounded-lg shadow-lg object-contain">
+                        <img src="assets/images/structura_logo_upscaled_1x.webp" alt="Your Company Logo" class="h-120 w-120 rounded-lg shadow-lg object-contain">
                         <!-- blue-buttons bottom -->
                         <svg id="blue-buttons-layer" viewBox="0 0 200 200" class="blue-layer absolute inset-0 w-full h-full">
                             <defs>
@@ -165,13 +344,13 @@
                     </div>
                     <!-- Right text -->
                     <div class="flex justify-center md:justify-start items-center h-full md:col-span-1">
-                        <span class="gradient-text_2 text-2xl md:text-4xl font-bold leading-relaxed">...future anticipated</span>
+                        <span class="gradient-text_2 text-2xl md:text-4xl font-bold leading-relaxed">...future anticipated </span>
                     </div>
                 </div>
             </div>
         </div>
         <!-- blue jumping mouse -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"><!---->
+        <div class="absolute bottom-8 left-1/3 transform -translate-x-1/2 animate-bounce"><!---->
             <div class="w-6 h-10 border-2 border-[#1E97D7] rounded-full flex justify-center">
                 <div class="w-1 h-3 bg-[#1E97D7] rounded-full mt-2 animate-pulse"></div>
             </div>
@@ -194,7 +373,7 @@
                     All to deliver exceptional results tailored to <span class="gradient-text font-bold">your business needs</span>.
                 </p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"> 
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"> 
                 <div class="service-card floating-card glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#0C75C7]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in text-center"> 
                     <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#083F67] to-[#1786D2] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
                         <span class="material-icons text-3xl">account_balance_wallet</span>
@@ -206,7 +385,7 @@
                         Accuracy & Compliance
                     </p>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Year/Quartal/Monthly end closing
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -214,7 +393,7 @@
                         </p>
                     </details>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Payroll and social insurances
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -222,7 +401,7 @@
                         </p>
                     </details>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Direct & Indirect Taxes
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -230,7 +409,7 @@
                         </p>
                     </details>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Consolidation & Controlling
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -249,7 +428,7 @@
                         Performance & Risks
                     </p>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Financial Management
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -257,7 +436,7 @@
                         </p>
                     </details>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Strategic Decision Support
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -265,7 +444,7 @@
                         </p>
                     </details>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Stakeholder
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -284,7 +463,7 @@
                         Responsive & Modern tech
                     </p>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Agile
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -292,7 +471,7 @@
                         </p>
                     </details>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Frontend & Backend
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -300,7 +479,7 @@
                         </p>
                     </details>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Deployment & Maintenance
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -319,7 +498,7 @@
                         Cutting-edge
                     </p>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Database Processing
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -327,7 +506,7 @@
                         </p>
                     </details>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Exploration & Visualization
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -335,7 +514,7 @@
                         </p>
                     </details>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             ML models
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -343,7 +522,7 @@
                         </p>
                     </details>
                     <details class="text-gray-600 leading-relaxed">
-                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
                             Multi-agent systems & Vision APIs
                         </summary>
                         <p class="text-gray-600 leading-relaxed">
@@ -684,6 +863,476 @@
         <span class="material-icons">keyboard_arrow_up</span>
     </button>
 
-    <script defer src="assets/js_new/script_new.js"></script>
+    <script>
+        // Enhanced JavaScript functionality
+
+        // Custom alert/modal function to replace browser's alert
+        function showCustomAlert(message) {
+            const modalId = 'customAlertModal';
+            let modal = document.getElementById(modalId);
+
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = modalId;
+                modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] opacity-0 transition-opacity duration-300';
+                modal.innerHTML = `
+                    <div class="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full text-center transform scale-95 transition-transform duration-300">
+                        <p class="text-gray-800 text-lg mb-6">${message}</p>
+                        <button class="bg-gradient-to-r from-[#E54656] to-[#F75759] text-white font-semibold py-2 px-6 rounded-lg" onclick="document.getElementById('${modalId}').classList.remove('opacity-100', 'scale-100'); document.getElementById('${modalId}').classList.add('opacity-0', 'scale-95'); setTimeout(() => document.getElementById('${modalId}').remove(), 300);">
+                            OK
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                setTimeout(() => {
+                    modal.classList.add('opacity-100');
+                    modal.querySelector('div').classList.add('scale-100');
+                }, 10);
+            } else {
+                // If modal already exists, just update message and show
+                modal.querySelector('p').textContent = message;
+                modal.classList.add('opacity-100');
+                modal.querySelector('div').classList.add('scale-100');
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                mobileMenu.classList.add('hidden');
+                menuIcon.textContent = 'menu';
+            }
+        }
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        mobileMenuBtn?.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.textContent = 'close'; // Change icon to 'close'
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.textContent = 'menu'; // Change icon back to 'menu'
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.textContent = 'menu';
+            });
+        });
+
+        // Language Dropdown Functionality
+        function toggleLanguageDropdown(dropdownId) {
+            const dropdownMenu = document.getElementById(dropdownId);
+            dropdownMenu.classList.toggle('show');
+        }
+
+        // Event Listeners for Language Dropdowns
+        document.getElementById('languageDropdownBtnDesktop')?.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent click from immediately closing the dropdown
+            toggleLanguageDropdown('languageDropdownMenuDesktop');
+        });
+
+        document.getElementById('languageDropdownBtnMobile')?.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent click from immediately closing the dropdown
+            toggleLanguageDropdown('languageDropdownMenuMobile');
+        });
+
+        // Close dropdowns when clicking outside
+        window.addEventListener('click', (event) => {
+            const desktopMenu = document.getElementById('languageDropdownMenuDesktop');
+            const mobileMenu = document.getElementById('languageDropdownMenuMobile');
+
+            if (desktopMenu && desktopMenu.classList.contains('show') && !event.target.closest('#languageDropdownBtnDesktop')) {
+                desktopMenu.classList.remove('show');
+            }
+            if (mobileMenu && mobileMenu.classList.contains('show') && !event.target.closest('#languageDropdownBtnMobile')) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+
+        // Set initial language displayed and highlight active link
+        function setInitialLanguage() {
+            const path = window.location.pathname;
+            let currentLang = 'en'; // Default to English code
+            let activeLinkSelector = '[data-lang="en"]'; // Default to English
+
+            if (path.includes('de.html')) {
+                currentLang = 'de';
+                activeLinkSelector = '[data-lang="de"]';
+            } else if (path.includes('fr.html')) {
+                currentLang = 'fr';
+                activeLinkSelector = '[data-lang="fr"]';
+            }
+
+            // Highlight active language link
+            document.querySelectorAll('.language-dropdown-menu a').forEach(link => {
+                link.classList.remove('active');
+                if (link.matches(activeLinkSelector)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Handle language switching
+        function switchLanguage(langCode) {
+            let newPath = 'index.html'; // Default for English
+            if (langCode === 'de') {
+                newPath = 'de.html';
+            } else if (langCode === 'fr') {
+                newPath = 'fr.html';
+            }
+            window.location.href = newPath;
+        }
+
+        // Add click listeners to language links inside dropdowns
+        document.querySelectorAll('.language-dropdown-menu a').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default link behavior
+                const langCode = event.target.dataset.lang;
+                switchLanguage(langCode);
+            });
+        });
+
+        // Scroll progress indicator
+        function updateScrollProgress() {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const scrollTop = window.pageYOffset;
+            // Calculate document height considering potential scroll issues
+            const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight,
+                                       document.body.offsetHeight, document.documentElement.offsetHeight,
+                                       document.body.clientHeight, document.documentElement.clientHeight) - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+
+            if (scrollIndicator) {
+                scrollIndicator.style.width = scrollPercent + '%';
+            }
+        }
+
+        // Header background on scroll
+        function updateHeaderBackground() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header?.classList.add('bg-white/95', 'shadow-lg');
+                header?.classList.remove('bg-white/80', 'shadow-xl');
+            } else {
+                header?.classList.remove('bg-white/95', 'shadow-lg');
+                header?.classList.add('bg-white/80', 'shadow-xl');
+            }
+        }
+
+        // Back to top button visibility
+        function updateBackToTopButton() {
+            const backToTopBtn = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTopBtn?.classList.remove('opacity-0', 'invisible');
+                backToTopBtn?.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn?.classList.add('opacity-0', 'invisible');
+                backToTopBtn?.classList.remove('opacity-100', 'visible');
+            }
+        }
+
+        // Back to top functionality
+        document.getElementById('backToTop')?.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Performance optimization: Throttle scroll events
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateScrollProgress();
+                    updateHeaderBackground();
+                    updateBackToTopButton();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+
+        // Form submission
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Basic form validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                showCustomAlert('Please fill in all required fields.');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showCustomAlert('Please enter a valid email address.');
+                return;
+            }
+
+            // Simulate form submission
+            showCustomAlert('Thank you for your message! We\'ll get back to you soon.');
+            this.reset(); // Clear the form after submission
+        });
+
+        // Smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1, /* Trigger when 10% of the element is visible */
+            rootMargin: '0px 0px -50px 0px' /* Shrink the bottom of the viewport by 50px */
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .glass-morphism, .animate-fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Keyboard navigation support for mobile menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                menuIcon.textContent = 'menu';
+            }
+        });
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateScrollProgress();
+            updateHeaderBackground();
+            updateBackToTopButton();
+            setInitialLanguage(); // Set the language on page load
+        });
+
+        // ----- OLD JAVASCRIPT CODE ---
+        const magentaCircles = [
+        { cx: 100, cy: 50, r: 17 },
+        { cx: 80, cy: 80, r: 17 },
+        { cx: 120, cy: 80, r: 17 }
+        ];
+
+        // Global store for button data (to avoid DOM queries)
+        const buttonData = [];
+        let activeButtonId = null;
+
+        // Main function to initialize the interactive visual - we'll invoke this at the end
+        function initializeVisual() {
+        const svg = document.getElementById('blue-buttons-layer'); 
+        // Generate optimized button layouts first (separate calculation from rendering)
+        generateButtonLayouts().then(layoutsArray => {
+            // Render buttons with staggered animation using requestAnimationFrame
+            renderButtons(layoutsArray, svg);
+        });
+        }
+
+        // Calculate button positions first, avoiding DOM manipulation during calculation
+        function generateButtonLayouts() {
+        return new Promise(resolve => {
+            // Use a web worker if complex calculations are needed
+            setTimeout(() => {
+            const layouts = [];
+            const placedPositions = [];
+            let placed = 0;
+            let attempts = 0;
+            const maxAttempts = 100; // Reasonable limit to prevent infinite loops
+            
+            // Use truly random placement algorithm (like original)
+            while (placed < 7 && attempts < maxAttempts) {
+                // Randomly select a base magenta circle
+                const base = magentaCircles[Math.floor(Math.random() * magentaCircles.length)];
+                
+                // Generate random angle around the circle
+                const angle = Math.random() * 2 * Math.PI;
+                
+                // Place exactly on the perimeter of the magenta circle
+                const x = Math.round((base.cx + base.r * Math.cos(angle)) * 10) / 10;
+                const y = Math.round((base.cy + base.r * Math.sin(angle)) * 10) / 10;
+                
+                // Random radius between 5-8 (similar to original 5-10 range)
+                const r = Math.floor(Math.random() * 3) + 5; // Exactly as in original: 5-7 range
+                
+                // Check if position is usable
+                if (isFarEnough(x, y, r, placedPositions)) {
+                layouts.push({
+                    id: `btn-${placed}`,
+                    x, 
+                    y, 
+                    r,
+                    delay: placed * 300 // Match original delay timing exactly
+                });
+                
+                placedPositions.push({ x, y, r });
+                placed++;
+                }
+                
+                attempts++;
+            }
+            
+            if (placed < 7) {
+                console.warn(`Only placed ${placed} buttons after ${attempts} attempts.`);
+            }
+            
+            resolve(layouts);
+            }, 1000); // Minimal timeout to avoid blocking main thread
+        });
+        }
+
+        // Optimized collision detection
+        function isFarEnough(x, y, r, positions) {
+        // Quick grid-based checks could be added for large sets
+        return positions.every(pos => {
+            const dx = pos.x - x;
+            const dy = pos.y - y;
+            // Skip square root for performance using squared distance
+            const distSquared = dx * dx + dy * dy;
+            const minDistSquared = (pos.r + r + 1) * (pos.r + r + 1);
+            return distSquared >= minDistSquared;
+        });
+        }
+
+        // Create all SVG elements with batched operations
+        function renderButtons(layouts, svg) {
+        // Create document fragment for batch insertion
+        const fragment = document.createDocumentFragment();
+        
+        // Create all elements first, without adding to DOM
+        layouts.forEach(layout => {
+            const {id, x, y, r, delay} = layout;
+            
+            // Create elements
+            const circle = createCircleElement(id, x, y, r, delay);
+            const line = createLineElement(id, x, y, r, delay);
+            
+            // Store data for event handling (avoiding DOM queries later)
+            buttonData.push({
+            id,
+            x, y, r,
+            circleEl: circle,
+            lineEl: line,
+            });
+            
+            // Add to fragment (not DOM yet)
+            fragment.appendChild(circle);
+            fragment.appendChild(line);
+        });
+        
+        // Batch append all elements to DOM
+        svg.appendChild(fragment);
+        
+        // Trigger staggered animations with requestAnimationFrame
+        requestAnimationFrame(() => {
+            buttonData.forEach((btn, index) => {
+            setTimeout(() => {
+                const circle = btn.circleEl;
+                const line = btn.lineEl;
+                
+                // Apply attribute changes in a batch
+                circle.setAttribute("cy", btn.y);
+                circle.setAttribute("r", btn.r);
+                circle.classList.add("animate-in");
+                
+                setTimeout(() => {
+                line.style.opacity = "1";
+                }, 100);
+            }, btn.delay);
+            });
+        });
+        }
+
+        // Factory functions for SVG elements
+        function createCircleElement(id, x, y, r, delay) {
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("data-id", id);
+        circle.setAttribute("cx", x);
+        circle.setAttribute("cy", y - r * 1.5); // Start position for animation
+        circle.setAttribute("r", 0);
+        // circle.setAttribute("fill", "magenta");
+        circle.setAttribute("stroke", "#0a2f4d");
+        circle.setAttribute("stroke-width", "0.2");
+        circle.setAttribute("clip-path", "inset(25% 0% 0% 0%)");
+        circle.classList.add("blue-button");
+        // circle.style.cursor = "pointer";
+        return circle;
+        }
+
+        function createLineElement(id, x, y, r, delay) {
+        const clippedTopY = y - r * 0.53;
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("data-id", id);
+        line.setAttribute("x1", x - r - 1);
+        line.setAttribute("x2", x + r + 1);
+        line.setAttribute("y1", clippedTopY);
+        line.setAttribute("y2", clippedTopY);
+        line.setAttribute("stroke", "#0a2f4d");
+        line.setAttribute("stroke-width", "0.2");
+        line.style.opacity = "0";
+        line.style.transition = "opacity 0.3s ease-in-out";
+        return line;
+        }
+
+        // Add CSS to document head for optimized animations
+        function addOptimizedStyles() {
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            .blue-button {
+            transition: r 0.6s ease-out, cy 0.6s ease-out;
+            will-change: transform, r, cy;
+            }
+            #blue-buttons-layer text {
+            will-change: opacity, fill;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+        }
+
+        // Initialize everything when DOM is ready
+        if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            addOptimizedStyles();
+            initializeVisual();
+        });
+        } else {
+        addOptimizedStyles();
+        initializeVisual();
+        }
+    </script>
+    <!-- <script defer src="assets/js/script_x_epure.js"></script>  -->
 </body>
 </html>

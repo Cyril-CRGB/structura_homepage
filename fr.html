@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cyril Bromberger, Comptabilité, Finance, Web, Données, IA, Suisse">
-    <meta name="keywords" content="Cyril Bromberger, Cyril, Bromberger, cyrilbromberger, suisse, Suisse, Comptabilité, finance, science des données, apprentissage automatique, intelligence artificielle appliquée, structura">
+    <meta name="description" content="Cyril Bromberger, Accounting, Finance, Web, Data, AI, Switzerland">
+    <meta name="keywords" content="Cyril Bromberger, Cyril, Bromberger, cyrilbromberger, Swiss, Switzerland, Accounting, Finance, Data Science, Machine learning, applied artificial intelligence, structura">
     <meta name="google-site-verification" content="BLb5HeGWZ0zSoujrabRHJrJuZL5tZLx-KjEUgcebVr8" />
+    <!-- OG -->
     <meta property="og:title" content="Cyril Bromberger | structura">
-    <meta property="og:description" content="Cyril Bromberger, Comptabilité, Finance, Web, Données, IA, Suisse">
+    <meta property="og:description" content="Cyril Bromberger, Accounting, Finance, Web, Data, AI, Switzerland">
     <meta property="og:image" content="assets/images/structura_logo_upscaled_1x.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/webp">
     <meta property="og:url" content="https://www.cyrilbromberger.ch/">
     <meta property="og:type" content="website">
+    <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Cyril Bromberger | structura">
-    <meta name="twitter:description" content="Cyril Bromberger, Comptabilité, Finance, Web, Données, IA, Suisse">
+    <meta name="twitter:description" content="Cyril Bromberger, Accounting, Finance, Web, Data, AI, Switzerland">
     <meta name="twitter:image" content="assets/images/structura_logo_upscaled_1x.webp">
-    <link rel="stylesheet" href="assets/css/style.css">
     <title>Cyril Bromberger | structura</title>
+    <!-- STYLING -->
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <link href="public/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- ICONS -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/structura_logo_upscaled_8x_favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/structura_logo_upscaled_8x_favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/images/structura_logo_upscaled_8x_favicon-48x48.png">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/structura_logo_upscaled_1x_appel-touch-icon_180x180.png">
+    <!-- GOOGLE SEARCH -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -30,64 +43,647 @@
         "url": "https://www.cyrilbromberger.ch",
         "logo": "assets/images/structura_logo_upscaled_1x.webp",
         "image": "assets/images/structura_logo_upscaled_1x.webp",
-        "jobTitle": "Finance & Comptabilité & Full Stack Développeur",
-        "sameAs": "https://www.linkedin.com/in/cyril-bromberger-04317658/",
-        "description": "Spécialiste en Finance et Comptabilité avec Brevet Fédéral & Full Stack Développeur"
+        "jobTitle": "Finance & Accounting & Full Stack Developer",
+        "sameAs": "https://www.linkedin.com/in/cyril-bromberger-04317658/?locale=en_US",
+        "description": "Chartered Specialist in Accounting and Financial Management with Federal Diploma of Higher Education & Full Stack Developer"
       }
-      </script>
-      <link rel="icon" type="image/png" sizes="16x16" href="assets/images/structura_logo_upscaled_8x_favicon-16x16.png">
-      <link rel="icon" type="image/png" sizes="32x32" href="assets/images/structura_logo_upscaled_8x_favicon-32x32.png">
-      <link rel="icon" type="image/png" sizes="48x48" href="assets/images/structura_logo_upscaled_8x_favicon-48x48.png">
-      <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-      <link rel="apple-touch-icon" sizes="180x180" href="assets/images/structura_logo_upscaled_1x_appel-touch-icon_180x180.png">
+    </script>
 </head>
-<body>
-    <!-- Desktop and Mobile Compatibility Warning -->
-    <div id="tiny-screen-warning">
-      Screen size too small for optimal viewing. Please use a device with a larger screen.
-    </div>
-    <!-- Main container for desktop view -->
-    <section id="presentation-outer-x">
-        <div id="presentation-image">
-          <img loading="lazy" src="assets/images/structura_logo_upscaled_1x.webp" alt="Structura Logo">
+
+<body class="bg-gray-100 text-gray-900 overflow-x-hidden">
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <header class="sticky top-0 z-50 bg-[#ffffff] backdrop-blur-lg shadow-xl transition-all duration-300" id="header">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center group">
+                    <a href="#home">
+                        <div class="w-10 h-10 bg-gradient-to-r from-[#D03C4B] to-[#1E97D7] rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-white font-bold text-xl">S</span>
+                        </div>
+                    </a>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-[#D03C4B] to-[#1E97D7] bg-clip-text text-transparent">
+                        Cyril Bromberger
+                    </span>
+                </div>
+                <nav class="hidden md:flex space-x-6 items-center" role="navigation" aria-label="Main navigation">
+                    <a href="#services" class="text-gray-700 hover:text-[#D03C4B] transition-all duration-300 relative group">
+                        Services
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D03C4B] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="text-gray-700 hover:text-[#D03C4B] transition-all duration-300 relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D03C4B] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-[#D03C4B] transition-all duration-300 relative group">
+                        Testimonials
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D03C4B] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <button class="glow-button bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white font-semibold py-2 px-6 rounded-lg" onclick="scrollToSection('contact')">
+                        Contact
+                    </button>
+                    <div class="relative inline-block text-left">
+                        <button id="languageDropdownBtnDesktop" class="w-10 h-10 hover:bg-gradient-to-r hover:from-[#1E97D7] hover:to-[#083F67] rounded-full flex items-center justify-center transition-all duration-300 group">
+                            <span class="material-icons text-gray-700 group-hover:text-white text-xl">language</span>
+                        </button>
+                        <div id="languageDropdownMenuDesktop" class="language-dropdown-menu">
+                            <a href="index.html" data-lang="en">English</a>
+                            <a href="de.html" data-lang="de">Deutsch</a>
+                            <a href="fr.html" data-lang="fr">Français</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="md:hidden">
+                    <button class="text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#D03C4B] p-2 rounded" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                        <span class="material-icons" id="menuIcon">menu</span>
+                    </button>
+                </div>
+            </div>
+            <nav class="md:hidden mt-4 pb-4 hidden" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+                <div class="flex flex-col space-y-4">
+                    <a href="#services" class="text-gray-700 hover:text-[#D03C4B] transition-colors duration-300 py-2">Services</a>
+                    <a href="#about" class="text-gray-700 hover:text-[#D03C4B] transition-colors duration-300 py-2">About</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-[#D03C4B] transition-colors duration-300 py-2">Testimonials</a>
+                    <button class="bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white font-semibold py-3 px-6 rounded-lg text-left" onclick="scrollToSection('contact')">
+                        Message
+                    </button>
+                    <div class="relative inline-block text-left w-full">
+                        <button id="languageDropdownBtnMobile" class="w-10 h-10 hover:bg-gradient-to-r hover:from-[#1E97D7] hover:to-[#083F67] rounded-full flex items-center justify-center transition-all duration-300 group"><!--bg-gray-700-->
+                            <span class="material-icons text-gray-700 group-hover:text-white text-xl">language</span>
+                        </button>
+                        <div id="languageDropdownMenuMobile" class="language-dropdown-menu left-0">
+                            <a href="index.html" data-lang="en">English</a>
+                            <a href="de.html" data-lang="de">Deutsch</a>
+                            <a href="fr.html" data-lang="fr">Français</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
-        <div class="circle-wrapper">
-          <svg class="circle" viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="90"/>
-          </svg>
+    </header>
+
+    <section class="bg-[#f2f2f2] flex items-center justify-center relative overflow-hidden text-white min-h-screen" id="home">
+        <div class="container mx-auto px-6 z-10 relative text-center max-w-6xl">
+            <div class="rounded-2xl animate-fade-in items-center mx-auto flex flex-col p-8 md:p-8"><!--max-w-screen-sm max-w-screen-md -->
+                <!-- Grid container for the three elements -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center justify-items-center w-full max-w-full">
+                    <!-- Left text -->
+                    <div class="flex justify-center md:justify-end items-center h-full md:col-span-1">
+                        <span class="gradient-text_1 text-2xl md:text-4xl font-bold leading-relaxed">passé comptabilisé...</span>
+                    </div>
+                    <!-- Center circle -->
+                    <div class="h-120 w-120 circle-wrapper relative flex-shrink-0 md:col-span-2"><!---->
+                        <!-- Circle SVG top -->
+                        <svg class="absolute inset-0 w-full h-full circle animate-draw" viewBox="0 0 200 200">
+                            <defs>
+                            <linearGradient id="myGradient" x1="60%" y1="120%" x2="60%" y2="0%">
+                                <stop offset="5%" style="stop-color:#3FB6F0;stop-opacity:1" />
+                                <stop offset="10%" style="stop-color:#1E97D7;stop-opacity:1" />
+                                <stop offset="15%" style="stop-color:#1786D2;stop-opacity:1" />
+                                <stop offset="20%" style="stop-color:#0C75C7;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#083F67;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#0a2f4d;stop-opacity:1" />
+                            </linearGradient>
+                            </defs>
+                            <circle cx="100" cy="100" r="90" />
+                        </svg>
+                        <!-- image webp middle -->
+                        <img src="assets/images/structura_logo_upscaled_1x.webp" alt="My Company Logo" loading= "lazy" decoding="async" class="h-120 w-120 rounded-lg shadow-lg object-contain">
+                        <!-- blue-buttons bottom -->
+                        <svg id="blue-buttons-layer" viewBox="0 0 200 200" class="blue-layer absolute inset-0 w-full h-full">
+                            <defs>
+                            <linearGradient id="myGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="5%" style="stop-color:#3FB6F0;stop-opacity:1" />
+                                <stop offset="10%" style="stop-color:#1E97D7;stop-opacity:1" />
+                                <stop offset="15%" style="stop-color:#1786D2;stop-opacity:1" />
+                                <stop offset="20%" style="stop-color:#0C75C7;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#083F67;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#0a2f4d;stop-opacity:1" />
+                            </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <!-- Right text -->
+                    <div class="flex justify-center md:justify-start items-center h-full md:col-span-1">
+                        <span class="gradient-text_2 text-2xl md:text-4xl font-bold leading-relaxed">...futur anticipé</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <svg id="blue-buttons-layer" viewBox="0 0 200 200" class="blue-layer"></svg>
-        <svg viewBox="0 0 200 200">          
-          <!-- Past accounted -->
-          <text x="50" y="120"
-            text-anchor="middle"
-            fill="#d3d3d3"
-            font-size="6"
-            font-family="Montserrat, sans-serif">
-            passé comptabilisé
-          </text>
-          <!-- Future anticipated -->
-          <text x="150" y="120"
-            text-anchor="middle"
-            fill="#d3d3d3"
-            font-size="6"
-            font-family="Montserrat, sans-serif">
-            futur anticipé
-          </text>
-        </svg>
-        <div id="info-panel">
-          <div id="info-content">
-            <h3 id="info-title">Title</h3>
-            <p id="info-description">Description will appear here.</p>
-            <p id="info-corpus">Details and summary will appear here.</p>
-          </div>
+        <!-- blue jumping mouse -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"><!---->
+            <div class="w-6 h-10 border-2 border-[#1E97D7] rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-[#1E97D7] rounded-full mt-2 animate-pulse"></div>
+            </div>
         </div>
-         <!--<svg class="magenta-layer" viewBox="0 0 200 200">
-            <circle cx="100" cy="50" r="17" fill="magenta" />
-            <circle cx="80" cy="80" r="17" fill="magenta" />
-            <circle cx="120" cy="80" r="17" fill="magenta" />   
-        </svg>-->  
     </section>
-    <script defer src="assets/js/script_fr.js"></script>
+
+    <section class="py-20 md:py-32 bg-[#f2f2f2] min-h-screen" id="services">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-10 md:mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E54656] to-[#1E97D7] mb-6">
+                    Core Services
+                </h2>
+                <p class="text-gray-400 text-xl max-w-6xl mx-auto leading-relaxed">
+                    As a Swiss Chartered Specialist in Accounting and Financial Management, and a Full Stack Developer,
+                    I bring together the worlds of finance, accounting, and data-driven applications with advanced AI enhancements.
+                    This combination gives me and the organizations I work with a significant competitive advantage.
+                    I offer a broad range of professional services, blending deep expertise in accounting standards and financial management with a genuine enthusiasm for innovation.
+                </p>
+                <p class="text-gray-400 text-xl max-w-6xl mx-auto leading-relaxed">
+                    All to deliver exceptional results tailored to <span class="gradient-text font-bold">your business needs</span>.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"> 
+                <div class="service-card floating-card glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#0C75C7]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in text-center"> 
+                    <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#083F67] to-[#1786D2] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
+                        <span class="material-icons text-3xl">account_balance_wallet</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-[#083F67] transition-colors duration-300">
+                        Accounting
+                    </h3>
+                    <p class="text-white group-hover:text-[#083F67] transition-colors duration-300 mb-4">
+                        Accuracy & Compliance
+                    </p>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                            Year/Quartal/Monthly end closing
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Expertise in obligation laws and Swiss GAAP FER, cash flow statements, prepaid expenses, accruals and deferrals, amortizations, depreciations, and provisions. Inventory accounting utilizing FIFO, LIFO, and weighted average cost methods. Security accounting.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                            Payroll and social insurances
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Comprehensive payroll management including salary processing, payslips, and certificates. Managing social insurance end-of-year reconciliations and final declarations.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                            Direct & Indirect Taxes
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Legal entity taxation and VAT management (quarterly or net method semester reporting).
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                            Consolidation & Controlling
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Group consolidation expertise. Implementation of full cost or standard cost methods for controlling.
+                        </p>
+                    </details>
+                </div>
+                <div class="service-card floating-card glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in text-center">
+                    <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#D03C4B] to-[#FC6B6D] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
+                        <span class="material-icons text-3xl">insights</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-[#D03C4B] transition-colors duration-300">
+                        Finance
+                    </h3>
+                    <p class="text-white group-hover:text-[#D03C4B] transition-colors duration-30 mb-4">
+                        Performance & Risks
+                    </p>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                            Financial Management
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Budgeting and forecasting, financial reporting, and compliance management (ICS, legal, tax, regulatory). Cash and liquidity management through working capital optimization.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                            Strategic Decision Support
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Strategic planning with financial insights and analytical support. Business performance monitoring through KPI analysis. Comprehensive risk management and mitigation.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                            Stakeholder
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Clear communication with investors and board members. Maintaining trust and transparency with auditors and regulatory bodies. Strategic optimization of capital structures.
+                        </p>
+                    </details>
+                </div>
+                <div class="service-card floating-card glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#0C75C7]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in text-center">
+                    <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#1E97D7] to-[#083F67] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
+                        <span class="material-icons text-3xl">code</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-[#083F67] transition-colors duration-300">
+                        Web Development
+                    </h3>
+                    <p class="text-white group-hover:text-[#083F67] transition-colors duration-300 mb-4">
+                        Responsive & Modern tech
+                    </p>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                            Agile
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Utilizing GitHub within the Scrum framework, employing 'Issues' as 'User Stories', 'Milestones' as 'Sprints', and 'Projects' to track processes and conduct regular work reviews.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                            Frontend & Backend
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Proficient in HTML/CSS/JavaScript development with focus on full responsiveness and CRUD, also leveraging Bootstrap, Tailwindcss and other CSS frameworks. Implementing SEO optimization and referencing for enhanced visibility. Performance optimization including WebP or AVIF format implementation. Specialized in Django and PostgreSQL.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#1786D2] transition-colors duration-300">
+                            Deployment & Maintenance
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Capable of deploying and maintaining web applications across various hosting environments.
+                        </p>
+                    </details>
+                </div>
+                <div class="service-card floating-card glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in text-center">
+                    <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
+                        <span class="material-icons text-3xl">smart_toy</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-[#D03C4B] transition-colors duration-300">
+                        Data & AI
+                    </h3>
+                    <p class="text-white group-hover:text-[#D03C4B] transition-colors duration-30 mb-4">
+                        Cutting-edge
+                    </p>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                            Database Processing
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Data integration through APIs, databases, and file systems. Ensuring data storage and availability through data lakes, NoSQL, and relational databases. Data processing via ETL/ELT and automated pipelines for real-time updates.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                            Exploration & Visualization
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Data preprocessing to ensure quality and facilitate analysis. Statistical modeling and development of intuitive, informative visualizations and dashboards using Power BI, Plotly, Streamlit, Chart.js, or Excel.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                            ML models
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Implementing predictive analytics through methods such as clustering, regression, classification models, and PCA integrated into real-world applications. I utilize TensorFlow or scikit-learn frameworks.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer hover:text-[#F75759] transition-colors duration-300">
+                            Multi-agent systems & Vision APIs
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            In project: Deploying and embedding chatbots/AI agents for optimal automation. Implementing object detection and image classification for advanced application features, leveraging technologies such as Google Cloud Vision or OpenCV.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 md:py-32 bg-[#f2f2f2] min-h-screen" id="about">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8 md:mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E54656] to-[#1E97D7] mb-6">
+                    Choose Me
+                </h2>
+                <p class="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
+                    I help structure organizations, enabling them to grow and thrive.
+                    At the heart of every operational improvement are the people who make it possible. 
+                    
+                </p>
+                <p class="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
+                    Bringing these two elements together <span class="gradient-text font-bold">is what I am offering</span>.
+                </p>
+            </div>
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 animate-fade-in">             
+                    <div class="space-y-6">
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-[#D03C4B] to-[#FC6B6D] rounded-full flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-icons text-white text-sm">check</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-400 mb-1">Goal-focused & deadline-driven</h4>
+                                <p class="text-gray-600">'Action' is my middle name. I am committed to delivering results on time, ensuring that all deadlines are met.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-[#1E97D7] to-[#083F67] rounded-full flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-icons text-white text-sm">check</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-400 mb-1">Service-Oriented</h4>
+                                <p class="text-gray-600">Serving with a client-centric mindset. I tailor my services to your unique business goals and those of your clients.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] rounded-full flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-icons text-white text-sm">check</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-400 mb-1">Leading by example</h4>
+                                <p class="text-gray-600">In everything I do, I strive to be a role model by supporting my team, my peers, and my clients. Through genuine leadership, I cultivate unwavering commitment. Vision is brought to life through others.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-[#083F67] to-[#1786D2] rounded-full flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-icons text-white text-sm">check</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-400 mb-1">Trustworthiness</h4>
+                                <p class="text-gray-600">Rigorous in the details and ease in understanding the bigger picture. Committed to quality control and strategic planning. I am also a very discreet listener.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 relative animate-fade-in">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-[#D03C4B] to-[#1E97D7] rounded-2xl blur opacity-30"></div>
+                    <img src="assets/images/cyrill-b_WebP_638x825.webp" alt="My Picture" class="relative z-10 shadow-xl border-1 border-white rounded-2xl"><p class="text-gray-400 text-lg mt-4 font-semibold text-center relative z-10"></p>
+                </div>
+                <div class="lg:w-1/2 animate-fade-in">
+                    <div class="relative">
+                        <div class="relative rounded-2xl p-8 h-full flex flex-col justify-around space-y-6">
+                            <div class="bg-gradient-to-r from-[#083F67] to-[#1E97D7] rounded-lg p-4 text-center">
+                                <div class="text-2xl font-bold text-white">A Wizard</div>
+                                <div class="text-blue-100 text-sm">with Excel & Power Bi</div>
+                            </div>
+                            <div class="bg-gradient-to-r from-[#D03C4B] to-[#FC6B6D] rounded-lg p-4 text-center">
+                                <div class="text-2xl font-bold text-white">Resilient</div>
+                                <div class="text-red-100 text-sm">Built for adversity</div>
+                            </div>
+                            <div class="bg-gradient-to-r from-[#1E97D7] to-[#083F67] rounded-lg p-4 text-center">
+                                <div class="text-2xl font-bold text-white">Flexible</div>
+                                <div class="text-cyan-100 text-sm">Cross-domain adaptability & Multi-ERP versatility</div>
+                            </div>
+                            <div class="bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] rounded-lg p-4 text-center">
+                                <div class="text-2xl font-bold text-white">Seasoned Professional</div>
+                                <div class="text-orange-100 text-sm">+15 years of Battle-tested expertise</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-32 bg-[#f2f2f2] min-h-screen" id="testimonials">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E54656] to-[#1E97D7] mb-6">
+                    In Their Words
+                </h2>
+                <p class="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
+                    Real results, <span class="gradient-text font-bold">Real impact</span>, Real feedback.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#1E97D7]/20 transition-all duration-500 group animate-fade-in">
+                    <div class="flex mb-4">
+                        <span class="text-yellow-500 text-xl">★★★★★</span>
+                    </div>
+                    <p class="text-gray-500 mb-6 italic leading-relaxed">
+                        "Mr. Bromberger successfully managed and brought to completion various technical and complex projects involving partners with opposing interests. His organizational skills, as well as his professional and social competencies, made these successes possible."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-[#0C75C7] to-[#083F67] rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">RB</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-500">Rémy Burri</p>
+                            <p class="text-sm text-[#1E97D7]">Directeur, GCT Sàrl, Geneva (fr)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transition-all duration-500 group animate-fade-in">
+                    <div class="flex mb-4">
+                        <span class="text-yellow-500 text-xl">★★★★★</span>
+                    </div>
+                    <p class="text-gray-500 mb-2 italic leading-relaxed">
+                        "Even under high workloads, Mr. Bromberger consistently demonstrated remarkable resilience and approached his work thoughtfully, calmly, and purposefully. His work results were consistently impressive and of excellent quality, even under difficult conditions and changing requirements."
+                    </p>
+                    <p class="text-gray-500 mb-2 italic leading-relaxed">
+                        "As a leader, Mr. Bromberger distinguished himself through exemplary leadership behavior. He actively promoted collaboration within the team, kept his employees well informed, and always delegated tasks and responsibilities appropriately. Thanks to his professional approach to leadership, he continuously achieved outstanding work results."
+                    </p>
+                    <p class="text-gray-500 mb-6 italic leading-relaxed">
+                        "We greatly appreciated his outstanding performance."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">HP</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-500">Patricia Hochstrasser</p>
+                            <p class="text-sm text-[#E54656]">Direktorin, PANVICA, Bern (de)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#1E97D7]/20 transition-all duration-500 group animate-fade-in">
+                    <div class="flex mb-4">
+                        <span class="text-yellow-500 text-xl">★★★★★</span>
+                    </div>
+                    <p class="text-gray-500 mb-6 italic leading-relaxed">
+                        "The situation has improved significantly. The new Head of Finance has made considerable progress in addressing past issues. The annual financial statements were prepared correctly, and the audit documents were made ready."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-[#1E97D7] to-[#083F67] rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">PWC</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-500">Leitende Revisorin</p>
+                            <p class="text-sm text-[#1E97D7]">PricewaterhouseCoopers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-32 bg-[#f2f2f2] relative overflow-hidden min-h-screen" id="contact">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#E54656]/10 to-[#1E97D7]/10"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E54656] to-[#1E97D7] mb-6">
+                        Get in Touch
+                    </h2>
+                    <p class="text-gray-400 text-xl">
+                        Ready to upgrade your business? Let's discuss how I can help you achieve your goals.
+                    </p>
+                </div>
+                <div class="glass-morphism p-8 md:p-12 rounded-2xl shadow-2xl animate-fade-in">
+                    <form class="space-y-6" id="contactForm" action="https://formspree.io/f/xwpoyara" mehtod="post">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2" for="name">
+                                    Full Name *
+                                </label>
+                                <input
+                                    class="w-full bg-gray-100/60 border border-gray-600 text-gray-800 rounded-lg p-4 focus:ring-2 focus:ring-[#E54656] focus:border-transparent transition-all duration-300"
+                                    id="name"
+                                    name="name"
+                                    placeholder="John Doe"
+                                    type="text"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2" for="email">
+                                    Email Address *
+                                </label>
+                                <input
+                                    class="w-full bg-gray-100/60 border border-gray-600 text-gray-800 rounded-lg p-4 focus:ring-2 focus:ring-[#E54656] focus:border-transparent transition-all duration-300"
+                                    id="email"
+                                    name="email"
+                                    placeholder="you@example.com"
+                                    type="email"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600 mb-2" for="message">
+                                Message *
+                            </label>
+                            <textarea
+                                class="w-full bg-gray-100/60 border border-gray-600 text-gray-800 rounded-lg p-4 focus:ring-2 focus:ring-[#E54656] focus:border-transparent transition-all duration-300"
+                                id="message"
+                                name="message"
+                                placeholder="Tell me about your project or how I can help you... This form is provided by https://formspree.io/"
+                                rows="5"
+                                required
+                            ></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button
+                                class="glow-button bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white font-semibold py-4 px-12 rounded-lg text-lg w-full md:w-auto hover:scale-105 transition-all duration-300"
+                                type="submit">
+                                Send Message
+                                <span class="material-icons ml-2 align-middle">send</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    <div class="text-center group animate-fade-in">
+                        <div class="w-16 h-16 bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-icons text-white text-2xl">email</span>
+                        </div>
+                        <h4 class="text-gray-400 font-semibold mb-2">Email Me</h4>
+                        <p class="text-gray-500">crg.bromberger@gmail.com</p>
+                    </div>
+                    <div class="text-center group animate-fade-in">
+                        <div class="w-16 h-16 bg-gradient-to-r from-[#1E97D7] to-[#083F67] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-icons text-white text-2xl">phone</span>
+                        </div>
+                        <h4 class="text-gray-400 font-semibold mb-2">Call Me</h4>
+                        <p class="text-gray-500">+41(0)79/953.11.23</p>
+                    </div>
+                    <div class="text-center group animate-fade-in">
+                        <div class="w-16 h-16 bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-icons text-white text-2xl">schedule</span>
+                        </div>
+                        <h4 class="text-gray-400 font-semibold mb-2">Business Hours</h4>
+                        <p class="text-gray-500">Mon-Fri: 6AM-6PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-gray-300">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center group mb-4">
+                        <a href="#home">
+                            <div class="w-10 h-10 bg-gradient-to-r from-[#D03C4B] to-[#1E97D7] rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                                <span class="text-white font-bold text-xl">S</span>
+                            </div>
+                        </a>
+                        <span class="text-2xl font-bold bg-gradient-to-r from-[#E54656] to-[#1E97D7] bg-clip-text text-transparent">
+                            Cyril Bromberger
+                        </span>
+                    </div>
+                    <p class="text-gray-700 mb-6 max-w-md">
+                        Insuring
+                        <span class="gradient-text font-bold">compliance</span>
+                        in Accounting and 
+                        <span class="gradient-text font-bold">accuracy</span>
+                        in Finance.
+                        Delivering 
+                        <span class="gradient-text font-bold">innovative solutions</span>
+                        in Web Development and Artificial Intelligence
+                        <span class="gradient-text font-bold">to drive success</span>.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://x.com/CyrilBromberger" target="_blank" class="w-10 h-10 bg-gray-700 hover:bg-gradient-to-r hover:from-[#FC6B6D] to-[#D03C4B] rounded-full flex items-center justify-center transition-all duration-300 group">
+                            <i class="fa-brands fa-x-twitter fa-beat-fade text-gray-300 group-hover:text-white text-xl" style="--fa-animation-duration: 0.2s; --fa-animation-delay: 0.2s; --fa-animation-iteration-count: 1;"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/cyril-bromberger-04317658/?locale=en_US" target="_blank" class="w-10 h-10 bg-gray-700 hover:bg-gradient-to-r hover:from-[#1E97D7] to-[#0C75C7] rounded-full flex items-center justify-center transition-all duration-300 group">
+                            <i class="fa-brands fa-linkedin fa-beat-fade text-gray-300 group-hover:text-white text-xl" style="--fa-animation-duration: 0.2s; --fa-animation-delay: 0.4s; --fa-animation-iteration-count: 1;"></i>
+                        </a>
+                        <a href="https://github.com/Cyril-CRGB" target="_blank" class="w-10 h-10 bg-gray-700 hover:bg-gradient-to-r hover:from-[#FC6B6D] to-[#D03C4B] rounded-full flex items-center justify-center transition-all duration-300 group">
+                            <i class="fa-brands fa-github fa-beat-fade text-gray-300 group-hover:text-white text-xl" style="--fa-animation-duration: 0.2s; --fa-animation-delay: 0.6s; --fa-animation-iteration-count: 1;"></i>
+                        </a>
+                        <!--<a href="#" class="w-10 h-10 bg-gray-700 hover:bg-gradient-to-r hover:from-[#1E97D7] to-[#0C75C7] rounded-full flex items-center justify-center transition-all duration-300 group">
+                            <i class="fa-brands fa-instagram fa-beat-fade text-gray-300 group-hover:text-white text-xl" style="--fa-animation-duration: 0.2s; --fa-animation-delay: 0.8s; --fa-animation-iteration-count: 1;"></i>
+                        </a>-->
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-gray-800 font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Services</a></li>
+                        <li><a href="#about" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">About Us</a></li>
+                        <li><a href="#testimonials" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Testimonials</a></li>
+                        <li><a href="#contact" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-gray-800 font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="text-gray-700 hover:text-[#1E97D7] transition-colors duration-300">Accounting</a></li>
+                        <li><a href="#services" class="text-gray-700 hover:text-[#1E97D7] transition-colors duration-300">Finance</a></li>
+                        <li><a href="#services" class="text-gray-700 hover:text-[#1E97D7] transition-colors duration-300">Web Development</a></li>
+                        <li><a href="#services" class="text-gray-700 hover:text-[#1E97D7] transition-colors duration-300">AI Solutions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-gray-300 my-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-700 text-sm mb-4 md:mb-0">
+                    © 2025 Cyril Bromberger | structura. All rights reserved.
+                </p>
+                <div class="flex space-x-6 text-sm">
+                    <!--<a href="#" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Cookie Policy</a>-->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button
+        id="backToTop"
+        class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 opacity-0 invisible z-50"
+        aria-label="Back to top">
+        <span class="material-icons">keyboard_arrow_up</span>
+    </button>
+
+    <script defer src="assets/js_new/script_new.js"></script>
 </body>
 </html>

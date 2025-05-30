@@ -242,10 +242,10 @@
                         </div>
                     </a>
                     <span class="text-2xl font-bold bg-gradient-to-r from-[#D03C4B] to-[#1E97D7] bg-clip-text text-transparent">
-                        Cyril Bromberger | structura
+                        Cyril Bromberger
                     </span>
                 </div>
-                <nav class="hidden md:flex space-x-8 items-center" role="navigation" aria-label="Main navigation">
+                <nav class="hidden md:flex space-x-6 items-center" role="navigation" aria-label="Main navigation">
                     <a href="#services" class="text-gray-700 hover:text-[#D03C4B] transition-all duration-300 relative group">
                         Services
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D03C4B] transition-all duration-300 group-hover:w-full"></span>
@@ -259,7 +259,7 @@
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D03C4B] transition-all duration-300 group-hover:w-full"></span>
                     </a>
                     <button class="glow-button bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white font-semibold py-2 px-6 rounded-lg" onclick="scrollToSection('contact')">
-                        Get in touch
+                        Contact
                     </button>
                     <div class="relative inline-block text-left">
                         <button id="languageDropdownBtnDesktop" class="w-10 h-10 hover:bg-gradient-to-r hover:from-[#1E97D7] hover:to-[#083F67] rounded-full flex items-center justify-center transition-all duration-300 group">
@@ -284,7 +284,7 @@
                     <a href="#about" class="text-gray-700 hover:text-[#D03C4B] transition-colors duration-300 py-2">About</a>
                     <a href="#testimonials" class="text-gray-700 hover:text-[#D03C4B] transition-colors duration-300 py-2">Testimonials</a>
                     <button class="bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white font-semibold py-3 px-6 rounded-lg text-left" onclick="scrollToSection('contact')">
-                        Get in touch
+                        Message
                     </button>
                     <div class="relative inline-block text-left w-full">
                         <button id="languageDropdownBtnMobile" class="w-10 h-10 hover:bg-gradient-to-r hover:from-[#1E97D7] hover:to-[#083F67] rounded-full flex items-center justify-center transition-all duration-300 group"><!--bg-gray-700-->
@@ -302,8 +302,8 @@
     </header>
 
     <section class="bg-[#f2f2f2] flex items-center justify-center relative overflow-hidden text-white min-h-screen" id="home">
-        <div class="container mx-auto px-6 z-10 relative text-center">
-            <div class="rounded-2xl animate-fade-in items-center mx-auto flex flex-col p-8 md:p-16 max-w-5xl">
+        <div class="container mx-auto px-6 z-10 relative text-center max-w-4xl">
+            <div class="rounded-2xl animate-fade-in items-center mx-auto flex flex-col p-8 md:p-8 max-w-5xl">
                 <div class="h-120 w-120 circle-wrapper relative">
                     <!-- Circle SVG top -->
                     <svg class="absolute inset-0 w-full h-full circle animate-draw" viewBox="0 0 200 200">
@@ -335,153 +335,194 @@
                         </defs>
                     </svg>
                 </div>
-                <div>
-                    <p class="text-4xl md:text-6xl font-bold mb-6 leading-relaxed">
-                        <span class="gradient-text_1 block mt-4">past accounted for...</span>
-                    </p>
-                </div>
-                <div>
-                    <p class="text-4xl md:text-6xl font-bold mb-6 leading-relaxed">
-                        <span class="gradient-text_2 block mt-4">...future anticipated </span>
-                    </p>
-                </div>
+            </div>
+            <div>
+                <p class="text-xl md:text-4xl font-bold mb-4 leading-relaxed">
+                    <span class="gradient-text_1 block mt-2">past accounted for...</span>
+                    <span class="gradient-text_2 block mt-2">...future anticipated </span>
+                </p>
             </div>
         </div>
         <!-- blue jumping mouse -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"><!---->
+        <div class="absolute bottom-8 left-1/3 transform -translate-x-1/2 animate-bounce"><!---->
             <div class="w-6 h-10 border-2 border-[#1E97D7] rounded-full flex justify-center">
                 <div class="w-1 h-3 bg-[#1E97D7] rounded-full mt-2 animate-pulse"></div>
             </div>
         </div>
     </section>
 
-    <!--<section class="py-20 md:py-32 bg-[#f2f2f2] min-h-screen" id="services">
+    <section class="py-20 md:py-32 bg-[#f2f2f2] min-h-screen" id="services">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16 md:mb-20">
+            <div class="text-center mb-10 md:mb-20">
                 <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E54656] to-[#1E97D7] mb-6">
-                    Our Core Services
+                    Core Services
                 </h2>
-                <p class="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
-                    I provide a comprehensive range of professional services, combining expertise with innovation to deliver exceptional results tailored to your business needs.
+                <p class="text-gray-400 text-xl max-w-6xl mx-auto leading-relaxed">
+                    As a Swiss Chartered Specialist in Accounting and Financial Management, and a Full Stack Developer,
+                    I bring together the worlds of finance, accounting, and data-driven applications with advanced AI enhancements.
+                    This combination gives me and the organizations I work with a significant competitive advantage.
+                    I offer a broad range of professional services, blending deep expertise in accounting standards and financial management with a genuine enthusiasm for innovation.
+                </p>
+                <p class="text-gray-400 text-xl max-w-6xl mx-auto leading-relaxed">
+                    All to deliver exceptional results tailored to <span class="gradient-text font-bold">your business needs</span>.
                 </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                <div class="service-card floating-card glass-morphism p-4 rounded-2xl shadow-xl hover:shadow-[#0C75C7]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"> 
+                <div class="service-card floating-card glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#0C75C7]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in text-center"> 
                     <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#083F67] to-[#1786D2] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
                         <span class="material-icons text-3xl">account_balance_wallet</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-400 group-hover:text-[#083F67] transition-colors duration-300">
-                        Accounting Services
+                    <h3 class="text-xl font-bold text-white group-hover:text-[#083F67] transition-colors duration-300">
+                        Accounting
                     </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Comprehensive accounting solutions ensuring financial accuracy, compliance, and strategic insights for sustainable business growth.
+                    <p class="text-white group-hover:text-[#083F67] transition-colors duration-300 mb-4">
+                        Accuracy & Compliance
                     </p>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Year/Quartal/Monthly end closing
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Expertise in obligation laws and Swiss GAAP FER, cash flow statements, prepaid expenses, accruals and deferrals, amortizations, depreciations, and provisions. Inventory accounting utilizing FIFO, LIFO, and weighted average cost methods. Security accounting.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Payroll and social insurances
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Comprehensive payroll management including salary processing, payslips, and certificates. Managing social insurance end-of-year reconciliations and final declarations.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Direct & Indirect Taxes
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Legal entity taxation and VAT management (quarterly or net method semester reporting).
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Consolidation & Controlling
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Group consolidation expertise. Implementation of full cost or standard cost methods for controlling.
+                        </p>
+                    </details>
                 </div>
-                <div class="service-card floating-card glass-morphism p-4 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in">
+                <div class="service-card floating-card glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in text-center">
                     <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#D03C4B] to-[#FC6B6D] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
                         <span class="material-icons text-3xl">insights</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-400 group-hover:text-[#D03C4B] transition-colors duration-300">
-                        Financial Consulting
+                    <h3 class="text-xl font-bold text-white group-hover:text-[#D03C4B] transition-colors duration-300">
+                        Finance
                     </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Strategic financial planning and advisory services to optimize performance, minimize risks, and accelerate growth opportunities.
+                    <p class="text-white group-hover:text-[#D03C4B] transition-colors duration-30 mb-4">
+                        Performance & Risks
                     </p>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Financial Management
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Budgeting and forecasting, financial reporting, and compliance management (ICS, legal, tax, regulatory). Cash and liquidity management through working capital optimization.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Strategic Decision Support
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Strategic planning with financial insights and analytical support. Business performance monitoring through KPI analysis. Comprehensive risk management and mitigation.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Stakeholder
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Clear communication with investors and board members. Maintaining trust and transparency with auditors and regulatory bodies. Strategic optimization of capital structures.
+                        </p>
+                    </details>
                 </div>
-                <div class="service-card floating-card glass-morphism p-4 rounded-2xl shadow-xl hover:shadow-[#0C75C7]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in">
+                <div class="service-card floating-card glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#0C75C7]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in text-center">
                     <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#1E97D7] to-[#083F67] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
                         <span class="material-icons text-3xl">code</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-400 group-hover:text-[#083F67] transition-colors duration-300">
+                    <h3 class="text-xl font-bold text-white group-hover:text-[#083F67] transition-colors duration-300">
                         Web Development
                     </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Custom web development solutions from responsive websites to complex applications, built with modern technologies.
+                    <p class="text-white group-hover:text-[#083F67] transition-colors duration-300 mb-4">
+                        Responsive & Modern tech
                     </p>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Agile
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Utilizing GitHub within the Scrum framework, employing 'Issues' as 'User Stories', 'Milestones' as 'Sprints', and 'Projects' to track processes and conduct regular work reviews.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Frontend & Backend
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Proficient in HTML/CSS/JavaScript development with focus on full responsiveness and CRUD, also leveraging Bootstrap, Tailwindcss and other CSS frameworks. Implementing SEO optimization and referencing for enhanced visibility. Performance optimization including WebP or AVIF format implementation. Specialized in Django and PostgreSQL.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Deployment & Maintenance
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Capable of deploying and maintaining web applications across various hosting environments.
+                        </p>
+                    </details>
                 </div>
-                <div class="service-card floating-card glass-morphism p-4 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in">
+                <div class="service-card floating-card glass-morphism p-8 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in text-center">
                     <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
                         <span class="material-icons text-3xl">smart_toy</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-400 group-hover:text-[#D03C4B] transition-colors duration-300">
-                        Artificial Intelligence
+                    <h3 class="text-xl font-bold text-white group-hover:text-[#D03C4B] transition-colors duration-300">
+                        Data & AI
                     </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Cutting-edge AI solutions to automate processes, generate insights, and drive operational efficiency across your organization.
+                    <p class="text-white group-hover:text-[#D03C4B] transition-colors duration-30 mb-4">
+                        Cutting-edge
                     </p>
-                </div>
-                <div class="service-card floating-card glass-morphism p-4 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in">
-                    <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
-                        <span class="material-icons text-3xl">smart_toy</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-400 group-hover:text-[#D03C4B] transition-colors duration-300">
-                        xxx
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        xxxx
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>-->
-    <section class="py-20 md:py-32 bg-[#f2f2f2] min-h-screen" id="services">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 md:mb-20">
-                <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E54656] to-[#1E97D7] mb-6">
-                    Our Core Services
-                </h2>
-                <p class="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
-                    I provide a comprehensive range of professional services, combining expertise with innovation to deliver exceptional results tailored to your business needs.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6"> 
-                <div class="service-card floating-card glass-morphism p-6 rounded-2xl shadow-xl hover:shadow-[#0C75C7]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in"> <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#083F67] to-[#1786D2] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
-                        <span class="material-icons text-3xl">account_balance_wallet</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-400 group-hover:text-[#083F67] transition-colors duration-300">
-                        Accounting Services
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Comprehensive accounting solutions ensuring financial accuracy, compliance, and strategic insights for sustainable business growth.
-                    </p>
-                </div>
-                <div class="service-card floating-card glass-morphism p-6 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in"> <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#D03C4B] to-[#FC6B6D] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
-                        <span class="material-icons text-3xl">insights</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-400 group-hover:text-[#D03C4B] transition-colors duration-300">
-                        Financial Consulting
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Strategic financial planning and advisory services to optimize performance, minimize risks, and accelerate growth opportunities.
-                    </p>
-                </div>
-                <div class="service-card floating-card glass-morphism p-6 rounded-2xl shadow-xl hover:shadow-[#0C75C7]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in"> <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#1E97D7] to-[#083F67] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
-                        <span class="material-icons text-3xl">code</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-400 group-hover:text-[#083F67] transition-colors duration-300">
-                        Web Development
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Custom web development solutions from responsive websites to complex applications, built with modern technologies.
-                    </p>
-                </div>
-                <div class="service-card floating-card glass-morphism p-6 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in"> <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
-                        <span class="material-icons text-3xl">smart_toy</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-400 group-hover:text-[#D03C4B] transition-colors duration-300">
-                        Artificial Intelligence
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Cutting-edge AI solutions to automate processes, generate insights, and drive operational efficiency across your organization.
-                    </p>
-                </div>
-                <div class="service-card floating-card glass-morphism p-6 rounded-2xl shadow-xl hover:shadow-[#F75759]/20 transform hover:-translate-y-4 transition-all duration-500 group animate-fade-in"> <div class="service-icon flex items-center justify-center bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] text-white rounded-2xl w-16 h-16 mb-6 mx-auto">
-                        <span class="material-icons text-3xl">cloud</span> </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-400 group-hover:text-[#D03C4B] transition-colors duration-300">
-                        Cloud Solutions </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Scalable and secure cloud infrastructure and services to power your applications and data with unparalleled flexibility.
-                    </p>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Database Processing
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Data integration through APIs, databases, and file systems. Ensuring data storage and availability through data lakes, NoSQL, and relational databases. Data processing via ETL/ELT and automated pipelines for real-time updates.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Exploration & Visualization
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Data preprocessing to ensure quality and facilitate analysis. Statistical modeling and development of intuitive, informative visualizations and dashboards using Power BI, Plotly, Streamlit, Chart.js, or Excel.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            ML models
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            Implementing predictive analytics through methods such as clustering, regression, classification models, and PCA integrated into real-world applications. I utilize TensorFlow or scikit-learn frameworks.
+                        </p>
+                    </details>
+                    <details class="text-gray-600 leading-relaxed">
+                        <summary class="font-bold cursor-pointer text-[#083F67] hover:text-[#1786D2] transition-colors duration-300">
+                            Multi-agent systems & Vision APIs
+                        </summary>
+                        <p class="text-gray-600 leading-relaxed">
+                            In project: Deploying and embedding chatbots/AI agents for optimal automation. Implementing object detection and image classification for advanced application features, leveraging technologies such as Google Cloud Vision or OpenCV.
+                        </p>
+                    </details>
                 </div>
             </div>
         </div>
@@ -490,10 +531,15 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-8 md:mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E54656] to-[#1E97D7] mb-6">
-                    Why Choose Me?
+                    Choose Me
                 </h2>
                 <p class="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
-                    At Structura, I combine deep industry expertise with cutting-edge technology to deliver transformative solutions. My commitment to excellence and client success drives everything I do.
+                    I help structure organizations, enabling them to grow and thrive.
+                    At the heart of every operational improvement are the people who make it possible. 
+                    
+                </p>
+                <p class="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
+                    Bringing these two elements together <span class="gradient-text font-bold">is what I am offering</span>.
                 </p>
             </div>
             <div class="flex flex-col lg:flex-row items-center gap-16">
@@ -504,8 +550,8 @@
                                 <span class="material-icons text-white text-sm">check</span>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-400 mb-1">Client-Centric Approach</h4>
-                                <p class="text-gray-600">We tailor our services to your unique business goals and requirements.</p>
+                                <h4 class="font-semibold text-gray-400 mb-1">Goal-focused & deadline-driven</h4>
+                                <p class="text-gray-600">'Action' is my middle name. I am committed to delivering results on time, ensuring that all deadlines are met.</p>
                             </div>
                         </div>
                         <div class="flex items-start group">
@@ -513,8 +559,8 @@
                                 <span class="material-icons text-white text-sm">check</span>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-400 mb-1">Expert Team</h4>
-                                <p class="text-gray-600">Highly skilled professionals with proven track records in their respective fields.</p>
+                                <h4 class="font-semibold text-gray-400 mb-1">Service-Oriented</h4>
+                                <p class="text-gray-600">Serving with a client-centric mindset. I tailor my services to your unique business goals and those of your clients.</p>
                             </div>
                         </div>
                         <div class="flex items-start group">
@@ -522,8 +568,8 @@
                                 <span class="material-icons text-white text-sm">check</span>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-400 mb-1">Innovative Solutions</h4>
-                                <p class="text-gray-600">Leveraging the latest technologies and methodologies for optimal outcomes.</p>
+                                <h4 class="font-semibold text-gray-400 mb-1">Leading by example</h4>
+                                <p class="text-gray-600">In everything I do, I strive to be a role model by supporting my team, my peers, and my clients. Through genuine leadership, I cultivate unwavering commitment. Vision is brought to life through others.</p>
                             </div>
                         </div>
                         <div class="flex items-start group">
@@ -531,8 +577,8 @@
                                 <span class="material-icons text-white text-sm">check</span>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-400 mb-1">Quality Assurance</h4>
-                                <p class="text-gray-600">Rigorous quality control processes ensuring reliable, high-standard deliverables.</p>
+                                <h4 class="font-semibold text-gray-400 mb-1">Trustworthiness</h4>
+                                <p class="text-gray-600">Rigorous in the details and ease in understanding the bigger picture. Committed to quality control and strategic planning. I am also a very discreet listener.</p>
                             </div>
                         </div>
                     </div>
@@ -545,20 +591,20 @@
                     <div class="relative">
                         <div class="relative rounded-2xl p-8 h-full flex flex-col justify-around space-y-6">
                             <div class="bg-gradient-to-r from-[#083F67] to-[#1E97D7] rounded-lg p-4 text-center">
-                                <div class="text-2xl font-bold text-white">50+</div>
-                                <div class="text-blue-100 text-sm">Projects Completed</div>
+                                <div class="text-2xl font-bold text-white">A Wizard</div>
+                                <div class="text-blue-100 text-sm">with Excel & Power Bi</div>
                             </div>
                             <div class="bg-gradient-to-r from-[#D03C4B] to-[#FC6B6D] rounded-lg p-4 text-center">
-                                <div class="text-2xl font-bold text-white">98%</div>
-                                <div class="text-red-100 text-sm">Client Satisfaction</div>
+                                <div class="text-2xl font-bold text-white">Resilient</div>
+                                <div class="text-red-100 text-sm">Built for adversity</div>
                             </div>
                             <div class="bg-gradient-to-r from-[#1E97D7] to-[#083F67] rounded-lg p-4 text-center">
-                                <div class="text-2xl font-bold text-white">15+</div>
-                                <div class="text-cyan-100 text-sm">Years Experience</div>
+                                <div class="text-2xl font-bold text-white">Flexible</div>
+                                <div class="text-cyan-100 text-sm">Cross-domain adaptability & Multi-ERP versatility</div>
                             </div>
                             <div class="bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] rounded-lg p-4 text-center">
-                                <div class="text-2xl font-bold text-white">24/7</div>
-                                <div class="text-orange-100 text-sm">Support Available</div>
+                                <div class="text-2xl font-bold text-white">Seasoned Professional</div>
+                                <div class="text-orange-100 text-sm">+15 years of Battle-tested expertise</div>
                             </div>
                         </div>
                     </div>
@@ -571,10 +617,10 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 md:mb-20">
                 <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E54656] to-[#1E97D7] mb-6">
-                    What My Clients Say
+                    In Their Words
                 </h2>
                 <p class="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
-                    Discover how businesses have transformed their operations and achieved remarkable results with our expertise.
+                    Real results, <span class="gradient-text font-bold">Real impact</span>, Real feedback.
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -583,15 +629,15 @@
                         <span class="text-yellow-500 text-xl">★★★★★</span>
                     </div>
                     <p class="text-gray-500 mb-6 italic leading-relaxed">
-                        "Structura's accounting services completely transformed our financial management. Their attention to detail and proactive approach saved us countless hours and significantly improved our bottom line."
+                        "Mr. Bromberger successfully managed and brought to completion various technical and complex projects involving partners with opposing interests. His organizational skills, as well as his professional and social competencies, made these successes possible."
                     </p>
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-gradient-to-r from-[#0C75C7] to-[#083F67] rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">SL</span>
+                            <span class="text-white font-bold">RB</span>
                         </div>
                         <div>
-                            <p class="font-semibold text-gray-500">Sarah L.</p>
-                            <p class="text-sm text-[#1E97D7]">CEO, Tech Startup Inc.</p>
+                            <p class="font-semibold text-gray-500">Rémy Burri</p>
+                            <p class="text-sm text-[#1E97D7]">Directeur, GCT Sàrl, Geneva (fr)</p>
                         </div>
                     </div>
                 </div>
@@ -600,15 +646,15 @@
                         <span class="text-yellow-500 text-xl">★★★★★</span>
                     </div>
                     <p class="text-gray-500 mb-6 italic leading-relaxed">
-                        "The AI solutions developed by Structura revolutionized our operations. Process automation increased our efficiency by 300% while reducing operational costs significantly."
+                        "Even under high workloads, Mr. Bromberger consistently demonstrated remarkable resilience and approached his work thoughtfully, calmly, and purposefully. His work results were consistently impressive and of excellent quality, even under difficult conditions and changing requirements. We greatly appreciated his outstanding performance."
                     </p>
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-gradient-to-r from-[#FC6B6D] to-[#D03C4B] rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">JB</span>
+                            <span class="text-white font-bold">HP</span>
                         </div>
                         <div>
-                            <p class="font-semibold text-gray-500">John B.</p>
-                            <p class="text-sm text-[#E54656]">Operations Manager, Manufacturing Co.</p>
+                            <p class="font-semibold text-gray-500">Patricia Hochstrasser</p>
+                            <p class="text-sm text-[#E54656]">Direktorin, PANVICA, Bern (de)</p>
                         </div>
                     </div>
                 </div>
@@ -617,15 +663,15 @@
                         <span class="text-yellow-500 text-xl">★★★★★</span>
                     </div>
                     <p class="text-gray-500 mb-6 italic leading-relaxed">
-                        "Our new website exceeded all expectations. Modern, fast, and beautifully designed - it transformed our online presence and significantly increased customer engagement."
+                        "The situation has improved significantly. The new Head of Finance has made considerable progress in addressing past issues. The annual financial statements were prepared correctly, and the audit documents were made ready."
                     </p>
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-gradient-to-r from-[#1E97D7] to-[#083F67] rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">EK</span>
+                            <span class="text-white font-bold">PWC</span>
                         </div>
                         <div>
-                            <p class="font-semibold text-gray-500">Emily K.</p>
-                            <p class="text-sm text-[#1E97D7]">Marketing Director, Retail Group</p>
+                            <p class="font-semibold text-gray-500">Leitende Revisorin</p>
+                            <p class="text-sm text-[#1E97D7]">PricewaterhouseCoopers</p>
                         </div>
                     </div>
                 </div>
@@ -736,7 +782,7 @@
                             </div>
                         </a>
                         <span class="text-2xl font-bold bg-gradient-to-r from-[#E54656] to-[#1E97D7] bg-clip-text text-transparent">
-                            Cyril Bromberger | structura
+                            Cyril Bromberger
                         </span>
                     </div>
                     <p class="text-gray-700 mb-6 max-w-md">
@@ -771,7 +817,7 @@
                         <li><a href="#services" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Services</a></li>
                         <li><a href="#about" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">About Us</a></li>
                         <li><a href="#testimonials" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Testimonials</a></li>
-                        <li><a href="#contact" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Get in Touch</a></li>
+                        <li><a href="#contact" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Contact</a></li>
                     </ul>
                 </div>
                 <div>
@@ -787,7 +833,7 @@
             <hr class="border-gray-300 my-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-700 text-sm mb-4 md:mb-0">
-                    © 2025 structura | Cyril Bromberger. All rights reserved.
+                    © 2025 Cyril Bromberger | structura. All rights reserved.
                 </p>
                 <div class="flex space-x-6 text-sm">
                     <a href="#" class="text-gray-700 hover:text-[#E54656] transition-colors duration-300">Privacy Policy</a>
