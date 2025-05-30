@@ -226,8 +226,8 @@
             }
 
             // Simulate form submission
-            showCustomAlert('Thank you for your message! We\'ll get back to you soon.');
-            this.reset(); // Clear the form after submission
+            // showCustomAlert('Thank you for your message! We\'ll get back to you soon.');
+            // this.reset(); // Clear the form after submission
         });
 
         // Smooth scrolling for all anchor links
