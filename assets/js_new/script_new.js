@@ -204,32 +204,6 @@
 
         window.addEventListener('scroll', requestTick);
 
-        // Form submission
-        //document.getElementById('contactForm')?.addEventListener('submit', function(e) {
-        //    e.preventDefault();
-
-            // Basic form validation
-        //    const name = document.getElementById('name').value.trim();
-        //    const email = document.getElementById('email').value.trim();
-        //    const message = document.getElementById('message').value.trim();
-
-        //    if (!name || !email || !message) {
-        //        showCustomAlert('Please fill in all required fields.');
-        //        return;
-        //    }
-
-            // Email validation
-        //    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        //    if (!emailRegex.test(email)) {
-        //        showCustomAlert('Please enter a valid email address.');
-        //        return;
-        //    }
-
-            // Simulate form submission
-            // showCustomAlert('Thank you for your message! We\'ll get back to you soon.');
-            // this.reset(); // Clear the form after submission
-        //});
-
         // Smooth scrolling for all anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
