@@ -27,8 +27,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- STYLING -->
     <link href="public/output.css" rel="stylesheet">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/></noscript>
+    <!--<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/></noscript>-->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/></noscript>
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'"/>
@@ -138,7 +138,7 @@
                         <h2 class="gradient-text_1 text-4xl md:text-5xl font-bold leading-relaxed">past accounted for...</h2>
                     </div>
                     <!-- Center circle -->
-                    <div class="h-120 w-120 circle-wrapper relative flex-shrink-0 md:col-span-2"><!---->
+                    <div class="w-72 h-72 md:w-120 md:h-120 circle-wrapper relative flex-shrink-0 md:col-span-2"><!---->
                         <!-- Circle SVG top -->
                         <svg class="absolute inset-0 w-full h-full circle animate-draw" viewBox="0 0 200 200">
                             <defs>
@@ -154,7 +154,7 @@
                             <circle cx="100" cy="100" r="90" />
                         </svg>
                         <!-- image webp middle -->
-                        <img src="assets/images/structura_logo_upscaled_1x.webp" alt="My Company Logo" loading= "lazy" decoding="async" class="h-120 w-120 rounded-lg shadow-lg object-contain"><!-- -->
+                        <img src="assets/images/structura_logo_upscaled_1x.webp" alt="My Company Logo" loading= "lazy" decoding="async" width="800" height="800" class="object-cover w-full h-[400px] md:h-[800px] rounded-lg shadow-lg object-contain"><!-- -->
                         <!-- blue-buttons bottom -->
                         <svg id="blue-buttons-layer" viewBox="0 0 200 200" class="blue-layer absolute inset-0 w-full h-full">
                             <defs>
@@ -701,6 +701,6 @@
         <span class="material-icons">keyboard_arrow_up</span>
     </button>
 
-    <script defer src="assets/js_new/script_new.js"></script>
+    <script src="assets/js_new/script_new.js" defer></script>
 </body>
 </html>
