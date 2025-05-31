@@ -467,50 +467,72 @@
         initializeVisual();
         }
 
-// ---- FORM HANDELING ----
+// -------------------------------------------------------------
+// JS for handling your Formspree form without leaving your page
+// -------------------------------------------------------------
 
-const form = document.getElementById('contact-form');
+// 1) Grab the form by its actual ID
+const form = document.getElementById('contactForm');
 
-// 1) Prevent the default form submission entirely
-form.addEventListener('submit', async (e) => {
-  e.preventDefault(); 
-  const formData = new FormData(form);
+if (form) {
+  // 2) Intercept the submit event
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // stop the browser from doing a full‐page redirect
 
-  try {
-    // 2) Send form data via Fetch to Formspree
-    const response = await fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Accept: 'application/json'
-      }
-    });
+    const formData = new FormData(form);
 
-    // 3) If Formspree returns 200, show the “Thank You” message
-    if (response.ok) {
-      form.innerHTML = `
-        <div class="form-container">
-          <p class="text-center text-lg font-semibold">Thanks for contacting me!</p>
-          <p class="text-center text-sm">I will answer within 2 hours.</p>
-          <div class="form-actions mt-4 flex justify-center">
-            <button 
-              type="button" 
-              class="close-form bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-            >
-              Close
-            </button>
+    try {
+      // 3) POST the data via Fetch to Formspree
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      // 4a) If Formspree responds OK (status 200), show your thank‐you block
+      if (response.ok) {
+        form.innerHTML = `
+          <div class="form-container text-center space-y-4">
+            <p class="text-lg font-semibold">Thanks for contacting me!</p>
+            <p>I will answer within 2 hours.</p>
+            <div class="form-actions">
+              <button 
+                type="button" 
+                class="close-form glow-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded"
+              >
+                Close
+              </button>
+            </div>
           </div>
-        </div>
-      `;
-    } else {
-      // 4) If the response is a 4xx/5xx, show an error notice
+        `;
+      }
+      // 4b) Non-OK (4xx/5xx) → show an error block
+      else {
+        form.innerHTML = `
+          <div class="form-container text-center space-y-4">
+            <p class="text-red-600 font-semibold">Something went wrong. Please try again later.</p>
+            <div class="form-actions">
+              <button 
+                type="button" 
+                class="close-form glow-button bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-6 rounded"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        `;
+      }
+    } catch (error) {
+      // 5) Network error or fetch() failure
       form.innerHTML = `
-        <div class="form-container">
-          <p class="text-center text-red-600 font-semibold">Something went wrong. Please try again later.</p>
-          <div class="form-actions mt-4 flex justify-center">
+        <div class="form-container text-center space-y-4">
+          <p class="text-red-600 font-semibold">Network error. Please try again later.</p>
+          <div class="form-actions">
             <button 
               type="button" 
-              class="close-form bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+              class="close-form glow-button bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-6 rounded"
             >
               Close
             </button>
@@ -518,28 +540,14 @@ form.addEventListener('submit', async (e) => {
         </div>
       `;
     }
-  } catch (error) {
-    // 5) If Fetch itself fails (network issue, etc.)
-    form.innerHTML = `
-      <div class="form-container">
-        <p class="text-center text-red-600 font-semibold">Network error. Please try again later.</p>
-        <div class="form-actions mt-4 flex justify-center">
-          <button 
-            type="button" 
-            class="close-form bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    `;
-  }
-});
+  });
 
-// 6) Close-overlay handler (delegated)
-form.addEventListener('click', (e) => {
-  if (e.target.classList.contains('close-form')) {
-    const overlay = document.getElementById('contact-overlay');
-    if (overlay) overlay.remove();
-  }
-});
+  // 6) Catch clicks on the “Close” buttons (any element with .close-form)
+  form.addEventListener('click', (e) => {
+    if (e.target.classList.contains('close-form')) {
+      // Remove the overlay or form container entirely
+      const overlay = document.getElementById('contact-overlay');
+      if (overlay) overlay.remove();
+    }
+  });
+}
