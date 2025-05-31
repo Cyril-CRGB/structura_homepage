@@ -229,9 +229,9 @@
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.service-card, .animate-fade-in').forEach(el => {
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
             observer.observe(el);
-        }); //.glass-morphism,
+        }); //.service-card, .glass-morphism,
 
         // Keyboard navigation support for mobile menu
         document.addEventListener('keydown', (e) => {
