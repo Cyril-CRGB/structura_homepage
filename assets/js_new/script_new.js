@@ -466,3 +466,80 @@
         addOptimizedStyles();
         initializeVisual();
         }
+
+// ---- FORM HANDELING ----
+
+const form = document.getElementById('contact-form');
+
+// 1) Prevent the default form submission entirely
+form.addEventListener('submit', async (e) => {
+  e.preventDefault(); 
+  const formData = new FormData(form);
+
+  try {
+    // 2) Send form data via Fetch to Formspree
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+
+    // 3) If Formspree returns 200, show the “Thank You” message
+    if (response.ok) {
+      form.innerHTML = `
+        <div class="form-container">
+          <p class="text-center text-lg font-semibold">Thanks for contacting me!</p>
+          <p class="text-center text-sm">I will answer within 2 hours.</p>
+          <div class="form-actions mt-4 flex justify-center">
+            <button 
+              type="button" 
+              class="close-form bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      `;
+    } else {
+      // 4) If the response is a 4xx/5xx, show an error notice
+      form.innerHTML = `
+        <div class="form-container">
+          <p class="text-center text-red-600 font-semibold">Something went wrong. Please try again later.</p>
+          <div class="form-actions mt-4 flex justify-center">
+            <button 
+              type="button" 
+              class="close-form bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      `;
+    }
+  } catch (error) {
+    // 5) If Fetch itself fails (network issue, etc.)
+    form.innerHTML = `
+      <div class="form-container">
+        <p class="text-center text-red-600 font-semibold">Network error. Please try again later.</p>
+        <div class="form-actions mt-4 flex justify-center">
+          <button 
+            type="button" 
+            class="close-form bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    `;
+  }
+});
+
+// 6) Close-overlay handler (delegated)
+form.addEventListener('click', (e) => {
+  if (e.target.classList.contains('close-form')) {
+    const overlay = document.getElementById('contact-overlay');
+    if (overlay) overlay.remove();
+  }
+});
