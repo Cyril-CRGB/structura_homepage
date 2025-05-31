@@ -494,7 +494,7 @@ if (form) {
       // 4a) If Formspree responds OK (status 200), show your thank‐you block
       if (response.ok) {
         form.innerHTML = `
-          <div class="form-container text-center space-y-4">
+          <div class="form-container text-center space-y-4 text-gray-600">
             <p class="text-lg font-semibold">Thanks for contacting me!</p>
             <p>I will answer within 2 hours.</p>
             <div class="form-actions">
@@ -511,8 +511,8 @@ if (form) {
       // 4b) Non-OK (4xx/5xx) → show an error block
       else {
         form.innerHTML = `
-          <div class="form-container text-center space-y-4">
-            <p class="text-red-600 font-semibold">Something went wrong. Please try again later.</p>
+          <div class="form-container text-center space-y-4 text-gray-600">
+            <p class="text-red-600 font-semibold">Something went wrong (Formspree.io). Please try again later or contact me per email.</p>
             <div class="form-actions">
               <button 
                 type="button" 
@@ -527,8 +527,8 @@ if (form) {
     } catch (error) {
       // 5) Network error or fetch() failure
       form.innerHTML = `
-        <div class="form-container text-center space-y-4">
-          <p class="text-red-600 font-semibold">Network error. Please try again later.</p>
+        <div class="form-container text-center space-y-4 text-gray-600">
+          <p class="text-red-600 font-semibold">Network error (Fetch). Please try again later or contact me per email.</p>
           <div class="form-actions">
             <button 
               type="button" 
