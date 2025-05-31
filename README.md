@@ -22,7 +22,7 @@ This website is designed for **my personal use**.
 
 'contact me', on click send me a message. https://formspree.io/
 
-## Color theme
+## Theme
 
 #D03C4B
 #E54656
@@ -34,7 +34,8 @@ This website is designed for **my personal use**.
 #1786D2
 #0C75C7
 #083F67
-#0a2f4d /rgba(10, 47, 77, 0.9)
+#0a2f4d
+rgba(10, 47, 77, 0.9)
 #ffffff
 #f8f6f0
 #f2f2f2
@@ -42,10 +43,10 @@ rgba(0, 0, 0, 0.2)
 #B1B1B1
 
 for socialmedia icons:
-    https://fontawesome.com/icons/linkedin?f=brands&s=solid
-    https://fontawesome.com/icons/x-twitter?f=brands&s=solid
+- https://fontawesome.com/icons/linkedin?f=brands&s=solid
+- https://fontawesome.com/icons/x-twitter?f=brands&s=solid
 or also
-    https://icons8.com/icon/ud9VVQzOPag8/x
+- https://icons8.com/icon/ud9VVQzOPag8/x
 
 ## Testing:
 
@@ -58,7 +59,7 @@ or also
 
 ### The performances
 - I tested my code with Lighthouse:
-<img src="assets/images/structura_Lighthouse performances 4.jpg" alt="ReadmePicture3">
+<img src="assets/images/structura_Lighthouse performances 5.jpg" alt="ReadmePicture3">
 
 ### SEO 
 - Google Search Console, adding a 'sitemap.xml' a 'ld+json' in the head of the page
