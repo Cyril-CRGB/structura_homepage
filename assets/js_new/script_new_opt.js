@@ -376,16 +376,16 @@ function setupContactForm() {
                         Accept: 'application/json'
                     }
                 });
-                // If Formspree responds OK (status 200), show your thank-you block
+                // If Formspree responds OK (status 200), show the thank-you block
                 if (response.ok) {
                     contactForm.innerHTML = `
                         <div class="form-container text-center space-y-4 text-gray-600">
-                            <p class="text-lg font-semibold">Thanks for contacting me!</p>
-                            <p>I will answer within 2 hours.</p>
+                            <p class="text-lg font-semibold">Thanks for contacting me! Merci de m'avoir contacté! Danke für Ihre Nachricht!</p>
+                            <p>I will answer within 2 hours. Je vous reviens d'ici 2 heures. Ich melde mich bei Ihnen innerhalb von zwei Stunden.</p>
                             <div class="form-actions">
                                 <button
                                     type="button"
-                                    class="close-form glow-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded"
+                                    class="close-form bg-[#0a2f4d] hover:bg-[#1786D2] text-white font-semibold py-2 px-6 rounded"
                                 >
                                     Close
                                 </button>
