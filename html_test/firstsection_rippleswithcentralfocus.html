@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Landing Page Hero - Ripples</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for the ripple animations */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent scrollbars from ripple overflow */
+        }
+
+        .hero-bg {
+            background-color: #F0F5F8; /* Very light, professional background color */
+            height: 100vh; /* Full viewport height */
+            position: relative;
+            overflow: hidden; /* Crucial to contain the ripples */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Ensure content is centered vertically and horizontally */
+        }
+
+        .ripple-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 0; /* Ensure ripples are behind content */
+        }
+
+        .ripple-circle {
+            position: absolute;
+            border-radius: 50%; /* Make them perfectly round */
+            border: 1px solid rgba(150, 190, 220, 0.3); /* Subtle border color for the ripple effect */
+            animation: rippleEffect 4s linear infinite; /* Animation for expanding ripples */
+        }
+
+        /* Staggering the animation for multiple ripples */
+        .ripple-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            animation-delay: 0s;
+        }
+
+        .ripple-circle:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            animation-delay: 1s; /* Start 1 second after the first */
+        }
+
+        .ripple-circle:nth-child(3) {
+            width: 600px;
+            height: 600px;
+            animation-delay: 2s; /* Start 2 seconds after the first */
+        }
+
+        .ripple-circle:nth-child(4) {
+            width: 800px;
+            height: 800px;
+            animation-delay: 3s; /* Start 3 seconds after the first */
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                transform: scale(0.5); /* Start smaller */
+                opacity: 1; /* Fully visible at start */
+            }
+            100% {
+                transform: scale(2); /* Expand outwards */
+                opacity: 0; /* Fade out completely */
+            }
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem; /* Adjust headline size */
+            }
+            .hero-content p {
+                font-size: 1rem; /* Adjust paragraph size */
+            }
+            /* Adjust ripple sizes for smaller screens if necessary, though vw/vh units help */
+            .ripple-circle:nth-child(1) { width: 150px; height: 150px; }
+            .ripple-circle:nth-child(2) { width: 300px; height: 300px; }
+            .ripple-circle:nth-child(3) { width: 450px; height: 450px; }
+            .ripple-circle:nth-child(4) { width: 600px; height: 600px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero-bg">
+        <!-- Ripple circles for background animation -->
+        <div class="ripple-container">
+            <div class="ripple-circle"></div>
+            <div class="ripple-circle"></div>
+            <div class="ripple-circle"></div>
+            <div class="ripple-circle"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="hero-content z-10 text-center px-4 max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-4 tracking-tight">
+                Empowering Your Digital Future
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                Innovative solutions designed to propel your business forward with precision and impact.
+            </p>
+            <a href="#services" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
+                Explore Our Services
+            </a>
+        </div>
+    </section>
+
+    <!-- You can add more sections below this hero section -->
+
+</body>
+</html>

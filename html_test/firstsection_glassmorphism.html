@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Landing Page Hero - Glassmorphism</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for Glassmorphism effect and background animation */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent scrollbars from background overflow */
+        }
+
+        .hero-bg {
+            /* Animated background gradient */
+            background: linear-gradient(135deg, #3FB6F0 0%, #f8f6f0 50%, #083F67 100%);
+            background-size: 400% 400%; /* Larger size for animation */
+            animation: backgroundPan 20s ease infinite alternate; /* Slow, smooth pan animation */
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 0;
+        }
+
+        @keyframes backgroundPan {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.15); /* Translucent white background */
+            backdrop-filter: blur(10px); /* The key Glassmorphism blur effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari support */
+            border-radius: 20px; /* Rounded corners for the glass panel */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1); /* Soft shadow for depth */
+            padding: 2.5rem; /* Padding inside the glass panel */
+            max-width: 4xl; /* Max width using Tailwind classes */
+            margin: 0 auto; /* Center the panel */
+            text-align: center;
+            z-index: 10; /* Ensure panel is above background */
+            position: relative; /* For z-index to work correctly */
+            /* Responsive padding */
+            @apply px-6 py-10 md:px-12 md:py-16;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .glass-panel {
+                padding: 1.5rem; /* Smaller padding on mobile */
+            }
+            .hero-content h1 {
+                font-size: 2.5rem; /* Adjust headline size */
+            }
+            .hero-content p {
+                font-size: 1rem; /* Adjust paragraph size */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero-bg">
+        <!-- Glassmorphism Panel -->
+        <div class="glass-panel">
+            <div class="hero-content">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-800 leading-tight mb-4 tracking-tight">
+                    Crafting Digital Experiences
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto">
+                    We design and build intuitive, high-performance web solutions that captivate and convert.
+                </p>
+                <a href="#portfolio" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    View Our Work
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- You can add more sections below this hero section -->
+
+</body>
+</html>

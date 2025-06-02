@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonic Wave Hero</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #FC6B6D 0%, #FF8E8F 50%, #FFB3B3 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        /* Sonic Wave Container */
+        .sonic-wave-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        /* Individual Sonic Wave Rings */
+        .sonic-wave {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            animation: sonicPulse 4s ease-out infinite;
+        }
+
+        .sonic-wave:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .sonic-wave:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            animation-delay: 0.8s;
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .sonic-wave:nth-child(3) {
+            width: 160px;
+            height: 160px;
+            animation-delay: 1.6s;
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .sonic-wave:nth-child(4) {
+            width: 200px;
+            height: 200px;
+            animation-delay: 2.4s;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .sonic-wave:nth-child(5) {
+            width: 240px;
+            height: 240px;
+            animation-delay: 3.2s;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Sonic Pulse Animation */
+        @keyframes sonicPulse {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+                border-width: 8px;
+            }
+            50% {
+                opacity: 0.8;
+                border-width: 4px;
+            }
+            100% {
+                transform: scale(8);
+                opacity: 0;
+                border-width: 1px;
+            }
+        }
+
+        /* Energy Core in the center */
+        .energy-core {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%);
+            border-radius: 50%;
+            animation: coreGlow 2s ease-in-out infinite alternate;
+            z-index: 2;
+            box-shadow: 
+                0 0 30px rgba(255, 255, 255, 0.8),
+                0 0 60px rgba(255, 255, 255, 0.4),
+                0 0 90px rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes coreGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 
+                    0 0 30px rgba(255, 255, 255, 0.8),
+                    0 0 60px rgba(255, 255, 255, 0.4),
+                    0 0 90px rgba(255, 255, 255, 0.2);
+            }
+            100% {
+                transform: scale(1.2);
+                box-shadow: 
+                    0 0 40px rgba(255, 255, 255, 1),
+                    0 0 80px rgba(255, 255, 255, 0.6),
+                    0 0 120px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        /* Additional Particle Effects */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: particleFloat 6s linear infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 40%; right: 15%; animation-delay: 1s; }
+        .particle:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 2s; }
+        .particle:nth-child(4) { bottom: 20%; right: 25%; animation-delay: 3s; }
+        .particle:nth-child(5) { top: 60%; left: 80%; animation-delay: 4s; }
+        .particle:nth-child(6) { top: 80%; left: 60%; animation-delay: 5s; }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-30px) scale(1.5);
+                opacity: 0.3;
+            }
+        }
+
+        /* Content styling */
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            animation: titleFade 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: titleFade 1s ease-out 0.5s both;
+        }
+
+        @keyframes titleFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .sonic-wave:nth-child(1) { width: 60px; height: 60px; }
+            .sonic-wave:nth-child(2) { width: 90px; height: 90px; }
+            .sonic-wave:nth-child(3) { width: 120px; height: 120px; }
+            .sonic-wave:nth-child(4) { width: 150px; height: 150px; }
+            .sonic-wave:nth-child(5) { width: 180px; height: 180px; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-bg">
+        <!-- Sonic Wave Effect -->
+        <div class="sonic-wave-container">
+            <div class="sonic-wave"></div>
+            <div class="sonic-wave"></div>
+            <div class="sonic-wave"></div>
+            <div class="sonic-wave"></div>
+            <div class="sonic-wave"></div>
+            <div class="energy-core"></div>
+        </div>
+
+        <!-- Floating Particles -->
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <h1>Sonic Wave</h1>
+            <p>Experience the power of dynamic energy</p>
+        </div>
+    </section>
+</body>
+</html>

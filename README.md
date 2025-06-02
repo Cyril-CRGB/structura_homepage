@@ -40,6 +40,7 @@ rgba(10, 47, 77, 0.9)
 #f8f6f0
 #f2f2f2
 rgba(0, 0, 0, 0.2)
+#d9d9d9
 #B1B1B1
 
 for socialmedia icons:
