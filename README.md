@@ -35,7 +35,7 @@ This website is designed for **my personal use**.
 #0C75C7
 #083F67
 #0a2f4d
-rgba(10, 47, 77, 0.9)
+rgba(10, 47, 77, 0.8)
 #ffffff
 #f8f6f0
 #f2f2f2
