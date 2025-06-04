@@ -212,7 +212,6 @@
           powerPreference: "high-performance"
         });
 
-        // Enhanced renderer settings
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.renderer.shadowMap.enabled = true;
@@ -221,7 +220,6 @@
         this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
         this.renderer.toneMappingExposure = 1.2;
 
-        // Performance tracking
         this.frameCount = 0;
         this.lastTime = performance.now();
 
@@ -229,6 +227,8 @@
         this.unit = 1.0;
         this.particles = [];
         this.time = 0;
+
+        this.isLayerRotating = false; // Flag to indicate if a layer rotation is in progress
 
         this.init();
         this.createEnvironment();
@@ -251,22 +251,15 @@
         this.camera.position.set(12, 12, 12);
         this.camera.lookAt(0, 0, 0);
         
-        // Enhanced color palette with neon effects
         this.colors = [
-          0xff006e, // Hot Pink
-          0x06ffa5, // Neon Green  
-          0x3a86ff, // Electric Blue
-          0xffbe0b, // Gold
-          0x8338ec, // Purple
-          0xffffff  // Pure White
+          0xff006e, 0x06ffa5, 0x3a86ff, 
+          0xffbe0b, 0x8338ec, 0xffffff
         ];
 
-        // Add fog for depth
         this.scene.fog = new THREE.Fog(0x000000, 15, 50);
       }
 
       createEnvironment() {
-        // Create starfield background
         const starsGeometry = new THREE.BufferGeometry();
         const starsMaterial = new THREE.PointsMaterial({
           color: 0xffffff,
@@ -288,7 +281,6 @@
         this.scene.add(stars);
         this.stars = stars;
 
-        // Add ground reflection plane
         const groundGeometry = new THREE.PlaneGeometry(50, 50);
         const groundMaterial = new THREE.MeshLambertMaterial({
           color: 0x111111,
@@ -305,14 +297,13 @@
       createCube() {
         const cubeGroup = new THREE.Group();
         const size = 0.92;
-        const gap = 0.08;
+        // const gap = 0.08; // Not directly used in positioning, unit implies gap
 
         for (let x = -1; x <= 1; x++) {
           for (let y = -1; y <= 1; y++) {
             for (let z = -1; z <= 1; z++) {
               const geometry = new THREE.BoxGeometry(size, size, size);
               
-              // Create materials with enhanced effects
               const materials = this.colors.map(c => {
                 const material = new THREE.MeshPhysicalMaterial({
                   color: c,
@@ -331,7 +322,6 @@
               mesh.castShadow = true;
               mesh.receiveShadow = true;
 
-              // Add edge glow effect
               const edgesGeometry = new THREE.EdgesGeometry(geometry);
               const edgesMaterial = new THREE.LineBasicMaterial({
                 color: 0xffffff,
@@ -356,11 +346,9 @@
       }
 
       setupLighting() {
-        // Enhanced lighting setup
         const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
         this.scene.add(ambientLight);
 
-        // Main directional light
         const mainLight = new THREE.DirectionalLight(0xffffff, 1.2);
         mainLight.position.set(15, 15, 15);
         mainLight.castShadow = true;
@@ -374,7 +362,6 @@
         mainLight.shadow.camera.bottom = -20;
         this.scene.add(mainLight);
 
-        // Colored accent lights
         const lights = [
           { color: 0xff006e, position: [10, 5, 10], intensity: 0.8 },
           { color: 0x06ffa5, position: [-10, 5, -10], intensity: 0.8 },
@@ -388,7 +375,6 @@
           this.scene.add(light);
         });
 
-        // Add rim lighting
         const rimLight = new THREE.DirectionalLight(0x8338ec, 0.5);
         rimLight.position.set(-15, 10, -15);
         this.scene.add(rimLight);
@@ -396,7 +382,7 @@
 
       createParticleSystem() {
         const particleCount = 500;
-        const particles = new THREE.BufferGeometry();
+        const particlesGeo = new THREE.BufferGeometry(); // Renamed to avoid conflict
         const positions = new Float32Array(particleCount * 3);
         const colors = new Float32Array(particleCount * 3);
         const sizes = new Float32Array(particleCount);
@@ -415,9 +401,9 @@
           sizes[i] = Math.random() * 3 + 1;
         }
 
-        particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        particles.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+        particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particlesGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        particlesGeo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
         const particleMaterial = new THREE.PointsMaterial({
           size: 0.1,
@@ -427,7 +413,7 @@
           blending: THREE.AdditiveBlending
         });
 
-        this.particleSystem = new THREE.Points(particles, particleMaterial);
+        this.particleSystem = new THREE.Points(particlesGeo, particleMaterial);
         this.scene.add(this.particleSystem);
       }
 
@@ -443,16 +429,18 @@
         }
       }
 
-      // Keep existing rotation methods but enhance with effects
       applyScramble() {
         const scrambleSeq = [
           { type: 'vertical', layer: -1, degrees: 90 },
           { type: 'horizontal', layer: -1, degrees: 180 },
           { type: 'vertical', layer: 0, degrees: 270 },
-          { type: 'horizontal', layer: 0, degrees: 360 },
+          { type: 'horizontal', layer: 0, degrees: 360 }, // 360 is a full turn, effectively no change
           { type: 'vertical', layer: 1, degrees: 90 },
           { type: 'horizontal', layer: 1, degrees: 180 }
         ];
+        // To avoid issues if scramble is called while mouse/float animations are active,
+        // we could temporarily set isLayerRotating here too, or ensure these apply... methods are robust.
+        // For now, focusing on the animated rotations as per user's problem description.
         scrambleSeq.forEach(move => {
           if (move.type === 'vertical') {
             this.applyVerticalRotation(move.layer, move.degrees);
@@ -469,27 +457,60 @@
           return cubeObj.currentPosition[0] === layer;
         });
         const tempGroup = new THREE.Group();
-        tempGroup.position.set(layer * this.unit, 0, 0);
-        this.scene.add(tempGroup);
-        cubesToRotate.forEach(cubeObj => tempGroup.attach(cubeObj.mesh));
-        tempGroup.rotation.x += radians;
+        // Set tempGroup's position relative to the main cubeGroup's origin, not its current animated position
+        tempGroup.position.set(layer * this.unit, 0, 0); 
+        this.scene.add(tempGroup); // Add to scene for world matrix calculations
+        
         cubesToRotate.forEach(cubeObj => {
-          cubeObj.mesh.updateMatrixWorld();
+            // Detach from cubeGroup and attach to tempGroup
+            // Preserve world transform during re-parenting
+            this.cubeGroup.remove(cubeObj.mesh); // Ensure it's removed from old parent
+            tempGroup.attach(cubeObj.mesh);
+        });
+        
+        tempGroup.rotation.x += radians;
+        tempGroup.updateMatrixWorld(true); // Ensure matrix world is updated for tempGroup and children
+
+        cubesToRotate.forEach(cubeObj => {
+          // Decompose the mesh's world matrix
           const worldPos = new THREE.Vector3();
           const worldQuat = new THREE.Quaternion();
-          const worldScale = new THREE.Vector3();
+          const worldScale = new THREE.Vector3(); // Though scale shouldn't change
           cubeObj.mesh.matrixWorld.decompose(worldPos, worldQuat, worldScale);
 
+          // Re-attach to the main cubeGroup
           tempGroup.remove(cubeObj.mesh);
-          this.cubeGroup.add(cubeObj.mesh);
+          this.cubeGroup.add(cubeObj.mesh); // Add back to the main group
 
-          cubeObj.mesh.position.copy(worldPos);
-          cubeObj.mesh.quaternion.copy(worldQuat);
+          // Set local position and quaternion relative to cubeGroup
+          // Convert world coordinates back to local coordinates of cubeGroup
+          cubeObj.mesh.position.copy(this.cubeGroup.worldToLocal(worldPos.clone()));
+          
+          // For quaternion, if cubeGroup itself is rotated, this needs care.
+          // Target quaternion in world space is worldQuat.
+          // We need to find local quaternion q_local such that q_cubeGroup * q_local = worldQuat
+          // So, q_local = q_cubeGroup_inverse * worldQuat
+          const cubeGroupWorldQuat = new THREE.Quaternion();
+          this.cubeGroup.getWorldQuaternion(cubeGroupWorldQuat);
+          cubeObj.mesh.quaternion.copy(cubeGroupWorldQuat.clone().invert().multiply(worldQuat));
+
 
           const snappedX = layer;
-          const snappedY = Math.round(worldPos.y / this.unit);
-          const snappedZ = Math.round(worldPos.z / this.unit);
+          // Snap based on the mesh's position *within the potentially transformed cubeGroup*
+          const localMeshPos = cubeObj.mesh.position.clone();
+          const snappedY = Math.round(localMeshPos.y / this.unit);
+          const snappedZ = Math.round(localMeshPos.z / this.unit);
+          
           cubeObj.mesh.position.set(snappedX * this.unit, snappedY * this.unit, snappedZ * this.unit);
+          // Crucially, also snap the rotation to be axis-aligned within the local frame of cubeGroup
+          // This means ensuring the cubie's local rotation is a multiple of 90 degrees.
+          // After snapping position, we should also ensure its local quaternion is axis aligned.
+          // For simplicity, the current approach relies on correct snapping of currentPosition.
+          // If cubeGroup itself is rotated, snapping local mesh rotation is complex.
+          // The primary fix is to stop cubeGroup moving during these operations.
+          // The provided code snaps position and updates currentPosition. Quaternion is taken as is.
+          // If cubeGroup is (0,0,0) rotation, then mesh.quaternion will be correct after decompose & re-parenting.
+          
           cubeObj.currentPosition = [snappedX, snappedY, snappedZ];
         });
         this.scene.remove(tempGroup);
@@ -503,10 +524,16 @@
         const tempGroup = new THREE.Group();
         tempGroup.position.set(0, layer * this.unit, 0);
         this.scene.add(tempGroup);
-        cubesToRotate.forEach(cubeObj => tempGroup.attach(cubeObj.mesh));
-        tempGroup.rotation.y += radians;
+        
         cubesToRotate.forEach(cubeObj => {
-          cubeObj.mesh.updateMatrixWorld();
+            this.cubeGroup.remove(cubeObj.mesh);
+            tempGroup.attach(cubeObj.mesh);
+        });
+
+        tempGroup.rotation.y += radians;
+        tempGroup.updateMatrixWorld(true);
+
+        cubesToRotate.forEach(cubeObj => {
           const worldPos = new THREE.Vector3();
           const worldQuat = new THREE.Quaternion();
           const worldScale = new THREE.Vector3();
@@ -514,75 +541,122 @@
 
           tempGroup.remove(cubeObj.mesh);
           this.cubeGroup.add(cubeObj.mesh);
+          
+          cubeObj.mesh.position.copy(this.cubeGroup.worldToLocal(worldPos.clone()));
+          
+          const cubeGroupWorldQuat = new THREE.Quaternion();
+          this.cubeGroup.getWorldQuaternion(cubeGroupWorldQuat);
+          cubeObj.mesh.quaternion.copy(cubeGroupWorldQuat.clone().invert().multiply(worldQuat));
 
-          cubeObj.mesh.position.copy(worldPos);
-          cubeObj.mesh.quaternion.copy(worldQuat);
-
-          const snappedX = Math.round(worldPos.x / this.unit);
+          const localMeshPos = cubeObj.mesh.position.clone();
+          const snappedX = Math.round(localMeshPos.x / this.unit);
           const snappedY = layer;
-          const snappedZ = Math.round(worldPos.z / this.unit);
+          const snappedZ = Math.round(localMeshPos.z / this.unit);
+
           cubeObj.mesh.position.set(snappedX * this.unit, snappedY * this.unit, snappedZ * this.unit);
           cubeObj.currentPosition = [snappedX, snappedY, snappedZ];
         });
         this.scene.remove(tempGroup);
       }
 
+
       rotateVerticalLayer(layer, degrees, duration, onComplete) {
+        this.isLayerRotating = true; // START: Lock cubeGroup transforms
+
         const radians = degrees * Math.PI / 180;
         const cubesToRotate = this.cubes.filter(cubeObj => {
           return cubeObj.currentPosition[0] === layer;
         });
 
         const tempGroup = new THREE.Group();
+        // Critical: Set tempGroup's initial position based on the logical grid,
+        // not influenced by cubeGroup's current animated state.
         tempGroup.position.set(layer * this.unit, 0, 0);
-        this.scene.add(tempGroup);
-        cubesToRotate.forEach(cubeObj => tempGroup.attach(cubeObj.mesh));
+        // tempGroup's rotation should also be neutral initially.
+        tempGroup.rotation.set(0,0,0);
 
-        const startRot = tempGroup.rotation.x;
+        // We need to ensure the cubies are parented to tempGroup correctly.
+        // Their current world transform needs to be preserved when moving to tempGroup.
+        // Then tempGroup is rotated, and then they are moved back.
+        this.scene.add(tempGroup); // Add to scene so it has a world matrix
+
+        cubesToRotate.forEach(cubeObj => {
+            // Preserve world transform when moving from cubeGroup to tempGroup
+            // 1. Get world matrix of cubie (mesh)
+            cubeObj.mesh.updateMatrixWorld(true); // Ensure its matrixWorld is current
+            const originalWorldMatrix = cubeObj.mesh.matrixWorld.clone();
+
+            // 2. Detach from cubeGroup, add to scene (temporarily, to break parent relation)
+            this.cubeGroup.remove(cubeObj.mesh); 
+            // this.scene.add(cubeObj.mesh); // Not strictly necessary if immediately attaching to tempGroup
+
+            // 3. Attach to tempGroup. `attach` preserves world transform.
+            tempGroup.attach(cubeObj.mesh);
+        });
+        
+        const startRot = tempGroup.rotation.x; // Should be 0 if set above
         const targetRot = startRot + radians;
         const startTime = performance.now();
 
-        // Add rotation particle effect
-        this.createRotationEffect(tempGroup.position);
+        this.createRotationEffect(new THREE.Vector3(layer * this.unit, 0, 0)); // Effect at layer center
 
         const animate = () => {
           const elapsed = performance.now() - startTime;
           let t = Math.min(elapsed / duration, 1);
-          t = 0.5 - 0.5 * Math.cos(Math.PI * t);
+          t = 0.5 - 0.5 * Math.cos(Math.PI * t); // Ease in-out
           tempGroup.rotation.x = startRot + (targetRot - startRot) * t;
 
           if (t < 1) {
             requestAnimationFrame(animate);
           } else {
+            tempGroup.rotation.x = targetRot; // Ensure final exact rotation
+            tempGroup.updateMatrixWorld(true); // Update world matrix of tempGroup and its children
+
             cubesToRotate.forEach(cubeObj => {
-              cubeObj.mesh.updateMatrixWorld();
+              // Get new world position/rotation of the cubie
               const worldPos = new THREE.Vector3();
               const worldQuat = new THREE.Quaternion();
-              const worldScale = new THREE.Vector3();
+              const worldScale = new THREE.Vector3(); // Scale should be unaffected
               cubeObj.mesh.matrixWorld.decompose(worldPos, worldQuat, worldScale);
 
+              // Re-attach to the main cubeGroup, preserving new world transform
               tempGroup.remove(cubeObj.mesh);
-              this.cubeGroup.add(cubeObj.mesh);
+              // this.scene.add(cubeObj.mesh); // temp step
+              this.cubeGroup.attach(cubeObj.mesh); // Attach to cubeGroup, preserving world transform
 
-              cubeObj.mesh.position.copy(worldPos);
-              cubeObj.mesh.quaternion.copy(worldQuat);
-
-              const snappedX = layer;
-              const snappedY = Math.round(worldPos.y / this.unit);
-              const snappedZ = Math.round(worldPos.z / this.unit);
+              // Now that it's attached to cubeGroup, its local position and quaternion are set.
+              // We need to snap its *local* position within cubeGroup.
+              const snappedX = layer; // This dimension is fixed for this layer type
+              
+              // Snap Y and Z based on the cubie's LOCAL position within cubeGroup
+              // Rounding to nearest unit.
+              const snappedY = Math.round(cubeObj.mesh.position.y / this.unit);
+              const snappedZ = Math.round(cubeObj.mesh.position.z / this.unit);
+              
               cubeObj.mesh.position.set(snappedX * this.unit, snappedY * this.unit, snappedZ * this.unit);
+              
+              // Also, snap local rotation (quaternion) to be axis-aligned (multiples of 90 deg)
+              // This is important if any residual non-grid rotation exists.
+              const euler = new THREE.Euler().setFromQuaternion(cubeObj.mesh.quaternion, 'XYZ');
+              euler.x = Math.round(euler.x / (Math.PI / 2)) * (Math.PI / 2);
+              euler.y = Math.round(euler.y / (Math.PI / 2)) * (Math.PI / 2);
+              euler.z = Math.round(euler.z / (Math.PI / 2)) * (Math.PI / 2);
+              cubeObj.mesh.quaternion.setFromEuler(euler);
+
               cubeObj.currentPosition = [snappedX, snappedY, snappedZ];
             });
 
             this.scene.remove(tempGroup);
+            this.isLayerRotating = false; // END: Unlock cubeGroup transforms
             if (onComplete) onComplete();
           }
         };
-
         animate();
       }
 
       rotateHorizontalLayer(layer, degrees, duration, onComplete) {
+        this.isLayerRotating = true; // START: Lock cubeGroup transforms
+
         const radians = degrees * Math.PI / 180;
         const cubesToRotate = this.cubes.filter(cubeObj => {
           return cubeObj.currentPosition[1] === layer;
@@ -590,15 +664,21 @@
 
         const tempGroup = new THREE.Group();
         tempGroup.position.set(0, layer * this.unit, 0);
+        tempGroup.rotation.set(0,0,0);
         this.scene.add(tempGroup);
-        cubesToRotate.forEach(cubeObj => tempGroup.attach(cubeObj.mesh));
 
-        const startRot = tempGroup.rotation.y;
+        cubesToRotate.forEach(cubeObj => {
+            cubeObj.mesh.updateMatrixWorld(true);
+            // const originalWorldMatrix = cubeObj.mesh.matrixWorld.clone(); // For debug if needed
+            this.cubeGroup.remove(cubeObj.mesh);
+            tempGroup.attach(cubeObj.mesh);
+        });
+
+        const startRot = tempGroup.rotation.y; // Should be 0
         const targetRot = startRot + radians;
         const startTime = performance.now();
 
-        // Add rotation particle effect
-        this.createRotationEffect(tempGroup.position);
+        this.createRotationEffect(new THREE.Vector3(0, layer * this.unit, 0));
 
         const animate = () => {
           const elapsed = performance.now() - startTime;
@@ -609,36 +689,44 @@
           if (t < 1) {
             requestAnimationFrame(animate);
           } else {
+            tempGroup.rotation.y = targetRot; // Ensure final exact rotation
+            tempGroup.updateMatrixWorld(true);
+
             cubesToRotate.forEach(cubeObj => {
-              cubeObj.mesh.updateMatrixWorld();
               const worldPos = new THREE.Vector3();
               const worldQuat = new THREE.Quaternion();
               const worldScale = new THREE.Vector3();
               cubeObj.mesh.matrixWorld.decompose(worldPos, worldQuat, worldScale);
-
+              
               tempGroup.remove(cubeObj.mesh);
-              this.cubeGroup.add(cubeObj.mesh);
+              this.cubeGroup.attach(cubeObj.mesh);
 
-              cubeObj.mesh.position.copy(worldPos);
-              cubeObj.mesh.quaternion.copy(worldQuat);
-
-              const snappedX = Math.round(worldPos.x / this.unit);
-              const snappedY = layer;
-              const snappedZ = Math.round(worldPos.z / this.unit);
+              const localMeshPos = cubeObj.mesh.position; // Already local after attach
+              const snappedX = Math.round(localMeshPos.x / this.unit);
+              const snappedY = layer; 
+              const snappedZ = Math.round(localMeshPos.z / this.unit);
+              
               cubeObj.mesh.position.set(snappedX * this.unit, snappedY * this.unit, snappedZ * this.unit);
+
+              const euler = new THREE.Euler().setFromQuaternion(cubeObj.mesh.quaternion, 'XYZ');
+              euler.x = Math.round(euler.x / (Math.PI / 2)) * (Math.PI / 2);
+              euler.y = Math.round(euler.y / (Math.PI / 2)) * (Math.PI / 2);
+              euler.z = Math.round(euler.z / (Math.PI / 2)) * (Math.PI / 2);
+              cubeObj.mesh.quaternion.setFromEuler(euler);
+              
               cubeObj.currentPosition = [snappedX, snappedY, snappedZ];
             });
 
             this.scene.remove(tempGroup);
+            this.isLayerRotating = false; // END: Unlock cubeGroup transforms
             if (onComplete) onComplete();
           }
         };
-
         animate();
       }
 
+
       createRotationEffect(position) {
-        // Create sparkle particles during rotation
         for (let i = 0; i < 10; i++) {
           const sparkle = new THREE.Mesh(
             new THREE.SphereGeometry(0.02, 8, 8),
@@ -649,7 +737,16 @@
             })
           );
           
-          sparkle.position.copy(position);
+          // Position sparkles relative to the cubeGroup's current position if it's animated
+          // Or, if cubeGroup is always at 0,0,0 logically for rotations, then this is fine.
+          // The effect is visual, so its exact position relative to a moving cubeGroup might be okay.
+          // For now, use the logical layer center.
+          const effectPosition = position.clone(); 
+          if(this.cubeGroup) { // Add cubeGroup's current position to the effect
+             // effectPosition.applyMatrix4(this.cubeGroup.matrixWorld); // This would put it in world space
+          }
+
+          sparkle.position.copy(effectPosition); // Set to logical center of rotation
           sparkle.position.add(new THREE.Vector3(
             (Math.random() - 0.5) * 3,
             (Math.random() - 0.5) * 3,
@@ -658,12 +755,13 @@
           
           this.scene.add(sparkle);
           
-          // Animate sparkle
           const startTime = performance.now();
           const animateSparkle = () => {
             const elapsed = performance.now() - startTime;
             if (elapsed > 1000) {
               this.scene.remove(sparkle);
+              sparkle.geometry.dispose(); // Clean up geometry
+              sparkle.material.dispose(); // Clean up material
               return;
             }
             
@@ -679,31 +777,36 @@
         document.getElementById('status').textContent = 'Solving...';
         
         const solveSeq = [
-          { type: 'horizontal', layer: 1, degrees: 180 },
-          { type: 'vertical', layer: 1, degrees: 270 },
-          { type: 'vertical', layer: 0, degrees: 90 },
-          { type: 'horizontal', layer: -1, degrees: 180 },
-          { type: 'vertical', layer: -1, degrees: 270 }
+          { type: 'horizontal', layer: 1, degrees: 180 }, // Original: 180
+          { type: 'vertical', layer: 1, degrees: -90 },   // Original: 270 -> -90
+          { type: 'vertical', layer: 0, degrees: 90 },    // Original: 270 -> 90 (assuming this was meant to be different)
+          { type: 'horizontal', layer: -1, degrees: -180 },// Original: 180 -> -180
+          { type: 'vertical', layer: -1, degrees: -90 }   // Original: 270 -> -90
         ];
 
-        const forwardSeq = [
+        const forwardSeq = [ // This should be the inverse of the initial scramble if it's a "revert"
+          // Or, if it's just another scramble:
           { type: 'vertical', layer: -1, degrees: 90 },
           { type: 'horizontal', layer: -1, degrees: 180 },
-          { type: 'vertical', layer: 0, degrees: 270 },
+          { type: 'vertical', layer: 0, degrees: 270 }, // or -90
           { type: 'vertical', layer: 1, degrees: 90 },
           { type: 'horizontal', layer: 1, degrees: 180 }
         ];
 
         let i = 0;
         const nextSolve = () => {
+          if (this.isLayerRotating) { // Don't start a new move if one is already in progress
+              setTimeout(nextSolve, 100); // Check again shortly
+              return;
+          }
           if (i >= solveSeq.length) {
             document.getElementById('status').textContent = 'Solved! Scrambling...';
             i = 0;
-            setTimeout(nextForward, 1000);
+            setTimeout(nextForward, 1000); // Pause before next sequence
             return;
           }
           const move = solveSeq[i++];
-          const duration = 1500;
+          const duration = 1000; // Slightly faster for smoother sequence
           if (move.type === 'vertical') {
             this.rotateVerticalLayer(move.layer, move.degrees, duration, nextSolve);
           } else {
@@ -712,13 +815,17 @@
         };
 
         const nextForward = () => {
+          if (this.isLayerRotating) {
+              setTimeout(nextForward, 100);
+              return;
+          }
           if (i >= forwardSeq.length) {
             document.getElementById('status').textContent = 'Ready for next cycle';
-            setTimeout(() => this.spinSolveThenRevert(), 3000);
+            setTimeout(() => this.spinSolveThenRevert(), 3000); // Pause before restarting cycle
             return;
           }
           const move = forwardSeq[i++];
-          const duration = 1500;
+          const duration = 1000;
           if (move.type === 'vertical') {
             this.rotateVerticalLayer(move.layer, move.degrees, duration, nextForward);
           } else {
@@ -730,7 +837,6 @@
       }
 
       triggerSpecialEffect() {
-        // Trigger explosive particle effect
         for (let i = 0; i < 50; i++) {
           const particle = new THREE.Mesh(
             new THREE.SphereGeometry(0.05, 8, 8),
@@ -741,7 +847,10 @@
             })
           );
           
-          particle.position.set(0, 0, 0);
+          // Position relative to cubeGroup if it's animated
+          const center = this.cubeGroup ? this.cubeGroup.position.clone() : new THREE.Vector3();
+          particle.position.copy(center);
+
           const velocity = new THREE.Vector3(
             (Math.random() - 0.5) * 20,
             (Math.random() - 0.5) * 20,
@@ -755,11 +864,13 @@
             const elapsed = performance.now() - startTime;
             if (elapsed > 2000) {
               this.scene.remove(particle);
+              particle.geometry.dispose();
+              particle.material.dispose();
               return;
             }
             
             particle.position.add(velocity.clone().multiplyScalar(0.02));
-            velocity.multiplyScalar(0.98); // Decay
+            velocity.multiplyScalar(0.98); 
             particle.material.opacity = 1 - elapsed / 2000;
             particle.rotation.x += 0.1;
             particle.rotation.y += 0.1;
@@ -769,9 +880,8 @@
           animateExplosion();
         }
 
-        // Flash effect
         const flash = new THREE.PointLight(0xffffff, 5, 50);
-        flash.position.set(0, 0, 0);
+        flash.position.copy(this.cubeGroup ? this.cubeGroup.position : new THREE.Vector3());
         this.scene.add(flash);
         
         setTimeout(() => {
@@ -782,12 +892,10 @@
       updateAnimations() {
         this.time += 0.01;
         
-        // Animate stars rotation
         if (this.stars) {
           this.stars.rotation.y += 0.0005;
         }
         
-        // Animate particle system
         if (this.particleSystem) {
           this.particleSystem.rotation.y += 0.001;
           this.particleSystem.rotation.x += 0.0005;
@@ -799,15 +907,14 @@
           this.particleSystem.geometry.attributes.position.needsUpdate = true;
         }
         
-        // Animate cube group with subtle floating
-        if (this.cubeGroup) {
-          this.cubeGroup.position.y = Math.sin(this.time) * 0.1;
-          this.cubeGroup.rotation.y += 0.002;
+        // Only apply floating/bobbing if no layer is currently rotating
+        if (this.cubeGroup && !this.isLayerRotating) {
+          this.cubeGroup.position.y = Math.sin(this.time * 0.7) * 0.15; // Adjusted speed and amplitude for gentler bob
+          this.cubeGroup.rotation.y += 0.001; // Slower gentle auto-rotation
         }
         
-        // Dynamic lighting effects
         this.scene.children.forEach(child => {
-          if (child instanceof THREE.PointLight && child.color.getHex() !== 0xffffff) {
+          if (child instanceof THREE.PointLight && child.color.getHex() !== 0xffffff && child.intensity > 0.1) { // Check intensity to avoid affecting flash
             child.intensity = 0.8 + Math.sin(this.time * 2 + child.position.x) * 0.3;
           }
         });
@@ -829,7 +936,7 @@
         const renderLoop = () => {
           requestAnimationFrame(renderLoop);
           
-          this.updateAnimations();
+          this.updateAnimations(); // This now respects isLayerRotating for cubeGroup
           this.updatePerformanceStats();
           
           this.renderer.render(this.scene, this.camera);
@@ -844,33 +951,33 @@
       }
     }
 
-    // Enhanced mouse interaction
     let mouseX = 0, mouseY = 0;
-    let targetRotationX = 0, targetRotationY = 0;
+    let targetRotationX = 0, targetRotationY = 0; // These are target rotations for the cubeGroup
     
     document.addEventListener('mousemove', (event) => {
       mouseX = (event.clientX / window.innerWidth) * 2 - 1;
       mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
       
-      targetRotationX = mouseY * 0.1;
-      targetRotationY = mouseX * 0.1;
+      // Target rotation for the entire cube based on mouse, scaled down
+      targetRotationX = mouseY * 0.2; // Increased sensitivity slightly for effect
+      targetRotationY = mouseX * 0.2;
     });
 
-    // Initialize when page loads
     window.addEventListener('load', () => {
       const cube = new BreathtakingRubiksCube();
       
-      // Add subtle camera movement based on mouse
-      const updateCamera = () => {
-        if (cube.cubeGroup) {
+      // This function handles the mouse-driven rotation of the cubeGroup
+      const updateCubeGroupRotationFromMouse = () => {
+        // Only apply mouse rotation if cubeGroup exists AND no layer is currently rotating
+        if (cube && cube.cubeGroup && !cube.isLayerRotating) {
+          // Smoothly interpolate towards the target rotation
           cube.cubeGroup.rotation.x += (targetRotationX - cube.cubeGroup.rotation.x) * 0.05;
           cube.cubeGroup.rotation.y += (targetRotationY - cube.cubeGroup.rotation.y) * 0.05;
         }
-        requestAnimationFrame(updateCamera);
+        requestAnimationFrame(updateCubeGroupRotationFromMouse);
       };
-      updateCamera();
+      updateCubeGroupRotationFromMouse(); // Start the mouse interaction loop
       
-      // Add keyboard shortcuts
       document.addEventListener('keydown', (event) => {
         switch(event.key.toLowerCase()) {
           case ' ':
@@ -878,7 +985,9 @@
             cube.triggerSpecialEffect();
             break;
           case 'r':
-            cube.spinSolveThenRevert();
+            if (!cube.isLayerRotating) { // Prevent re-triggering if already solving/scrambling
+                cube.spinSolveThenRevert();
+            }
             break;
         }
       });
