@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>27-Cube Design - Visit Card</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f8f6f0, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        .canvas-container {
+            width: 1024px;
+            height: 1024px;
+            position: relative;
+            background: linear-gradient(135deg, #f8f6f0, #ffffff);
+            overflow: hidden;
+        }
+        
+        .cube-scene {
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cube-container {
+            position: relative;
+            transform-style: preserve-3d;
+            animation: floatRotate 8s ease-in-out infinite;
+        }
+        
+        .cube {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            transform-style: preserve-3d;
+            transition: all 0.8s ease;
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .cube-face.front { transform: rotateY(0deg) translateZ(30px); }
+        .cube-face.back { transform: rotateY(180deg) translateZ(30px); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(30px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(30px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(30px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(30px); }
+        
+        /* Color classes */
+        .color-1 { background-color: #D03C4B; }
+        .color-2 { background-color: #3FB6F0; }
+        .color-3 { background-color: #1786D2; }
+        .color-4 { background-color: #083F67; }
+        .color-5 { background-color: #ffffff; }
+        .color-6 { background-color: #f2f2f2; }
+        
+        /* Core cube - glowing green */
+        .core-cube .cube-face {
+            background: linear-gradient(45deg, #00ff88, #00cc66);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(0, 255, 136, 0.8);
+        }
+        
+        /* Animation */
+        @keyframes floatRotate {
+            0%, 100% { transform: rotateX(15deg) rotateY(0deg); }
+            25% { transform: rotateX(25deg) rotateY(90deg); }
+            50% { transform: rotateX(35deg) rotateY(180deg); }
+            75% { transform: rotateX(25deg) rotateY(270deg); }
+        }
+        
+        /* Positioning cubes in 3D space */
+        .cube:nth-child(1) { transform: translate3d(-90px, -90px, -90px); }
+        .cube:nth-child(2) { transform: translate3d(0px, -90px, -90px); }
+        .cube:nth-child(3) { transform: translate3d(90px, -90px, -90px); }
+        .cube:nth-child(4) { transform: translate3d(-90px, 0px, -90px); }
+        .cube:nth-child(5) { transform: translate3d(0px, 0px, -90px); }
+        .cube:nth-child(6) { transform: translate3d(90px, 0px, -90px); }
+        .cube:nth-child(7) { transform: translate3d(-90px, 90px, -90px); }
+        .cube:nth-child(8) { transform: translate3d(0px, 90px, -90px); }
+        .cube:nth-child(9) { transform: translate3d(90px, 90px, -90px); }
+        
+        .cube:nth-child(10) { transform: translate3d(-90px, -90px, 0px); }
+        .cube:nth-child(11) { transform: translate3d(0px, -90px, 0px); }
+        .cube:nth-child(12) { transform: translate3d(90px, -90px, 0px); }
+        .cube:nth-child(13) { transform: translate3d(-90px, 0px, 0px); }
+        .cube:nth-child(14) { transform: translate3d(0px, 0px, 0px); } /* Core cube */
+        .cube:nth-child(15) { transform: translate3d(90px, 0px, 0px); }
+        .cube:nth-child(16) { transform: translate3d(-90px, 90px, 0px); }
+        .cube:nth-child(17) { transform: translate3d(0px, 90px, 0px); }
+        .cube:nth-child(18) { transform: translate3d(90px, 90px, 0px); }
+        
+        .cube:nth-child(19) { transform: translate3d(-90px, -90px, 90px); }
+        .cube:nth-child(20) { transform: translate3d(0px, -90px, 90px); }
+        .cube:nth-child(21) { transform: translate3d(90px, -90px, 90px); }
+        .cube:nth-child(22) { transform: translate3d(-90px, 0px, 90px); }
+        .cube:nth-child(23) { transform: translate3d(0px, 0px, 90px); }
+        .cube:nth-child(24) { transform: translate3d(90px, 0px, 90px); }
+        .cube:nth-child(25) { transform: translate3d(-90px, 90px, 90px); }
+        .cube:nth-child(26) { transform: translate3d(0px, 90px, 90px); }
+        .cube:nth-child(27) { transform: translate3d(90px, 90px, 90px); }
+        
+        /* Exploded view animation on hover */
+        .cube-container:hover .cube:not(.core-cube) {
+            transform-origin: center center center;
+        }
+        
+        .cube-container:hover .cube:nth-child(1) { transform: translate3d(-120px, -120px, -120px); }
+        .cube-container:hover .cube:nth-child(2) { transform: translate3d(0px, -120px, -120px); }
+        .cube-container:hover .cube:nth-child(3) { transform: translate3d(120px, -120px, -120px); }
+        .cube-container:hover .cube:nth-child(4) { transform: translate3d(-120px, 0px, -120px); }
+        .cube-container:hover .cube:nth-child(5) { transform: translate3d(0px, 0px, -120px); }
+        .cube-container:hover .cube:nth-child(6) { transform: translate3d(120px, 0px, -120px); }
+        .cube-container:hover .cube:nth-child(7) { transform: translate3d(-120px, 120px, -120px); }
+        .cube-container:hover .cube:nth-child(8) { transform: translate3d(0px, 120px, -120px); }
+        .cube-container:hover .cube:nth-child(9) { transform: translate3d(120px, 120px, -120px); }
+        
+        .cube-container:hover .cube:nth-child(10) { transform: translate3d(-120px, -120px, 0px); }
+        .cube-container:hover .cube:nth-child(11) { transform: translate3d(0px, -120px, 0px); }
+        .cube-container:hover .cube:nth-child(12) { transform: translate3d(120px, -120px, 0px); }
+        .cube-container:hover .cube:nth-child(13) { transform: translate3d(-120px, 0px, 0px); }
+        .cube-container:hover .cube:nth-child(15) { transform: translate3d(120px, 0px, 0px); }
+        .cube-container:hover .cube:nth-child(16) { transform: translate3d(-120px, 120px, 0px); }
+        .cube-container:hover .cube:nth-child(17) { transform: translate3d(0px, 120px, 0px); }
+        .cube-container:hover .cube:nth-child(18) { transform: translate3d(120px, 120px, 0px); }
+        
+        .cube-container:hover .cube:nth-child(19) { transform: translate3d(-120px, -120px, 120px); }
+        .cube-container:hover .cube:nth-child(20) { transform: translate3d(0px, -120px, 120px); }
+        .cube-container:hover .cube:nth-child(21) { transform: translate3d(120px, -120px, 120px); }
+        .cube-container:hover .cube:nth-child(22) { transform: translate3d(-120px, 0px, 120px); }
+        .cube-container:hover .cube:nth-child(23) { transform: translate3d(0px, 0px, 120px); }
+        .cube-container:hover .cube:nth-child(24) { transform: translate3d(120px, 0px, 120px); }
+        .cube-container:hover .cube:nth-child(25) { transform: translate3d(-120px, 120px, 120px); }
+        .cube-container:hover .cube:nth-child(26) { transform: translate3d(0px, 120px, 120px); }
+        .cube-container:hover .cube:nth-child(27) { transform: translate3d(120px, 120px, 120px); }
+    </style>
+</head>
+<body>
+    <div class="canvas-container">
+        <div class="cube-scene">
+            <div class="cube-container">
+                <!-- Generate 27 cubes -->
+                <div class="cube">
+                    <div class="cube-face front color-1"></div>
+                    <div class="cube-face back color-2"></div>
+                    <div class="cube-face right color-3"></div>
+                    <div class="cube-face left color-4"></div>
+                    <div class="cube-face top color-5"></div>
+                    <div class="cube-face bottom color-6"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-2"></div>
+                    <div class="cube-face back color-3"></div>
+                    <div class="cube-face right color-4"></div>
+                    <div class="cube-face left color-5"></div>
+                    <div class="cube-face top color-6"></div>
+                    <div class="cube-face bottom color-1"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-3"></div>
+                    <div class="cube-face back color-4"></div>
+                    <div class="cube-face right color-5"></div>
+                    <div class="cube-face left color-6"></div>
+                    <div class="cube-face top color-1"></div>
+                    <div class="cube-face bottom color-2"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-4"></div>
+                    <div class="cube-face back color-5"></div>
+                    <div class="cube-face right color-6"></div>
+                    <div class="cube-face left color-1"></div>
+                    <div class="cube-face top color-2"></div>
+                    <div class="cube-face bottom color-3"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-5"></div>
+                    <div class="cube-face back color-6"></div>
+                    <div class="cube-face right color-1"></div>
+                    <div class="cube-face left color-2"></div>
+                    <div class="cube-face top color-3"></div>
+                    <div class="cube-face bottom color-4"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-6"></div>
+                    <div class="cube-face back color-1"></div>
+                    <div class="cube-face right color-2"></div>
+                    <div class="cube-face left color-3"></div>
+                    <div class="cube-face top color-4"></div>
+                    <div class="cube-face bottom color-5"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-1"></div>
+                    <div class="cube-face back color-3"></div>
+                    <div class="cube-face right color-5"></div>
+                    <div class="cube-face left color-2"></div>
+                    <div class="cube-face top color-4"></div>
+                    <div class="cube-face bottom color-6"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-2"></div>
+                    <div class="cube-face back color-4"></div>
+                    <div class="cube-face right color-6"></div>
+                    <div class="cube-face left color-1"></div>
+                    <div class="cube-face top color-3"></div>
+                    <div class="cube-face bottom color-5"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-3"></div>
+                    <div class="cube-face back color-5"></div>
+                    <div class="cube-face right color-1"></div>
+                    <div class="cube-face left color-4"></div>
+                    <div class="cube-face top color-6"></div>
+                    <div class="cube-face bottom color-2"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-4"></div>
+                    <div class="cube-face back color-6"></div>
+                    <div class="cube-face right color-2"></div>
+                    <div class="cube-face left color-5"></div>
+                    <div class="cube-face top color-1"></div>
+                    <div class="cube-face bottom color-3"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-5"></div>
+                    <div class="cube-face back color-1"></div>
+                    <div class="cube-face right color-3"></div>
+                    <div class="cube-face left color-6"></div>
+                    <div class="cube-face top color-2"></div>
+                    <div class="cube-face bottom color-4"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-6"></div>
+                    <div class="cube-face back color-2"></div>
+                    <div class="cube-face right color-4"></div>
+                    <div class="cube-face left color-3"></div>
+                    <div class="cube-face top color-5"></div>
+                    <div class="cube-face bottom color-1"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-1"></div>
+                    <div class="cube-face back color-4"></div>
+                    <div class="cube-face right color-6"></div>
+                    <div class="cube-face left color-3"></div>
+                    <div class="cube-face top color-2"></div>
+                    <div class="cube-face bottom color-5"></div>
+                </div>
+                <!-- Core cube (14th cube) -->
+                <div class="cube core-cube">
+                    <div class="cube-face front"></div>
+                    <div class="cube-face back"></div>
+                    <div class="cube-face right"></div>
+                    <div class="cube-face left"></div>
+                    <div class="cube-face top"></div>
+                    <div class="cube-face bottom"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-3"></div>
+                    <div class="cube-face back color-6"></div>
+                    <div class="cube-face right color-2"></div>
+                    <div class="cube-face left color-1"></div>
+                    <div class="cube-face top color-4"></div>
+                    <div class="cube-face bottom color-5"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-4"></div>
+                    <div class="cube-face back color-1"></div>
+                    <div class="cube-face right color-3"></div>
+                    <div class="cube-face left color-2"></div>
+                    <div class="cube-face top color-5"></div>
+                    <div class="cube-face bottom color-6"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-5"></div>
+                    <div class="cube-face back color-2"></div>
+                    <div class="cube-face right color-4"></div>
+                    <div class="cube-face left color-6"></div>
+                    <div class="cube-face top color-1"></div>
+                    <div class="cube-face bottom color-3"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-6"></div>
+                    <div class="cube-face back color-3"></div>
+                    <div class="cube-face right color-5"></div>
+                    <div class="cube-face left color-4"></div>
+                    <div class="cube-face top color-2"></div>
+                    <div class="cube-face bottom color-1"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-1"></div>
+                    <div class="cube-face back color-5"></div>
+                    <div class="cube-face right color-3"></div>
+                    <div class="cube-face left color-6"></div>
+                    <div class="cube-face top color-4"></div>
+                    <div class="cube-face bottom color-2"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-2"></div>
+                    <div class="cube-face back color-6"></div>
+                    <div class="cube-face right color-4"></div>
+                    <div class="cube-face left color-1"></div>
+                    <div class="cube-face top color-3"></div>
+                    <div class="cube-face bottom color-5"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-3"></div>
+                    <div class="cube-face back color-1"></div>
+                    <div class="cube-face right color-5"></div>
+                    <div class="cube-face left color-2"></div>
+                    <div class="cube-face top color-6"></div>
+                    <div class="cube-face bottom color-4"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-4"></div>
+                    <div class="cube-face back color-2"></div>
+                    <div class="cube-face right color-6"></div>
+                    <div class="cube-face left color-5"></div>
+                    <div class="cube-face top color-1"></div>
+                    <div class="cube-face bottom color-3"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-5"></div>
+                    <div class="cube-face back color-3"></div>
+                    <div class="cube-face right color-1"></div>
+                    <div class="cube-face left color-4"></div>
+                    <div class="cube-face top color-2"></div>
+                    <div class="cube-face bottom color-6"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-6"></div>
+                    <div class="cube-face back color-4"></div>
+                    <div class="cube-face right color-2"></div>
+                    <div class="cube-face left color-3"></div>
+                    <div class="cube-face top color-5"></div>
+                    <div class="cube-face bottom color-1"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-1"></div>
+                    <div class="cube-face back color-6"></div>
+                    <div class="cube-face right color-4"></div>
+                    <div class="cube-face left color-5"></div>
+                    <div class="cube-face top color-3"></div>
+                    <div class="cube-face bottom color-2"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-2"></div>
+                    <div class="cube-face back color-1"></div>
+                    <div class="cube-face right color-5"></div>
+                    <div class="cube-face left color-6"></div>
+                    <div class="cube-face top color-4"></div>
+                    <div class="cube-face bottom color-3"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face front color-3"></div>
+                    <div class="cube-face back color-2"></div>
+                    <div class="cube-face right color-6"></div>
+                    <div class="cube-face left color-1"></div>
+                    <div class="cube-face top color-5"></div>
+                    <div class="cube-face bottom color-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
