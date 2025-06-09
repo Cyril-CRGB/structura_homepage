@@ -54,7 +54,7 @@
         .cube-container {
             position: relative;
             transform-style: preserve-3d;
-            animation: floatRotate 32s ease-in-out infinite;
+            animation: floatRotate 16s ease-in-out infinite;
         }
         
         .cube {
@@ -97,36 +97,36 @@
         
         /* facing core cube upfront - glowing green */
         .facing-cube-upfront {
-            background: radial-gradient(
+            /*background: radial-gradient(
                     circle at center, 
                     #00ff88 0%, 
                     #00ff88aa 60%, 
                     #2e2a2a 90%
-            );
-            /*background: radial-gradient(circle at center, #00ff88 0%, #2e2a2a 70%);
+            );*/
+            background: radial-gradient(circle at center, #00ff88 70%, #2e2a2a 90%);
             box-shadow: 
-                inset 0 0 50px #00ff88,
-                inset 0 0 100px #00ff88aa;*/
+                inset 0 0 10px #00ff88,
+                inset 0 0 200px #00ff88aa;
         }
 
         /* For top-left corner: */
         .corner-glow-top-left {
-            background: radial-gradient(circle at top left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%);
+            background: radial-gradient(circle at top left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%);
         }
         
         /*For top-right corner:*/
         .corner-glow-top-right {
-            background: radial-gradient(circle at top right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%);
+            background: radial-gradient(circle at top right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%);
         }
 
         /*For bottom-left corner:*/
         .corner-glow-bottom-left {
-            background: radial-gradient(circle at bottom left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%);
+            background: radial-gradient(circle at bottom left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%);
         }
 
         /*For bottom-right corner:*/
         .corner-glow-bottom-right {
-            background: radial-gradient(circle at bottom right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%);
+            background: radial-gradient(circle at bottom right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%);
         }
 
         /*more precise control over the corner position, I can use percentages*/
@@ -144,22 +144,22 @@
 
         /*For the top edge (where top and front faces meet):*/
         .edge-glow-top {
-            background: linear-gradient(to bottom, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%);
+            background: linear-gradient(to bottom, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%);
         }
 
         /*For the left edge (where left and front faces meet):*/
         .edge-glow-left {
-            background: linear-gradient(to right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%);
+            background: linear-gradient(to right, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%);
         }
 
          /*For the right edge (where right and front faces meet):*/       
         .edge-glow-right {
-            background: linear-gradient(to left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%);
+            background: linear-gradient(to left, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%);
         }
 
          /*For the bottom edge (where bottom and front faces meet):*/       
         .edge-glow-bottom {
-            background: linear-gradient(to top, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%);
+            background: linear-gradient(to top, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%);
         }
 
         /* For diagonal edges, you can use angled gradients: */
@@ -250,6 +250,53 @@
         .cube-container:hover .cube:nth-child(25) { transform: translate3d(-120px, 120px, 120px); }
         .cube-container:hover .cube:nth-child(26) { transform: translate3d(0px, 120px, 120px); }
         .cube-container:hover .cube:nth-child(27) { transform: translate3d(120px, 120px, 120px); }
+
+        /* MATERIAL ICON */
+        .icon-piece {
+            font-size: 180px; /* 3x the cube size (60px) */
+            color: #ffffff;
+            position: absolute;
+            /*opacity: 80%;*/
+            pointer-events: none;
+            /*text-shadow: 0 0 10px rgba(255,255,255,0.8);*/
+        }
+        /* Position and clip each piece to show only 1/9 of the icon */
+        .piece-1 .icon-piece { 
+            top: 0; left: 0; 
+            clip-path: polygon(0% 0%, 33.33% 0%, 33.33% 33.33%, 0% 33.33%);
+        }
+        .piece-2 .icon-piece { 
+            top: 0; left: -60px; 
+            clip-path: polygon(33.33% 0%, 66.66% 0%, 66.66% 33.33%, 33.33% 33.33%);
+        }
+        .piece-3 .icon-piece { 
+            top: 0; left: -120px; 
+            clip-path: polygon(66.66% 0%, 100% 0%, 100% 33.33%, 66.66% 33.33%);
+        }
+        .piece-4 .icon-piece { 
+            top: -60px; left: 0; 
+            clip-path: polygon(0% 33.33%, 33.33% 33.33%, 33.33% 66.66%, 0% 66.66%);
+        }
+        .piece-5 .icon-piece { 
+            top: -60px; left: -60px; 
+            clip-path: polygon(33.33% 33.33%, 66.66% 33.33%, 66.66% 66.66%, 33.33% 66.66%);
+        }
+        .piece-6 .icon-piece { 
+            top: -60px; left: -120px; 
+            clip-path: polygon(66.66% 33.33%, 100% 33.33%, 100% 66.66%, 66.66% 66.66%);
+        }
+        .piece-7 .icon-piece { 
+            top: -120px; left: 0; 
+            clip-path: polygon(0% 66.66%, 33.33% 66.66%, 33.33% 100%, 0% 100%);
+        }
+        .piece-8 .icon-piece { 
+            top: -120px; left: -60px; 
+            clip-path: polygon(33.33% 66.66%, 66.66% 66.66%, 66.66% 100%, 33.33% 100%);
+        }
+        .piece-9 .icon-piece { 
+            top: -120px; left: -120px; 
+            clip-path: polygon(66.66% 66.66%, 100% 66.66%, 100% 100%, 66.66% 100%);
+        }
     </style>
 </head>
 <body>
@@ -404,7 +451,7 @@
                     <div class="cube-face bottom color-5">18bot</div>
                 </div>
                 <div class="cube">
-                    <div class="cube-face front color-3">19front</div>
+                    <div class="cube-face front color-3 piece-1"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--19front-->
                     <div class="cube-face back corner-glow-bottom-left">19</div>
                     <div class="cube-face right corner-glow-bottom-right">19</div>
                     <div class="cube-face left color-2">19left</div>
@@ -412,7 +459,7 @@
                     <div class="cube-face bottom corner-glow-bottom-right">19</div>
                 </div>
                 <div class="cube">
-                    <div class="cube-face front color-3">20front</div>
+                    <div class="cube-face front color-3 piece-2"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--20front-->
                     <div class="cube-face back edge-glow-bottom">20</div>
                     <div class="cube-face right color-7">20</div>
                     <div class="cube-face left color-7">20</div>
@@ -420,7 +467,7 @@
                     <div class="cube-face bottom edge-glow-bottom">20</div>
                 </div>
                 <div class="cube">
-                    <div class="cube-face front color-3">21front</div>
+                    <div class="cube-face front color-3 piece-3"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--21front-->
                     <div class="cube-face back corner-glow-bottom-right">21</div>
                     <div class="cube-face right color-4">21right</div>
                     <div class="cube-face left corner-glow-bottom-left">21</div>
@@ -428,7 +475,7 @@
                     <div class="cube-face bottom corner-glow-bottom-left">21</div>
                 </div>
                 <div class="cube">
-                    <div class="cube-face front color-3">22front</div>
+                    <div class="cube-face front color-3 piece-4"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--22front-->
                     <div class="cube-face back edge-glow-left">22</div>
                     <div class="cube-face right edge-glow-right">22</div>
                     <div class="cube-face left color-2">22left</div>
@@ -436,7 +483,7 @@
                     <div class="cube-face bottom color-7">22</div>
                 </div>
                 <div class="cube">
-                    <div class="cube-face front color-3"><span class="material-icons text-3xl text-center">account_balance_wallet</span></div>
+                    <div class="cube-face front color-3 piece-5"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--23front-->
                     <div class="cube-face back facing-cube-upfront">23</div>
                     <div class="cube-face right color-7">23</div>
                     <div class="cube-face left color-7">23</div>
@@ -444,7 +491,7 @@
                     <div class="cube-face bottom color-7">23</div>
                 </div>
                 <div class="cube">
-                    <div class="cube-face front color-3">24front</div>
+                    <div class="cube-face front color-3 piece-6"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--24front-->
                     <div class="cube-face back edge-glow-right">24</div>
                     <div class="cube-face right color-4">24right</div>
                     <div class="cube-face left edge-glow-left">24</div>
@@ -452,7 +499,7 @@
                     <div class="cube-face bottom color-7">24</div>
                 </div>
                 <div class="cube">
-                    <div class="cube-face front color-3">25front</div>
+                    <div class="cube-face front color-3 piece-7"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--25front-->
                     <div class="cube-face back corner-glow-top-left">25</div>
                     <div class="cube-face right corner-glow-top-right">25</div>
                     <div class="cube-face left color-2">25left</div>
@@ -460,7 +507,7 @@
                     <div class="cube-face bottom color-5">25bot</div>
                 </div>
                 <div class="cube">
-                    <div class="cube-face front color-3">26front</div>
+                    <div class="cube-face front color-3 piece-8"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--26front-->
                     <div class="cube-face back edge-glow-top">26</div>
                     <div class="cube-face right color-7">26</div>
                     <div class="cube-face left color-7">26</div>
@@ -468,7 +515,7 @@
                     <div class="cube-face bottom color-5">26bot</div>
                 </div>
                 <div class="cube">
-                    <div class="cube-face front color-3">27front</div>
+                    <div class="cube-face front color-3 piece-9"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--27front-->
                     <div class="cube-face back corner-glow-top-right">27</div>
                     <div class="cube-face right color-4">27right</div>
                     <div class="cube-face left corner-glow-top-left">27</div>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Split into 9 Pieces</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .cube-container {
+            display: grid;
+            grid-template-columns: repeat(3, 120px);
+            grid-template-rows: repeat(3, 120px);
+            gap: 10px;
+            perspective: 1000px;
+        }
+
+        .cube-piece {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 8s infinite linear;
+            background: #2e2a2a;
+            border: 2px solid #444;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cube-piece:hover {
+            animation-play-state: paused;
+        }
+
+        .icon-piece {
+            font-size: 360px; /* 3x larger to crop properly */
+            color: #00ff88;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        /* Position each piece to show different parts of the icon */
+        .piece-1 .icon-piece { top: 0; left: 0; }
+        .piece-2 .icon-piece { top: 0; left: -120px; }
+        .piece-3 .icon-piece { top: 0; left: -240px; }
+        .piece-4 .icon-piece { top: -120px; left: 0; }
+        .piece-5 .icon-piece { top: -120px; left: -120px; }
+        .piece-6 .icon-piece { top: -120px; left: -240px; }
+        .piece-7 .icon-piece { top: -240px; left: 0; }
+        .piece-8 .icon-piece { top: -240px; left: -120px; }
+        .piece-9 .icon-piece { top: -240px; left: -240px; }
+
+        /* Add glow effects to different pieces */
+        .piece-1 { background: radial-gradient(circle at top left, #00ff88 0%, #00ff88aa 30%, #2e2a2a 70%); }
+        .piece-3 { background: radial-gradient(circle at top right, #00ff88 0%, #00ff88aa 30%, #2e2a2a 70%); }
+        .piece-5 { background: radial-gradient(circle at center, #00ff88 0%, #00ff88aa 30%, #2e2a2a 70%); }
+        .piece-7 { background: radial-gradient(circle at bottom left, #00ff88 0%, #00ff88aa 30%, #2e2a2a 70%); }
+        .piece-9 { background: radial-gradient(circle at bottom right, #00ff88 0%, #00ff88aa 30%, #2e2a2a 70%); }
+
+        /* Edge glows */
+        .piece-2 { background: linear-gradient(to bottom, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%); }
+        .piece-4 { background: linear-gradient(to right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%); }
+        .piece-6 { background: linear-gradient(to left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%); }
+        .piece-8 { background: linear-gradient(to top, #00ff88 0%, #00ff88aa 20%, #2e2a2a 50%); }
+
+        @keyframes rotate {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            25% { transform: rotateX(90deg) rotateY(0deg); }
+            50% { transform: rotateX(90deg) rotateY(90deg); }
+            75% { transform: rotateX(0deg) rotateY(90deg); }
+            100% { transform: rotateX(0deg) rotateY(0deg); }
+        }
+
+        .info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #00ff88;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        Hover over cubes to pause rotation<br>
+        Each cube shows a piece of the wallet icon
+    </div>
+    
+    <div class="cube-container">
+        <div class="cube-piece piece-1">
+            <span class="material-icons icon-piece">account_balance_wallet</span>
+        </div>
+        <div class="cube-piece piece-2">
+            <span class="material-icons icon-piece">account_balance_wallet</span>
+        </div>
+        <div class="cube-piece piece-3">
+            <span class="material-icons icon-piece">account_balance_wallet</span>
+        </div>
+        <div class="cube-piece piece-4">
+            <span class="material-icons icon-piece">account_balance_wallet</span>
+        </div>
+        <div class="cube-piece piece-5">
+            <span class="material-icons icon-piece">account_balance_wallet</span>
+        </div>
+        <div class="cube-piece piece-6">
+            <span class="material-icons icon-piece">account_balance_wallet</span>
+        </div>
+        <div class="cube-piece piece-7">
+            <span class="material-icons icon-piece">account_balance_wallet</span>
+        </div>
+        <div class="cube-piece piece-8">
+            <span class="material-icons icon-piece">account_balance_wallet</span>
+        </div>
+        <div class="cube-piece piece-9">
+            <span class="material-icons icon-piece">account_balance_wallet</span>
+        </div>
+    </div>
+</body>
+</html>
