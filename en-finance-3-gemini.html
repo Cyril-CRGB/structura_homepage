@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Cube Showcase</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        /* Base styling for the page */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Container for the 3D scene to ensure proper scaling */
+        .canvas-container {
+            width: 100%;
+            padding-bottom: 100%; /* Creates a square aspect ratio box */
+            position: relative;
+            max-width: 500px; /* Max size of the cube container */
+            margin: auto;
+        }
+        
+        /* The scene where the cube lives, centered within the canvas */
+        .cube-scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 1200px; /* Defines the 3D perspective */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* The main container for all the small cubes, handles animation */
+        .cube-container {
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinDiagonal 20s linear infinite; /* Slower, smoother animation */
+            transform: scale(var(--cube-scale, 0.75)); /* Responsive scaling */
+        }
+
+        /* Set scale for different screen sizes */
+        @media (max-width: 640px) {
+            .cube-container { --cube-scale: 0.6; }
+        }
+        @media (min-width: 1024px) {
+            .cube-container { --cube-scale: 1; }
+        }
+        
+        /* Individual small cube styling */
+        .cube {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            transform-style: preserve-3d;
+            transition: all 0.8s ease;
+        }
+        
+        /* Styling for each face of a small cube */
+        .cube-face {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            /* Using outline instead of border for consistent rendering on 3D transforms */
+            outline: 1px solid rgba(100, 100, 100, 0.5);
+            outline-offset: -1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Important for icon clipping */
+        }
+        
+        /* Positioning each face to form a cube */
+        .cube-face.front  { transform: rotateY(0deg) translateZ(30px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(30px); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(30px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(30px); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(30px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(30px); }
+        
+        /* Color utility classes */
+        .color-1 { background-color: #D03C4B; }
+        .color-2 { background-color: #3FB6F0; }
+        .color-3 { background-color: #F75759; }
+        .color-4 { background-color: #083F67; }
+        .color-5 { background-color: #f2f2f2; }
+        .color-6 { background-color: #d9d9d9; }
+        .color-7 { background-color: #2e2a2a; }
+        
+        /* Core cube - glowing green */
+        .core-cube .cube-face {
+            background: linear-gradient(45deg, #00ff88, #00cc66);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.9);
+            outline-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Glow effects for faces adjacent to the core cube */
+        .facing-cube-upfront { background: radial-gradient(circle at center, #00ff88 70%, #2e2a2a 90%); }
+        .corner-glow-top-left { background: radial-gradient(circle at top left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%); }
+        .corner-glow-top-right { background: radial-gradient(circle at top right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%); }
+        .corner-glow-bottom-left { background: radial-gradient(circle at bottom left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%); }
+        .corner-glow-bottom-right { background: radial-gradient(circle at bottom right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%); }
+        .edge-glow-top { background: linear-gradient(to bottom, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
+        .edge-glow-left { background: linear-gradient(to right, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
+        .edge-glow-right { background: linear-gradient(to left, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
+        .edge-glow-bottom { background: linear-gradient(to top, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
+
+        /* Animation for the cube rotation */
+        @keyframes spinDiagonal {
+            0%   { transform: scale(var(--cube-scale, 0.75)) rotate3d(1, 1, 1, 0deg); }
+            100% { transform: scale(var(--cube-scale, 0.75)) rotate3d(1, 1, 1, 360deg); }
+        }        
+        
+        /* Positioning of each small cube in 3D space */
+        .cube:nth-child(1) { transform: translate3d(-60px, -60px, -60px); }
+        .cube:nth-child(2) { transform: translate3d(0px, -60px, -60px); }
+        .cube:nth-child(3) { transform: translate3d(60px, -60px, -60px); }
+        .cube:nth-child(4) { transform: translate3d(-60px, 0px, -60px); }
+        .cube:nth-child(5) { transform: translate3d(0px, 0px, -60px); }
+        .cube:nth-child(6) { transform: translate3d(60px, 0px, -60px); }
+        .cube:nth-child(7) { transform: translate3d(-60px, 60px, -60px); }
+        .cube:nth-child(8) { transform: translate3d(0px, 60px, -60px); }
+        .cube:nth-child(9) { transform: translate3d(60px, 60px, -60px); }
+        .cube:nth-child(10) { transform: translate3d(-60px, -60px, 0px); }
+        .cube:nth-child(11) { transform: translate3d(0px, -60px, 0px); }
+        .cube:nth-child(12) { transform: translate3d(60px, -60px, 0px); }
+        .cube:nth-child(13) { transform: translate3d(-60px, 0px, 0px); }
+        .cube:nth-child(14) { transform: translate3d(0px, 0px, 0px); } /* Core cube */
+        .cube:nth-child(15) { transform: translate3d(60px, 0px, 0px); }
+        .cube:nth-child(16) { transform: translate3d(-60px, 60px, 0px); }
+        .cube:nth-child(17) { transform: translate3d(0px, 60px, 0px); }
+        .cube:nth-child(18) { transform: translate3d(60px, 60px, 0px); }
+        .cube:nth-child(19) { transform: translate3d(-60px, -60px, 60px); }
+        .cube:nth-child(20) { transform: translate3d(0px, -60px, 60px); }
+        .cube:nth-child(21) { transform: translate3d(60px, -60px, 60px); }
+        .cube:nth-child(22) { transform: translate3d(-60px, 0px, 60px); }
+        .cube:nth-child(23) { transform: translate3d(0px, 0px, 60px); }
+        .cube:nth-child(24) { transform: translate3d(60px, 0px, 60px); }
+        .cube:nth-child(25) { transform: translate3d(-60px, 60px, 60px); }
+        .cube:nth-child(26) { transform: translate3d(0px, 60px, 60px); }
+        .cube:nth-child(27) { transform: translate3d(60px, 60px, 60px); }
+        
+        /* Exploded view animation on hover */
+        .cube-container:hover .cube:nth-child(1) { transform: translate3d(-120px, -120px, -120px); }
+        .cube-container:hover .cube:nth-child(2) { transform: translate3d(0px, -120px, -120px); }
+        .cube-container:hover .cube:nth-child(3) { transform: translate3d(120px, -120px, -120px); }
+        .cube-container:hover .cube:nth-child(4) { transform: translate3d(-120px, 0px, -120px); }
+        .cube-container:hover .cube:nth-child(5) { transform: translate3d(0px, 0px, -120px); }
+        .cube-container:hover .cube:nth-child(6) { transform: translate3d(120px, 0px, -120px); }
+        .cube-container:hover .cube:nth-child(7) { transform: translate3d(-120px, 120px, -120px); }
+        .cube-container:hover .cube:nth-child(8) { transform: translate3d(0px, 120px, -120px); }
+        .cube-container:hover .cube:nth-child(9) { transform: translate3d(120px, 120px, -120px); }
+        .cube-container:hover .cube:nth-child(10) { transform: translate3d(-120px, -120px, 0px); }
+        .cube-container:hover .cube:nth-child(11) { transform: translate3d(0px, -120px, 0px); }
+        .cube-container:hover .cube:nth-child(12) { transform: translate3d(120px, -120px, 0px); }
+        .cube-container:hover .cube:nth-child(13) { transform: translate3d(-120px, 0px, 0px); }
+        .cube-container:hover .cube:nth-child(15) { transform: translate3d(120px, 0px, 0px); }
+        .cube-container:hover .cube:nth-child(16) { transform: translate3d(-120px, 120px, 0px); }
+        .cube-container:hover .cube:nth-child(17) { transform: translate3d(0px, 120px, 0px); }
+        .cube-container:hover .cube:nth-child(18) { transform: translate3d(120px, 120px, 0px); }
+        .cube-container:hover .cube:nth-child(19) { transform: translate3d(-120px, -120px, 120px); }
+        .cube-container:hover .cube:nth-child(20) { transform: translate3d(0px, -120px, 120px); }
+        .cube-container:hover .cube:nth-child(21) { transform: translate3d(120px, -120px, 120px); }
+        .cube-container:hover .cube:nth-child(22) { transform: translate3d(-120px, 0px, 120px); }
+        .cube-container:hover .cube:nth-child(23) { transform: translate3d(0px, 0px, 120px); }
+        .cube-container:hover .cube:nth-child(24) { transform: translate3d(120px, 0px, 120px); }
+        .cube-container:hover .cube:nth-child(25) { transform: translate3d(-120px, 120px, 120px); }
+        .cube-container:hover .cube:nth-child(26) { transform: translate3d(0px, 120px, 120px); }
+        .cube-container:hover .cube:nth-child(27) { transform: translate3d(120px, 120px, 120px); }
+
+        /* Icon Styling */
+        .icon-piece {
+            font-size: 180px; /* 3x the cube size (60px) */
+            color: #ffffff;
+            position: absolute;
+            pointer-events: none;
+            width: 180px;
+            height: 180px;
+            object-fit: cover; /* Ensures images cover the area */
+        }
+        
+        /* Positioning and clipping each piece of the icon/image */
+        .piece-1 .icon-piece { top: 0; left: 0; clip-path: polygon(0 0, 33.33% 0, 33.33% 33.33%, 0 33.33%); }
+        .piece-2 .icon-piece { top: 0; left: -60px; clip-path: polygon(33.33% 0, 66.66% 0, 66.66% 33.33%, 33.33% 33.33%); }
+        .piece-3 .icon-piece { top: 0; left: -120px; clip-path: polygon(66.66% 0, 100% 0, 100% 33.33%, 66.66% 33.33%); }
+        .piece-4 .icon-piece { top: -60px; left: 0; clip-path: polygon(0 33.33%, 33.33% 33.33%, 33.33% 66.66%, 0 66.66%); }
+        .piece-5 .icon-piece { top: -60px; left: -60px; clip-path: polygon(33.33% 33.33%, 66.66% 33.33%, 66.66% 66.66%, 33.33% 66.66%); }
+        .piece-6 .icon-piece { top: -60px; left: -120px; clip-path: polygon(66.66% 33.33%, 100% 33.33%, 100% 66.66%, 66.66% 66.66%); }
+        .piece-7 .icon-piece { top: -120px; left: 0; clip-path: polygon(0 66.66%, 33.33% 66.66%, 33.33% 100%, 0 100%); }
+        .piece-8 .icon-piece { top: -120px; left: -60px; clip-path: polygon(33.33% 66.66%, 66.66% 66.66%, 66.66% 100%, 33.33% 100%); }
+        .piece-9 .icon-piece { top: -120px; left: -120px; clip-path: polygon(66.66% 66.66%, 100% 66.66%, 100% 100%, 66.66% 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+<div>
+    <a href="index.html">back to index.html</a>
+</div>
+    <main>
+        <section class="min-h-screen flex items-center py-16 lg:py-20">
+            <div class="container mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left Column: 3D Cube -->
+                    <div class="w-full">
+                        <div class="canvas-container">
+                            <div class="cube-scene">
+                                <div class="cube-container">
+                                    <!-- All 27 cubes are placed here -->
+                                    <!-- BACK LAYER -->
+                                    <div class="cube"><div class="cube-face front corner-glow-bottom-right"></div><div class="cube-face back color-1 piece-3"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right corner-glow-bottom-left"></div><div class="cube-face left color-2 piece-1"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-6"></div><div class="cube-face bottom corner-glow-top-right "></div></div>
+                                    <div class="cube"><div class="cube-face front edge-glow-bottom"></div><div class="cube-face back color-1 piece-2"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-6"></div><div class="cube-face bottom edge-glow-top"></div></div>
+                                    <div class="cube"><div class="cube-face front corner-glow-bottom-left"></div><div class="cube-face back color-1 piece-1"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-4 piece-3"><span class="material-icons icon-piece">code</span></div><div class="cube-face left corner-glow-bottom-right"></div><div class="cube-face top color-6"></div><div class="cube-face bottom corner-glow-top-left"></div></div>
+                                    <div class="cube"><div class="cube-face front edge-glow-right"></div><div class="cube-face back color-1 piece-6"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right edge-glow-left"></div><div class="cube-face left color-2 piece-4"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
+                                    <div class="cube"><div class="cube-face front facing-cube-upfront"></div><div class="cube-face back color-1 piece-5"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
+                                    <div class="cube"><div class="cube-face front edge-glow-left"></div><div class="cube-face back color-1 piece-4"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-4 piece-6"><span class="material-icons icon-piece">code</span></div><div class="cube-face left edge-glow-right"></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
+                                    <div class="cube"><div class="cube-face front corner-glow-top-right"></div><div class="cube-face back color-1 piece-9"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right corner-glow-top-left"></div><div class="cube-face left color-2 piece-7"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top corner-glow-bottom-right"></div><div class="cube-face bottom color-5 piece-7"><img src="https://placehold.co/180x180/f2f2f2/333?text=Logo" alt="Placeholder Logo 7" class="icon-piece"></div></div>
+                                    <div class="cube"><div class="cube-face front edge-glow-top"></div><div class="cube-face back color-1 piece-8"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top edge-glow-bottom"></div><div class="cube-face bottom color-5 piece-8"><img src="https://placehold.co/180x180/f2f2f2/333?text=Logo" alt="Placeholder Logo 8" class="icon-piece"></div></div>
+                                    <div class="cube"><div class="cube-face front corner-glow-top-left"></div><div class="cube-face back color-1 piece-7"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-4 piece-9"><span class="material-icons icon-piece">code</span></div><div class="cube-face left corner-glow-top-right"></div><div class="cube-face top corner-glow-bottom-left"></div><div class="cube-face bottom color-5 piece-9"><img src="https://placehold.co/180x180/f2f2f2/333?text=Logo" alt="Placeholder Logo 9" class="icon-piece"></div></div>
+                                    <!-- MIDDLE LAYER -->
+                                    <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right edge-glow-bottom"></div><div class="cube-face left color-2 piece-2"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-6"></div><div class="cube-face bottom edge-glow-right"></div></div>
+                                    <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-6"></div><div class="cube-face bottom facing-cube-upfront"></div></div>
+                                    <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-4 piece-2"><span class="material-icons icon-piece">code</span></div><div class="cube-face left edge-glow-bottom"></div><div class="cube-face top color-6"></div><div class="cube-face bottom edge-glow-left"></div></div>
+                                    <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right facing-cube-upfront"></div><div class="cube-face left color-2 piece-5"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
+                                    <div class="cube core-cube"><div class="cube-face front"></div><div class="cube-face back"></div><div class="cube-face right"></div><div class="cube-face left"></div><div class="cube-face top"></div><div class="cube-face bottom"></div></div>
+                                    <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-4 piece-5"><span class="material-icons icon-piece">code</span></div><div class="cube-face left facing-cube-upfront"></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
+                                    <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right edge-glow-top"></div><div class="cube-face left color-2 piece-8"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top edge-glow-right"></div><div class="cube-face bottom color-5 piece-4"><img src="https://placehold.co/180x180/f2f2f2/333?text=Logo" alt="Placeholder Logo 4" class="icon-piece"></div></div>
+                                    <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top facing-cube-upfront"></div><div class="cube-face bottom color-5 piece-5"><img src="https://placehold.co/180x180/f2f2f2/333?text=Logo" alt="Placeholder Logo 5" class="icon-piece"></div></div>
+                                    <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-4 piece-8"><span class="material-icons icon-piece">code</span></div><div class="cube-face left edge-glow-top"></div><div class="cube-face top edge-glow-left"></div><div class="cube-face bottom color-5 piece-6"><img src="https://placehold.co/180x180/f2f2f2/333?text=Logo" alt="Placeholder Logo 6" class="icon-piece"></div></div>
+                                    <!-- FRONT LAYER -->
+                                    <div class="cube"><div class="cube-face front color-3 piece-1"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back corner-glow-bottom-left"></div><div class="cube-face right corner-glow-bottom-right"></div><div class="cube-face left color-2 piece-3"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-6"></div><div class="cube-face bottom corner-glow-bottom-right"></div></div>
+                                    <div class="cube"><div class="cube-face front color-3 piece-2"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back edge-glow-bottom"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-6"></div><div class="cube-face bottom edge-glow-bottom"></div></div>
+                                    <div class="cube"><div class="cube-face front color-3 piece-3"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back corner-glow-bottom-right"></div><div class="cube-face right color-4 piece-1"><span class="material-icons icon-piece">code</span></div><div class="cube-face left corner-glow-bottom-left"></div><div class="cube-face top color-6"></div><div class="cube-face bottom corner-glow-bottom-left"></div></div>
+                                    <div class="cube"><div class="cube-face front color-3 piece-4"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back edge-glow-left"></div><div class="cube-face right edge-glow-right"></div><div class="cube-face left color-2 piece-6"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
+                                    <div class="cube"><div class="cube-face front color-3 piece-5"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back facing-cube-upfront"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
+                                    <div class="cube"><div class="cube-face front color-3 piece-6"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back edge-glow-right"></div><div class="cube-face right color-4 piece-4"><span class="material-icons icon-piece">code</span></div><div class="cube-face left edge-glow-left"></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
+                                    <div class="cube"><div class="cube-face front color-3 piece-7"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back corner-glow-top-left"></div><div class="cube-face right corner-glow-top-right"></div><div class="cube-face left color-2 piece-9"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top corner-glow-top-right"></div><div class="cube-face bottom color-5 piece-1"><img src="https://placehold.co/180x180/f2f2f2/333?text=Logo" alt="Placeholder Logo 1" class="icon-piece"></div></div>
+                                    <div class="cube"><div class="cube-face front color-3 piece-8"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back edge-glow-top"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top edge-glow-top"></div><div class="cube-face bottom color-5 piece-2"><img src="https://placehold.co/180x180/f2f2f2/333?text=Logo" alt="Placeholder Logo 2" class="icon-piece"></div></div>
+                                    <div class="cube"><div class="cube-face front color-3 piece-9"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back corner-glow-top-right"></div><div class="cube-face right color-4 piece-7"><span class="material-icons icon-piece">code</span></div><div class="cube-face left corner-glow-top-left"></div><div class="cube-face top corner-glow-top-left"></div><div class="cube-face bottom color-5 piece-3"><img src="https://placehold.co/180x180/f2f2f2/333?text=Logo" alt="Placeholder Logo 3" class="icon-piece"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Text Content -->
+                    <div class="flex flex-col justify-center text-center lg:text-left">
+                        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
+                            A Dynamic Fusion of
+                            <span class="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">Art and Technology</span>
+                        </h1>
+                        <p class="text-lg text-gray-600 mb-6 max-w-2xl mx-auto lg:mx-0">
+                            This interactive piece represents the complex, interconnected nature of modern finance and data. Each block symbolizes a core concept, coming together to form a coherent, dynamic whole. Hover over the cube to see how the individual components expand, revealing the depth within the structure.
+                        </p>
+                        <p class="text-lg text-gray-600 mb-6 max-w-2xl mx-auto lg:mx-0">
+                            Our approach is built on this principle: understanding the details without losing sight of the bigger picture. We leverage cutting-edge technology, data analytics, and financial expertise to provide solutions that are both robust and elegantly simple. The glowing core represents the central insights that drive success.
+                        </p>
+                         <p class="text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0">
+                            Explore the cube to discover the different facets of our work, from financial management and coding to AI-driven insights and data visualization. We believe in building transparent, powerful, and beautiful systems that empower our clients to navigate the complexities of their industries with confidence.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
