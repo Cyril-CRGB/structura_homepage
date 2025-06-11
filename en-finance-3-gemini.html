@@ -26,8 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"><!--ok-->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!--ok-->
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script><!--KO-->
-    <link href="public/output.css" rel="stylesheet"><!--KO-->
+    <link href="public/output.css" rel="stylesheet"><!--ok-->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons" onload="this.onload=null;this.rel='stylesheet'"/><!--ok-->
     <noscript><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/></noscript><!--ok-->
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'"/><!--ok-->
@@ -112,7 +111,6 @@
             height: 60px;
             /* Using outline instead of border for consistent rendering on 3D transforms */
             outline: 1px solid rgba(100, 100, 100, 0.5);
-            outline-offset: -1px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -136,14 +134,101 @@
         .color-6 { background-color: #d9d9d9; }
         .color-7 { background-color: #2e2a2a; }
         
-        /* Core cube - glowing green */
+        /* Core cube - glowing green 
         .core-cube .cube-face {
             background: linear-gradient(45deg, #00ff88, #00cc66);
             box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.9);
             outline-color: rgba(255, 255, 255, 0.6);
+        }*/
+
+        .core-cube .cube-face {
+            background: 
+                /* Crystalline surface reflections - geometric patterns */
+                linear-gradient(30deg, transparent 20%, rgba(255, 255, 255, 0.15) 21%, rgba(255, 255, 255, 0.15) 22%, transparent 23%),
+                linear-gradient(60deg, transparent 35%, rgba(255, 255, 255, 0.08) 36%, rgba(255, 255, 255, 0.08) 37%, transparent 38%),
+                linear-gradient(-30deg, transparent 40%, rgba(0, 255, 136, 0.2) 41%, rgba(0, 255, 136, 0.2) 42%, transparent 43%),
+                linear-gradient(120deg, transparent 55%, rgba(255, 255, 255, 0.1) 56%, rgba(255, 255, 255, 0.1) 57%, transparent 58%),
+                
+                /* Internal energy nodes - scattered light points */
+                radial-gradient(circle at 25% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 3%, transparent 8%),
+                radial-gradient(circle at 70% 20%, rgba(0, 255, 136, 0.8) 0%, rgba(0, 255, 136, 0.3) 4%, transparent 10%),
+                radial-gradient(circle at 30% 75%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.2) 2%, transparent 6%),
+                radial-gradient(circle at 80% 65%, rgba(0, 255, 136, 0.6) 0%, rgba(0, 255, 136, 0.2) 3%, transparent 8%),
+                radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 5%, transparent 12%),
+                
+                /* Core energy matrix - translucent base */
+                radial-gradient(ellipse at center,
+                    rgba(255, 255, 255, 0.95) 0%,      /* Brilliant white center */
+                    rgba(200, 255, 220, 0.9) 8%,       /* Pale green-white blend */
+                    rgba(150, 255, 180, 0.85) 15%,     /* Luminescent pale green */
+                    rgba(0, 255, 136, 0.8) 25%,        /* Core green */
+                    rgba(0, 255, 136, 0.7) 40%,        /* Translucent green */
+                    rgba(0, 204, 102, 0.6) 60%,        /* Deeper green edge */
+                    rgba(0, 153, 76, 0.5) 80%          /* Dark green border */
+                );
+            
+            /* Multi-layered crystalline glow effects */
+            box-shadow: 
+                /* Inner crystalline highlights */
+                inset 0 0 25px rgba(255, 255, 255, 0.4),
+                inset 0 0 50px rgba(0, 255, 136, 0.3),
+                inset 2px 2px 8px rgba(255, 255, 255, 0.3),
+                inset -2px -2px 8px rgba(0, 255, 136, 0.2),
+                inset 0 0 80px rgba(0, 255, 136, 0.1),
+                
+                /* Outer luminescent aura - brilliant glow */
+                0 0 30px rgba(0, 255, 136, 0.9),
+                0 0 60px rgba(0, 255, 136, 0.7),
+                0 0 100px rgba(0, 255, 136, 0.5),
+                0 0 150px rgba(0, 255, 136, 0.3),
+                0 0 250px rgba(0, 255, 136, 0.2);
+            
+            /* Crystalline edge definition */
+            outline: 2px solid rgba(255, 255, 255, 0.4);
+            outline-offset: -1px;
+            
+            /* Subtle surface texture */
+            backdrop-filter: blur(0.3px);
+            
+            /* Pulsing energy animation */
+            animation: energyCore 2.5s ease-in-out infinite alternate;
+        }
+
+        /* Animated energy core pulsing */
+        @keyframes energyCore {
+            0% {
+                box-shadow: 
+                    inset 0 0 25px rgba(255, 255, 255, 0.4),
+                    inset 0 0 50px rgba(0, 255, 136, 0.3),
+                    inset 2px 2px 8px rgba(255, 255, 255, 0.3),
+                    inset -2px -2px 8px rgba(0, 255, 136, 0.2),
+                    inset 0 0 80px rgba(0, 255, 136, 0.1),
+                    0 0 30px rgba(0, 255, 136, 0.9),
+                    0 0 60px rgba(0, 255, 136, 0.7),
+                    0 0 100px rgba(0, 255, 136, 0.5),
+                    0 0 150px rgba(0, 255, 136, 0.3),
+                    0 0 250px rgba(0, 255, 136, 0.2);
+                
+                background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 25% 30%, 70% 20%, 30% 75%, 80% 65%, 50% 40%, center;
+            }
+            100% {
+                box-shadow: 
+                    inset 0 0 35px rgba(255, 255, 255, 0.5),
+                    inset 0 0 70px rgba(0, 255, 136, 0.4),
+                    inset 3px 3px 12px rgba(255, 255, 255, 0.4),
+                    inset -3px -3px 12px rgba(0, 255, 136, 0.3),
+                    inset 0 0 120px rgba(0, 255, 136, 0.15),
+                    0 0 45px rgba(0, 255, 136, 1),
+                    0 0 90px rgba(0, 255, 136, 0.8),
+                    0 0 150px rgba(0, 255, 136, 0.6),
+                    0 0 220px rgba(0, 255, 136, 0.4),
+                    0 0 350px rgba(0, 255, 136, 0.25);
+                
+                background-position: 2% 2%, 1% 1%, -1% 1%, 1% -1%, 27% 32%, 68% 18%, 32% 77%, 82% 67%, 48% 38%, center;
+            }
         }
         
-        /* Glow effects for faces adjacent to the core cube */
+        /* Glow effects for faces adjacent to the core cube 
         .facing-cube-upfront { background: radial-gradient(circle at center, #00ff88 70%, #2e2a2a 90%); }
         .corner-glow-top-left { background: radial-gradient(circle at top left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%); }
         .corner-glow-top-right { background: radial-gradient(circle at top right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%); }
@@ -152,7 +237,174 @@
         .edge-glow-top { background: linear-gradient(to bottom, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
         .edge-glow-left { background: linear-gradient(to right, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
         .edge-glow-right { background: linear-gradient(to left, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
-        .edge-glow-bottom { background: linear-gradient(to top, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
+        .edge-glow-bottom { background: linear-gradient(to top, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }*/
+
+        .facing-cube-upfront {
+            background: 
+                /* Complex geometric surface patterns */
+                repeating-linear-gradient(
+                    45deg,
+                    transparent 0px,
+                    rgba(255, 255, 255, 0.05) 1px,
+                    transparent 2px,
+                    transparent 20px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent 0px,
+                    rgba(0, 255, 136, 0.1) 1px,
+                    transparent 2px,
+                    transparent 15px
+                ),
+                
+                /* Hexagonal energy patterns */
+                radial-gradient(circle at 25% 25%, rgba(0, 255, 136, 0.3) 0%, transparent 30%),
+                radial-gradient(circle at 75% 25%, rgba(0, 255, 136, 0.2) 0%, transparent 25%),
+                radial-gradient(circle at 25% 75%, rgba(0, 255, 136, 0.2) 0%, transparent 25%),
+                radial-gradient(circle at 75% 75%, rgba(0, 255, 136, 0.3) 0%, transparent 30%),
+                
+                /* Core energy matrix */
+                radial-gradient(ellipse at center,
+                    rgba(255, 255, 255, 0.95) 0%,
+                    rgba(180, 255, 200, 0.9) 5%,
+                    rgba(0, 255, 136, 0.85) 15%,
+                    rgba(0, 255, 136, 0.7) 30%,
+                    rgba(0, 255, 136, 0.5) 50%,
+                    rgba(0, 255, 136, 0.3) 70%,
+                    rgba(46, 42, 42, 0.9) 100%
+                ),
+                #2e2a2a;
+            
+            box-shadow: 
+                /* Multi-layered crystalline effects */
+                inset 0 0 20px rgba(255, 255, 255, 0.4),
+                inset 0 0 40px rgba(0, 255, 136, 0.3),
+                inset 0 0 80px rgba(0, 255, 136, 0.2),
+                0 0 30px rgba(0, 255, 136, 0.9),
+                0 0 60px rgba(0, 255, 136, 0.7),
+                0 0 120px rgba(0, 255, 136, 0.5),
+                0 0 240px rgba(0, 255, 136, 0.3);
+            
+            border: 2px solid rgba(0, 255, 136, 0.5);
+            animation: crystallineShimmer 4s ease-in-out infinite;
+        }
+
+        /* Crystalline shimmer animation */
+        @keyframes crystallineShimmer {
+            0%, 100% {
+                background-position: 0% 0%, 0% 0%, 25% 25%, 75% 25%, 25% 75%, 75% 75%, center;
+            }
+            50% {
+                background-position: 5% 5%, -5% 5%, 30% 30%, 70% 20%, 20% 70%, 80% 80%, center;
+            }
+        }
+
+        .corner-glow-top-left { 
+            background: 
+                /* Glow layer on top */
+                radial-gradient(
+                    ellipse 120px 120px at top left, 
+                    rgba(0, 255, 136, 0.3) 0%,     /* Visible glow start */
+                    rgba(0, 255, 136, 0.2) 15%,    /* Medium glow */
+                    rgba(0, 255, 136, 0.1) 30%,    /* Soft glow */
+                    rgba(0, 255, 136, 0.05) 45%,   /* Very faint */
+                    transparent 65%                /* Transparent end */
+                ),
+                /* Solid dark background underneath */
+                #2e2a2a;
+        }
+
+        .corner-glow-top-right { 
+            background:
+                radial-gradient(
+                    ellipse 120px 120px at top right, 
+                    rgba(0, 255, 136, 0.3) 0%, 
+                    rgba(0, 255, 136, 0.2) 15%, 
+                    rgba(0, 255, 136, 0.1) 30%, 
+                    rgba(0, 255, 136, 0.05) 45%, 
+                    transparent 65%
+                ),
+                #2e2a2a;
+        }
+
+        .corner-glow-bottom-left { 
+            background: 
+                radial-gradient(
+                    ellipse 120px 120px at bottom left, 
+                    rgba(0, 255, 136, 0.3) 0%, 
+                    rgba(0, 255, 136, 0.2) 15%, 
+                    rgba(0, 255, 136, 0.1) 30%, 
+                    rgba(0, 255, 136, 0.05) 45%, 
+                    transparent 65%
+                ),
+                #2e2a2a;
+        }
+
+        .corner-glow-bottom-right { 
+            background: 
+                radial-gradient(
+                    ellipse 120px 120px at bottom right, 
+                    rgba(0, 255, 136, 0.3) 0%, 
+                    rgba(0, 255, 136, 0.2) 15%, 
+                    rgba(0, 255, 136, 0.1) 30%, 
+                    rgba(0, 255, 136, 0.05) 45%, 
+                    transparent 65%
+                ),
+                #2e2a2a;
+        }
+
+        .edge-glow-top { 
+            background: 
+                linear-gradient(
+                    to bottom, 
+                    rgba(0, 255, 136, 0.25) 0%,    /* Softer edge reflection */
+                    rgba(0, 255, 136, 0.15) 20%,   /* Quick fade */
+                    rgba(0, 255, 136, 0.08) 40%,   /* Subtle presence */
+                    rgba(0, 255, 136, 0.03) 60%,   /* Very faint */
+                    transparent 80%                 /* Transparent end */
+                ),
+                #2e2a2a;
+        }
+
+        .edge-glow-left { 
+            background: 
+                linear-gradient(
+                    to right, 
+                    rgba(0, 255, 136, 0.25) 0%, 
+                    rgba(0, 255, 136, 0.15) 20%, 
+                    rgba(0, 255, 136, 0.08) 40%, 
+                    rgba(0, 255, 136, 0.03) 60%, 
+                    transparent 80%
+                ),
+                #2e2a2a;
+        }
+
+        .edge-glow-right { 
+            background: 
+                linear-gradient(
+                    to left, 
+                    rgba(0, 255, 136, 0.25) 0%, 
+                    rgba(0, 255, 136, 0.15) 20%, 
+                    rgba(0, 255, 136, 0.08) 40%, 
+                    rgba(0, 255, 136, 0.03) 60%, 
+                    transparent 80%
+                ),
+                #2e2a2a;
+        }
+
+        .edge-glow-bottom { 
+            background: 
+                linear-gradient(
+                    to top, 
+                    rgba(0, 255, 136, 0.25) 0%, 
+                    rgba(0, 255, 136, 0.15) 20%, 
+                    rgba(0, 255, 136, 0.08) 40%, 
+                    rgba(0, 255, 136, 0.03) 60%, 
+                    transparent 80%
+                ),
+                #2e2a2a;
+        }
+
 
         /* Animation for the cube rotation */
         @keyframes spinDiagonal {
@@ -225,10 +477,10 @@
             pointer-events: none;
             width: 180px;
             height: 180px;
-            object-fit: cover; /* Ensures images cover the area */
+            object-fit: cover;  /*Ensures images cover the area */
         }
         
-        /* Positioning and clipping each piece of the icon/image */
+        /* Positioning and clipping each piece of the icon/image  */   
         .piece-1 .icon-piece { top: 0; left: 0; clip-path: polygon(0 0, 33.33% 0, 33.33% 33.33%, 0 33.33%); }
         .piece-2 .icon-piece { top: 0; left: -60px; clip-path: polygon(33.33% 0, 66.66% 0, 66.66% 33.33%, 33.33% 33.33%); }
         .piece-3 .icon-piece { top: 0; left: -120px; clip-path: polygon(66.66% 0, 100% 0, 100% 33.33%, 66.66% 33.33%); }
@@ -237,16 +489,33 @@
         .piece-6 .icon-piece { top: -60px; left: -120px; clip-path: polygon(66.66% 33.33%, 100% 33.33%, 100% 66.66%, 66.66% 66.66%); }
         .piece-7 .icon-piece { top: -120px; left: 0; clip-path: polygon(0 66.66%, 33.33% 66.66%, 33.33% 100%, 0 100%); }
         .piece-8 .icon-piece { top: -120px; left: -60px; clip-path: polygon(33.33% 66.66%, 66.66% 66.66%, 66.66% 100%, 33.33% 100%); }
-        .piece-9 .icon-piece { top: -120px; left: -120px; clip-path: polygon(66.66% 66.66%, 100% 66.66%, 100% 100%, 66.66% 100%); }
+        .piece-9 .icon-piece { top: -120px; left: -120px; clip-path: polygon(66.66% 66.66%, 100% 66.66%, 100% 100%, 66.66% 100%); }   
 
-        /*.piece-1 .icon-piece { top: 0; left: 0; }
-        .piece-2 .icon-piece { top: 0; left: -60px; }
-        .piece-3 .icon-piece { top: 0; left: -120px; }
-        .piece-4 .icon-piece { top: -60px; left: 0; }
-        .piece-5 .icon-piece { top: -60px; left: -60px; }
-        .piece-6 .icon-piece { top: -60px; left: -120px; }
-        .piece-8 .icon-piece { top: -120px; left: -60px; }
-        .piece-9 .icon-piece { top: -120px; left: -120px; }*/        
+        /* --- IMAGE LOGO STRUCTURA --- */
+        .cube-face.bottom {
+            position: relative !important;    /* for absolute children */
+            overflow: hidden !important;      /* clip to 60×60 window */
+            font-size: 60px !important;
+            width: 1em !important;
+            height: 1em !important;       /* 1em == 60px */
+        }
+
+        .cube-face.bottom .full-image {
+            display: block;
+            width: 3em;            /* 180px */
+            height: auto;
+            object-fit: none;      /* don’t scale—just crop */
+        }        
+
+        .piece-1 .full-image { object-position:   0%   0%; }
+        .piece-2 .full-image { object-position:  50%   0%; }
+        .piece-3 .full-image { object-position: 100%   0%; }
+        .piece-4 .full-image { object-position:   0%  50%; }
+        .piece-5 .full-image { object-position:  50%  50%; }
+        .piece-6 .full-image { object-position: 100%  50%; }
+        .piece-7 .full-image { object-position:   0% 100%; }
+        .piece-8 .full-image { object-position:  50% 100%; }
+        .piece-9 .full-image { object-position: 100% 100%; }
 
     </style>
 </head>
@@ -322,7 +591,7 @@
         </div>
     </header>
 
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden py-20 md:py-32"><!-- py-16 lg:py-20 -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden py-16 md:py-20 lg:py-32"><!-- py-16 lg:py-20 -->
         <div class="container mx-auto px-6 relative z-10 text-center max-w-7xl"><!--  --><!--px-4-->
             <div class="grid lg:grid-cols-2 gap-24 lg:gap-32 items-center rounded-2xl animate-fade-in mx-auto flex flex-col p-8 md:p-8 glass-morphism"><!--rounded-2xl animate-fade-in mx-auto flex flex-col p-8 md:p-8-->
                 
@@ -332,6 +601,7 @@
                         <div class="cube-scene">
                             <div class="cube-container">
                                 <!-- All 27 cubes are placed here -->
+                                <!--face 1-->
                                 <!-- BACK LAYER -->
                                 <div class="cube"><div class="cube-face front corner-glow-bottom-right"></div><div class="cube-face back color-1 piece-3"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right corner-glow-bottom-left"></div><div class="cube-face left color-2 piece-1"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-6"></div><div class="cube-face bottom corner-glow-top-right "></div></div>
                                 <div class="cube"><div class="cube-face front edge-glow-bottom"></div><div class="cube-face back color-1 piece-2"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-6"></div><div class="cube-face bottom edge-glow-top"></div></div>
@@ -339,9 +609,9 @@
                                 <div class="cube"><div class="cube-face front edge-glow-right"></div><div class="cube-face back color-1 piece-6"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right edge-glow-left"></div><div class="cube-face left color-2 piece-4"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
                                 <div class="cube"><div class="cube-face front facing-cube-upfront"></div><div class="cube-face back color-1 piece-5"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
                                 <div class="cube"><div class="cube-face front edge-glow-left"></div><div class="cube-face back color-1 piece-4"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-4 piece-6"><span class="material-icons icon-piece">code</span></div><div class="cube-face left edge-glow-right"></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
-                                <div class="cube"><div class="cube-face front corner-glow-top-right"></div><div class="cube-face back color-1 piece-9"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right corner-glow-top-left"></div><div class="cube-face left color-2 piece-7"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top corner-glow-bottom-right"></div><div class="cube-face bottom color-5 piece-1"><img src="assets/images/structura_logo_upscaled_1x_appel-touch-icon_180x180.png" alt="Placeholder Logo 1" class="icon-piece"></div></div><!--<img src="assets/images/structura_logo_upscaled_1x_appel-touch-icon_180x180.png" alt="Placeholder Logo 7" class="icon-piece">-->
-                                <div class="cube"><div class="cube-face front edge-glow-top"></div><div class="cube-face back color-1 piece-8"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top edge-glow-bottom"></div><div class="cube-face bottom color-5 piece-8">8</div></div>
-                                <div class="cube"><div class="cube-face front corner-glow-top-left"></div><div class="cube-face back color-1 piece-7"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-4 piece-9"><span class="material-icons icon-piece">code</span></div><div class="cube-face left corner-glow-top-right"></div><div class="cube-face top corner-glow-bottom-left"></div><div class="cube-face bottom color-5 piece-9">9</div></div>
+                                <div class="cube"><div class="cube-face front corner-glow-top-right"></div><div class="cube-face back color-1 piece-9"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right corner-glow-top-left"></div><div class="cube-face left color-2 piece-7"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top corner-glow-bottom-right"></div><div class="cube-face bottom color-5 piece-7"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Placeholder Logo 7" class="full-image"></div></div>
+                                <div class="cube"><div class="cube-face front edge-glow-top"></div><div class="cube-face back color-1 piece-8"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top edge-glow-bottom"></div><div class="cube-face bottom color-5 piece-8"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Placeholder Logo 8" class="full-image"></div></div>
+                                <div class="cube"><div class="cube-face front corner-glow-top-left"></div><div class="cube-face back color-1 piece-7"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-4 piece-9"><span class="material-icons icon-piece">code</span></div><div class="cube-face left corner-glow-top-right"></div><div class="cube-face top corner-glow-bottom-left"></div><div class="cube-face bottom color-5 piece-9"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Placeholder Logo 9" class="full-image"></div></div>
                                 <!-- MIDDLE LAYER -->
                                 <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right edge-glow-bottom"></div><div class="cube-face left color-2 piece-2"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-6"></div><div class="cube-face bottom edge-glow-right"></div></div>
                                 <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-6"></div><div class="cube-face bottom facing-cube-upfront"></div></div>
@@ -349,9 +619,9 @@
                                 <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right facing-cube-upfront"></div><div class="cube-face left color-2 piece-5"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
                                 <div class="cube core-cube"><div class="cube-face front"></div><div class="cube-face back"></div><div class="cube-face right"></div><div class="cube-face left"></div><div class="cube-face top"></div><div class="cube-face bottom"></div></div>
                                 <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-4 piece-5"><span class="material-icons icon-piece">code</span></div><div class="cube-face left facing-cube-upfront"></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
-                                <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right edge-glow-top"></div><div class="cube-face left color-2 piece-8"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top edge-glow-right"></div><div class="cube-face bottom color-5 piece-4">4</div></div>
-                                <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top facing-cube-upfront"></div><div class="cube-face bottom color-5 piece-5">5</div></div>
-                                <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-4 piece-8"><span class="material-icons icon-piece">code</span></div><div class="cube-face left edge-glow-top"></div><div class="cube-face top edge-glow-left"></div><div class="cube-face bottom color-5 piece-6">6</div></div>
+                                <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right edge-glow-top"></div><div class="cube-face left color-2 piece-8"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top edge-glow-right"></div><div class="cube-face bottom color-5 piece-4"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Placeholder Logo 4" class="full-image"></div></div>
+                                <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top facing-cube-upfront"></div><div class="cube-face bottom color-5 piece-5"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Placeholder Logo 5" class="full-image"></div></div>
+                                <div class="cube"><div class="cube-face front color-7"></div><div class="cube-face back color-7"></div><div class="cube-face right color-4 piece-8"><span class="material-icons icon-piece">code</span></div><div class="cube-face left edge-glow-top"></div><div class="cube-face top edge-glow-left"></div><div class="cube-face bottom color-5 piece-6"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Placeholder Logo 6" class="full-image"></div></div>
                                 <!-- FRONT LAYER -->
                                 <div class="cube"><div class="cube-face front color-3 piece-1"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back corner-glow-bottom-left"></div><div class="cube-face right corner-glow-bottom-right"></div><div class="cube-face left color-2 piece-3"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-6"></div><div class="cube-face bottom corner-glow-bottom-right"></div></div>
                                 <div class="cube"><div class="cube-face front color-3 piece-2"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back edge-glow-bottom"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-6"></div><div class="cube-face bottom edge-glow-bottom"></div></div>
@@ -359,9 +629,9 @@
                                 <div class="cube"><div class="cube-face front color-3 piece-4"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back edge-glow-left"></div><div class="cube-face right edge-glow-right"></div><div class="cube-face left color-2 piece-6"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
                                 <div class="cube"><div class="cube-face front color-3 piece-5"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back facing-cube-upfront"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
                                 <div class="cube"><div class="cube-face front color-3 piece-6"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back edge-glow-right"></div><div class="cube-face right color-4 piece-4"><span class="material-icons icon-piece">code</span></div><div class="cube-face left edge-glow-left"></div><div class="cube-face top color-7"></div><div class="cube-face bottom color-7"></div></div>
-                                <div class="cube"><div class="cube-face front color-3 piece-7"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back corner-glow-top-left"></div><div class="cube-face right corner-glow-top-right"></div><div class="cube-face left color-2 piece-9"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top corner-glow-top-right"></div><div class="cube-face bottom color-5 piece-1">1</div></div>
-                                <div class="cube"><div class="cube-face front color-3 piece-8"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back edge-glow-top"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top edge-glow-top"></div><div class="cube-face bottom color-5 piece-2">2</div></div>
-                                <div class="cube"><div class="cube-face front color-3 piece-9"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back corner-glow-top-right"></div><div class="cube-face right color-4 piece-7"><span class="material-icons icon-piece">code</span></div><div class="cube-face left corner-glow-top-left"></div><div class="cube-face top corner-glow-top-left"></div><div class="cube-face bottom color-5 piece-3">3</div></div>
+                                <div class="cube"><div class="cube-face front color-3 piece-7"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back corner-glow-top-left"></div><div class="cube-face right corner-glow-top-right"></div><div class="cube-face left color-2 piece-9"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top corner-glow-top-right"></div><div class="cube-face bottom color-5 piece-1"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Placeholder Logo 1" class="full-image"></div></div>
+                                <div class="cube"><div class="cube-face front color-3 piece-8"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back edge-glow-top"></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top edge-glow-top"></div><div class="cube-face bottom color-5 piece-2"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Placeholder Logo 2" class="full-image"></div></div>
+                                <div class="cube"><div class="cube-face front color-3 piece-9"><span class="material-icons icon-piece">insights</span></div><div class="cube-face back corner-glow-top-right"></div><div class="cube-face right color-4 piece-7"><span class="material-icons icon-piece">code</span></div><div class="cube-face left corner-glow-top-left"></div><div class="cube-face top corner-glow-top-left"></div><div class="cube-face bottom color-5 piece-3"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Placeholder Logo 3" class="full-image"></div></div>
                             </div>
                         </div>
                     </div>

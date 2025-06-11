@@ -290,6 +290,9 @@
             /*opacity: 80%;*/
             pointer-events: none;
             /*text-shadow: 0 0 10px rgba(255,255,255,0.8);*/
+
+            /*object-fit: cover !important;  Ensures images cover the area */
+
         }
         /* Position and clip each piece to show only 1/9 of the icon */
         .piece-1 .icon-piece { 
@@ -328,6 +331,16 @@
             top: -119px; left: -119px; 
             clip-path: polygon(66.66% 66.66%, 100% 66.66%, 100% 100%, 66.66% 100%);
         }
+
+        .cube-face img.icon-piece {
+            font-size: 180px !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 60x;
+            height: 60px;
+            
+        }
+
     </style>
 </head>
 
@@ -462,7 +475,7 @@
                         <div class="cube-face right corner-glow-top-left">7</div>
                         <div class="cube-face left color-2 piece-7"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--7left-->
                         <div class="cube-face top corner-glow-bottom-right">7</div>
-                        <div class="cube-face bottom color-5 piece-7"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface7" loading= "" decoding="" width="180" height="180" class="icon-piece"></div><!--7bot-->
+                        <div class="cube-face bottom color-5 piece-7"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface7" loading= "" decoding="" class="icon-piece"></div><!--7bot width="180" height="180"-->
                     </div>
                     <div class="cube">
                         <div class="cube-face front edge-glow-top">8</div>
@@ -470,7 +483,7 @@
                         <div class="cube-face right color-7">8</div>
                         <div class="cube-face left color-7">8</div>
                         <div class="cube-face top edge-glow-bottom">8</div>
-                        <div class="cube-face bottom color-5 piece-8"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface8" loading= "" decoding="" width="180" height="180" class="icon-piece"></div><!--8bot-->
+                        <div class="cube-face bottom color-5 piece-8"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface8" loading= "" decoding="" class="icon-piece"></div><!--8bot width="180" height="180" -->
                     </div>
                     <div class="cube">
                         <div class="cube-face front corner-glow-top-left">9</div>
@@ -478,7 +491,7 @@
                         <div class="cube-face right color-4 piece-9"><span class="material-icons icon-piece">code</span></div><!--9right-->
                         <div class="cube-face left corner-glow-top-right">9</div>
                         <div class="cube-face top corner-glow-bottom-left">9</div>
-                        <div class="cube-face bottom color-5 piece-9"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface9" loading= "" decoding="" width="180" height="180" class="icon-piece"></div><!--9bot-->
+                        <div class="cube-face bottom color-5 piece-9"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface9" loading= "" decoding="" class="icon-piece"></div><!--9bot width="180" height="180" -->
                     </div>
                     <div class="cube">
                         <div class="cube-face front color-7">10</div>
@@ -535,7 +548,7 @@
                         <div class="cube-face right edge-glow-top">16</div>
                         <div class="cube-face left color-2 piece-8"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--16left-->
                         <div class="cube-face top edge-glow-right">16</div>
-                        <div class="cube-face bottom color-5 piece-4"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface4" loading= "" decoding="" width="180" height="180" class="icon-piece"></div><!--16bot-->
+                        <div class="cube-face bottom color-5 piece-4"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface4" loading= "" decoding="" class="icon-piece"></div><!--16bot width="180" height="180" -->
                     </div>
                     <div class="cube">
                         <div class="cube-face front color-7">17</div>
@@ -543,7 +556,7 @@
                         <div class="cube-face right color-7">17</div>
                         <div class="cube-face left color-7">17</div>
                         <div class="cube-face top facing-cube-upfront">17</div>
-                        <div class="cube-face bottom color-5 piece-5"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface5" loading= "" decoding="" width="180" height="180" class="icon-piece"></div><!--17bot-->
+                        <div class="cube-face bottom color-5 piece-5"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface5" loading= "" decoding="" class="icon-piece"></div><!--17bot width="180" height="180" -->
                     </div>
                     <div class="cube">
                         <div class="cube-face front color-7">18</div>
@@ -551,7 +564,7 @@
                         <div class="cube-face right color-4 piece-8"><span class="material-icons icon-piece">code</span></div><!--18right-->
                         <div class="cube-face left edge-glow-top">18</div>
                         <div class="cube-face top edge-glow-left">18</div>
-                        <div class="cube-face bottom color-5 piece-6"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface6" loading= "" decoding="" width="180" height="180" class="icon-piece"></div><!--18bot-->
+                        <div class="cube-face bottom color-5 piece-6"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface6" loading= "" decoding="" class="icon-piece"></div><!--18bot width="180" height="180" -->
                     </div>
                     <div class="cube">
                         <div class="cube-face front color-3 piece-1"><span class="material-icons icon-piece">insights</span></div><!--19front-->
@@ -607,7 +620,7 @@
                         <div class="cube-face right corner-glow-top-right">25</div>
                         <div class="cube-face left color-2 piece-9"><span class="material-icons icon-piece">account_balance_wallet</span></div><!--25left-->
                         <div class="cube-face top corner-glow-top-right">25</div>
-                        <div class="cube-face bottom color-5 piece-1"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface1" loading= "" decoding="" width="180" height="180" class="icon-piece"></div><!--25bot-->
+                        <div class="cube-face bottom color-5 piece-1"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface1" loading= "" decoding="" class="icon-piece"></div><!--25bot width="180" height="180" -->
                     </div>
                     <div class="cube">
                         <div class="cube-face front color-3 piece-8"><span class="material-icons icon-piece">insights</span></div><!--26front-->
@@ -615,7 +628,7 @@
                         <div class="cube-face right color-7">26</div>
                         <div class="cube-face left color-7">26</div>
                         <div class="cube-face top edge-glow-top">26</div>
-                        <div class="cube-face bottom color-5 piece-2"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface2" loading= "" decoding="" width="180" height="180" class="icon-piece"></div><!--26bot-->
+                        <div class="cube-face bottom color-5 piece-2"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface2" loading= "" decoding="" class="icon-piece"></div><!--26bot width="180" height="180" -->
                     </div>
                     <div class="cube">
                         <div class="cube-face front color-3 piece-9"><span class="material-icons icon-piece">insights</span></div><!--27front-->
@@ -623,7 +636,7 @@
                         <div class="cube-face right color-4 piece-7"><span class="material-icons icon-piece">code</span></div><!--27right-->
                         <div class="cube-face left corner-glow-top-left">27</div>
                         <div class="cube-face top corner-glow-top-left">27</div>
-                        <div class="cube-face bottom color-5 piece-3"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface3" loading= "" decoding="" width="180" height="180" class="icon-piece"></div><!--27bot-->
+                        <div class="cube-face bottom color-5 piece-3"><img src="assets/images/structura_logo_upscaled_180x180_AVIF.avif" alt="Logoface3" loading= "" decoding="" class="icon-piece"></div><!--27bot  width="180" height="180"-->
                     </div>
                 </div>
             </div>
