@@ -57,7 +57,7 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* Container for the 3D scene to ensure proper scaling */ /*bg-white*/
+        /* Container for the 3D scene to ensure proper scaling */
         .canvas-container {
             width: 100%;
             padding-bottom: 100%; /* Creates a square aspect ratio box */
@@ -66,10 +66,13 @@
             margin: auto;
         }
 
-        /* The scene where the cube lives, centered within the canvas */ /*bg-red*/
+        /* The scene where the cube lives, centered within the canvas */
         .cube-scene {
             position: absolute;
-            inset: 0; /* = top:0; right:0; bottom:0; left:0; */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             perspective: 1200px; /* Defines the 3D perspective */
             display: flex;
             justify-content: center;
@@ -80,8 +83,8 @@
         .cube-container {
             position: relative;
             transform-style: preserve-3d;
-            /*animation: spinDiagonal 20s linear;*/ /*infinite*/ /* Slower, smoother animation */
-            transform: scale(var(--cube-scale, 0.75)) rotateX(25deg) rotateY(-25deg); /* Responsive scaling */
+            animation: spinDiagonal 20s linear; /*infinite*/ /* Slower, smoother animation */
+            transform: scale(var(--cube-scale, 0.75)); /* Responsive scaling */
         }
 
         /* Set scale for different screen sizes */
@@ -131,7 +134,13 @@
         .color-6 { background-color: #d9d9d9; }
         .color-7 { background-color: #2e2a2a; }
         
-        /* Core cube - glowing green */
+        /* Core cube - glowing green 
+        .core-cube .cube-face {
+            background: linear-gradient(45deg, #00ff88, #00cc66);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.9);
+            outline-color: rgba(255, 255, 255, 0.6);
+        }*/
+
         .core-cube .cube-face {
             background: 
                 /* Crystalline surface reflections - geometric patterns */
@@ -219,6 +228,17 @@
             }
         }
         
+        /* Glow effects for faces adjacent to the core cube 
+        .facing-cube-upfront { background: radial-gradient(circle at center, #00ff88 70%, #2e2a2a 90%); }
+        .corner-glow-top-left { background: radial-gradient(circle at top left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%); }
+        .corner-glow-top-right { background: radial-gradient(circle at top right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%); }
+        .corner-glow-bottom-left { background: radial-gradient(circle at bottom left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%); }
+        .corner-glow-bottom-right { background: radial-gradient(circle at bottom right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%); }
+        .edge-glow-top { background: linear-gradient(to bottom, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
+        .edge-glow-left { background: linear-gradient(to right, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
+        .edge-glow-right { background: linear-gradient(to left, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }
+        .edge-glow-bottom { background: linear-gradient(to top, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%); }*/
+
         .facing-cube-upfront {
             background: 
                 /* Complex geometric surface patterns */
@@ -393,7 +413,7 @@
         }        
         
         /* Positioning of each small cube in 3D space */
-        /*.cube:nth-child(1) { transform: translate3d(-60px, -60px, -60px); }
+        .cube:nth-child(1) { transform: translate3d(-60px, -60px, -60px); }
         .cube:nth-child(2) { transform: translate3d(0px, -60px, -60px); }
         .cube:nth-child(3) { transform: translate3d(60px, -60px, -60px); }
         .cube:nth-child(4) { transform: translate3d(-60px, 0px, -60px); }
@@ -407,7 +427,7 @@
         .cube:nth-child(12) { transform: translate3d(60px, -60px, 0px); }
         .cube:nth-child(13) { transform: translate3d(-60px, 0px, 0px); }
         .cube:nth-child(14) { transform: translate3d(0px, 0px, 0px); } /* Core cube */
-        /*.cube:nth-child(15) { transform: translate3d(60px, 0px, 0px); }
+        .cube:nth-child(15) { transform: translate3d(60px, 0px, 0px); }
         .cube:nth-child(16) { transform: translate3d(-60px, 60px, 0px); }
         .cube:nth-child(17) { transform: translate3d(0px, 60px, 0px); }
         .cube:nth-child(18) { transform: translate3d(60px, 60px, 0px); }
@@ -419,40 +439,10 @@
         .cube:nth-child(24) { transform: translate3d(60px, 0px, 60px); }
         .cube:nth-child(25) { transform: translate3d(-60px, 60px, 60px); }
         .cube:nth-child(26) { transform: translate3d(0px, 60px, 60px); }
-        .cube:nth-child(27) { transform: translate3d(60px, 60px, 60px); }*/
-
-
-        /* Positioning of each small cube in 3D space (recalculated) */
-        .cube:nth-child(1) { transform: translate3d(-90px, -90px, -90px); }
-        .cube:nth-child(2) { transform: translate3d(-30px, -90px, -90px); }
-        .cube:nth-child(3) { transform: translate3d(30px, -90px, -90px); }
-        .cube:nth-child(4) { transform: translate3d(-90px, -30px, -90px); }
-        .cube:nth-child(5) { transform: translate3d(-30px, -30px, -90px); }
-        .cube:nth-child(6) { transform: translate3d(30px, -30px, -90px); }
-        .cube:nth-child(7) { transform: translate3d(-90px, 30px, -90px); }
-        .cube:nth-child(8) { transform: translate3d(-30px, 30px, -90px); }
-        .cube:nth-child(9) { transform: translate3d(30px, 30px, -90px); }
-        .cube:nth-child(10) { transform: translate3d(-90px, -90px, -30px); }
-        .cube:nth-child(11) { transform: translate3d(-30px, -90px, -30px); }
-        .cube:nth-child(12) { transform: translate3d(30px, -90px, -30px); }
-        .cube:nth-child(13) { transform: translate3d(-90px, -30px, -30px); }
-        .cube:nth-child(14) { transform: translate3d(-30px, -30px, -30px); }
-        .cube:nth-child(15) { transform: translate3d(30px, -30px, -30px); }
-        .cube:nth-child(16) { transform: translate3d(-90px, 30px, -30px); }
-        .cube:nth-child(17) { transform: translate3d(-30px, 30px, -30px); }
-        .cube:nth-child(18) { transform: translate3d(30px, 30px, -30px); }
-        .cube:nth-child(19) { transform: translate3d(-90px, -90px, 30px); }
-        .cube:nth-child(20) { transform: translate3d(-30px, -90px, 30px); }
-        .cube:nth-child(21) { transform: translate3d(30px, -90px, 30px); }
-        .cube:nth-child(22) { transform: translate3d(-90px, -30px, 30px); }
-        .cube:nth-child(23) { transform: translate3d(-30px, -30px, 30px); }
-        .cube:nth-child(24) { transform: translate3d(30px, -30px, 30px); }
-        .cube:nth-child(25) { transform: translate3d(-90px, 30px, 30px); }
-        .cube:nth-child(26) { transform: translate3d(-30px, 30px, 30px); }
-        .cube:nth-child(27) { transform: translate3d(30px, 30px, 30px); }
+        .cube:nth-child(27) { transform: translate3d(60px, 60px, 60px); }
         
         /* Exploded view animation on hover */
-        /*.cube-container:hover .cube:nth-child(1) { transform: translate3d(-120px, -120px, -120px); }
+        .cube-container:hover .cube:nth-child(1) { transform: translate3d(-120px, -120px, -120px); }
         .cube-container:hover .cube:nth-child(2) { transform: translate3d(0px, -120px, -120px); }
         .cube-container:hover .cube:nth-child(3) { transform: translate3d(120px, -120px, -120px); }
         .cube-container:hover .cube:nth-child(4) { transform: translate3d(-120px, 0px, -120px); }
@@ -477,35 +467,8 @@
         .cube-container:hover .cube:nth-child(24) { transform: translate3d(120px, 0px, 120px); }
         .cube-container:hover .cube:nth-child(25) { transform: translate3d(-120px, 120px, 120px); }
         .cube-container:hover .cube:nth-child(26) { transform: translate3d(0px, 120px, 120px); }
-        .cube-container:hover .cube:nth-child(27) { transform: translate3d(120px, 120px, 120px); }*/
+        .cube-container:hover .cube:nth-child(27) { transform: translate3d(120px, 120px, 120px); }
 
-        /* Exploded view animation on hover (recalculated) */
-        .cube-container:hover .cube:nth-child(1) { transform: translate3d(-150px, -150px, -150px); }
-        .cube-container:hover .cube:nth-child(2) { transform: translate3d(-30px, -150px, -150px); }
-        .cube-container:hover .cube:nth-child(3) { transform: translate3d(90px, -150px, -150px); }
-        .cube-container:hover .cube:nth-child(4) { transform: translate3d(-150px, -30px, -150px); }
-        .cube-container:hover .cube:nth-child(5) { transform: translate3d(-30px, -30px, -150px); }
-        .cube-container:hover .cube:nth-child(6) { transform: translate3d(90px, -30px, -150px); }
-        .cube-container:hover .cube:nth-child(7) { transform: translate3d(-150px, 90px, -150px); }
-        .cube-container:hover .cube:nth-child(8) { transform: translate3d(-30px, 90px, -150px); }
-        .cube-container:hover .cube:nth-child(9) { transform: translate3d(90px, 90px, -150px); }
-        .cube-container:hover .cube:nth-child(10) { transform: translate3d(-150px, -150px, -30px); }
-        .cube-container:hover .cube:nth-child(11) { transform: translate3d(-30px, -150px, -30px); }
-        .cube-container:hover .cube:nth-child(12) { transform: translate3d(90px, -150px, -30px); }
-        .cube-container:hover .cube:nth-child(13) { transform: translate3d(-150px, -30px, -30px); }
-        .cube-container:hover .cube:nth-child(15) { transform: translate3d(90px, -30px, -30px); }
-        .cube-container:hover .cube:nth-child(16) { transform: translate3d(-150px, 90px, -30px); }
-        .cube-container:hover .cube:nth-child(17) { transform: translate3d(-30px, 90px, -30px); }
-        .cube-container:hover .cube:nth-child(18) { transform: translate3d(90px, 90px, -30px); }
-        .cube-container:hover .cube:nth-child(19) { transform: translate3d(-150px, -150px, 90px); }
-        .cube-container:hover .cube:nth-child(20) { transform: translate3d(-30px, -150px, 90px); }
-        .cube-container:hover .cube:nth-child(21) { transform: translate3d(90px, -150px, 90px); }
-        .cube-container:hover .cube:nth-child(22) { transform: translate3d(-150px, -30px, 90px); }
-        .cube-container:hover .cube:nth-child(23) { transform: translate3d(-30px, -30px, 90px); }
-        .cube-container:hover .cube:nth-child(24) { transform: translate3d(90px, -30px, 90px); }
-        .cube-container:hover .cube:nth-child(25) { transform: translate3d(-150px, 90px, 90px); }
-        .cube-container:hover .cube:nth-child(26) { transform: translate3d(-30px, 90px, 90px); }
-        .cube-container:hover .cube:nth-child(27) { transform: translate3d(90px, 90px, 90px); }
         /* Icon Styling */
         .icon-piece {
             font-size: 180px; /* 3x the cube size (60px) */
@@ -556,7 +519,7 @@
 
     </style>
 </head>
-<body class="bg-white text-gray-700">
+<body class="bg-gray-50 text-gray-800">
     <div class="scroll-indicator" id="scrollIndicator"></div>
 
     <header class="sticky top-0 z-50 bg-[#ffffff] backdrop-blur-lg shadow-xl transition-all duration-300" id="header">
@@ -628,15 +591,16 @@
         </div>
     </header>
 
-    <section class="bg-[#f2f2f2] min-h-screen flex items-center justify-center relative overflow-hidden py-20 md:py-32">
-        <div class="container mx-auto px-6 relative z-10 max-w-7xl"><!--text-center-->
-            <div class="grid lg:grid-cols-2 sm:gap-16 gap-16 md:gap-16 lg:gap-16 items-center rounded-2xl mx-auto p-8 md:p-8 glass-morphism"><!--animate-fade-in flex flex-col-->
+    <section class="bg-[#f2f2f2] min-h-screen flex items-center justify-center relative overflow-hidden py-16 md:py-20 lg:py-32"><!-- py-16 lg:py-20 -->
+        <div class="container mx-auto px-6 relative z-10 text-center max-w-7xl"><!--  --><!--px-4-->
+            <div class="grid lg:grid-cols-2 gap-24 lg:gap-32 items-center rounded-2xl animate-fade-in mx-auto flex flex-col p-8 md:p-8 glass-morphism"><!--rounded-2xl animate-fade-in mx-auto flex flex-col p-8 md:p-8-->
                 <!-- Left Column: 3D Cube -->
-                <div class="flex justify-center items-center"><!--w-full-->
-                    <div class="canvas-container"><!--bg-white-->
-                        <div class="cube-scene"><!--bg-red-500-->
+                <div class="w-full">
+                    <div class="canvas-container">
+                        <div class="cube-scene">
                             <div class="cube-container">
                                 <!-- All 27 cubes are placed here -->
+                                <!--face 1-->
                                 <!-- BACK LAYER -->
                                 <div class="cube"><div class="cube-face front corner-glow-bottom-right"></div><div class="cube-face back color-1 piece-3"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right corner-glow-bottom-left"></div><div class="cube-face left color-2 piece-1"><span class="material-icons icon-piece">account_balance_wallet</span></div><div class="cube-face top color-6"></div><div class="cube-face bottom corner-glow-top-right "></div></div>
                                 <div class="cube"><div class="cube-face front edge-glow-bottom"></div><div class="cube-face back color-1 piece-2"><span class="material-icons icon-piece">smart_toy</span></div><div class="cube-face right color-7"></div><div class="cube-face left color-7"></div><div class="cube-face top color-6"></div><div class="cube-face bottom edge-glow-top"></div></div>
@@ -673,12 +637,12 @@
                 </div>
 
                 <!-- Right Column: Text Content -->
-                <div class="flex flex-col justify-center text-left">
-                    <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-center">
+                <div class="flex flex-col justify-center text-center lg:text-left">
+                    <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
                         <span class="gradient-text bg-clip-text text-transparent">Performance & Risks</span>
                     </h1>
                     <div class="grid max-w-6xl mx-auto lg:mx-0">
-                        <div class="rounded-2xl p-6">
+                        <div class="glass-card feature-card rounded-2xl p-2 stagger-animation">
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0">
                                     <span class="material-icons text-3xl text-gray-800 icon-glow">account_balance</span>
@@ -686,13 +650,13 @@
                                 <div>
                                     <h3 class="text-xl font-bold text-gray-800 mb-1">Financial Management</h3>
                                     <p class="text-lg text-content leading-relaxed">
-                                        <span class="font-semibold">Budgeting and forecasting</span>, financial reporting, and compliance management (ICS, legal, tax, regulatory).
-                                        <span class="font-semibold">Cash and liquidity management</span> through working capital optimization.
+                                        <span class="highlight-text">Budgeting and forecasting</span>, financial reporting, and compliance management (ICS, legal, tax, regulatory). <span class="highlight-text">Cash and liquidity management</span> through working capital optimization.
                                     </p>
-                                </div>   
+                                </div>
                             </div>
                         </div>
-                        <div class="rounded-2xl p-6">
+
+                        <div class="glass-card feature-card rounded-2xl p-2 stagger-animation">
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0">
                                     <span class="material-icons text-3xl text-gray-800 icon-glow">analytics</span>
@@ -700,13 +664,13 @@
                                 <div>
                                     <h3 class="text-xl font-bold text-gray-800 mb-1">Strategic Decision Support</h3>
                                     <p class="text-lg text-content leading-relaxed">
-                                        <span class="font-semibold">Strategic planning</span> with financial insights and analytical support. Business performance monitoring through 
-                                        <span class="font-semibold">KPI analysis</span>. Comprehensive risk management and mitigation.
+                                        <span class="highlight-text">Strategic planning</span> with financial insights and analytical support. Business performance monitoring through <span class="highlight-text">KPI analysis</span>. Comprehensive risk management and mitigation.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="rounded-2xl p-6">
+
+                        <div class="glass-card feature-card rounded-2xl p-2 stagger-animation">
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0">
                                     <span class="material-icons text-3xl text-gray-800 icon-glow">groups</span>
@@ -714,14 +678,28 @@
                                 <div>
                                     <h3 class="text-xl font-bold text-gray-800 mb-1">Stakeholder Relations</h3>
                                     <p class="text-lg text-content leading-relaxed">
-                                        <span class="font-semibold">Clear communication</span> with investors and board members. Maintaining trust and transparency with auditors and regulatory bodies. 
-                                        <span class="font-semibold">Strategic optimization</span> of capital structures.
+                                        <span class="highlight-text">Clear communication</span> with investors and board members. Maintaining trust and transparency with auditors and regulatory bodies. <span class="highlight-text">Strategic optimization</span> of capital structures.
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--<div class="inline-block px-4 py-2 bg-gradient-to-r from-red-100 to-blue-100 rounded-full text-sm font-medium text-gray-700">
+                        <span class="material-icons text-sm mr-2 align-middle">auto_awesome</span>
+                        A Dynamic Fusion
+                    </div>-->
+                    <!--<p class="text-lg text-gray-600 mb-6 max-w-2xl mx-auto lg:mx-0">
+                        <span class="font-semibold">Financial Management: </span>
+                        Budgeting and forecasting, financial reporting, and compliance management (ICS, legal, tax, regulatory). Cash and liquidity management through working capital optimization.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6 max-w-2xl mx-auto lg:mx-0">
+                        Strategic Decision Support: Strategic planning with financial insights and analytical support. Business performance monitoring through KPI analysis. Comprehensive risk management and mitigation.
+                    </p>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0">
+                        Stakeholder: Clear communication with investors and board members. Maintaining trust and transparency with auditors and regulatory bodies. Strategic optimization of capital structures.
+                    </p>-->
                 </div>
+
             </div>
         </div>
     </section>
@@ -818,6 +796,6 @@
         <span class="material-icons">keyboard_arrow_up</span>
     </button>
 
-    <script src="assets/js_new/script_new_opt_services.js" defer></script>
+    <script src="assets/js_new/script_new_opt.js" defer></script>
 </body>
 </html>
