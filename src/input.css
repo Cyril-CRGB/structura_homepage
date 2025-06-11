@@ -58,7 +58,7 @@
 
   /* Glassmorphism effect */
   .glass-morphism {
-    background: rgba(0, 0, 0, 0.01);
+    background: rgba(0, 0, 0, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.9);
   }
 
