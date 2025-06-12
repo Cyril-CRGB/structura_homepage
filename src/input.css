@@ -210,7 +210,7 @@
 
   /* Styling for each face of a small cube */
   .cube-face {
-      position: relative; /* absolute */
+      position: absolute; /* absolute */
       width: 60px;
       height: 60px;
       /* Outline instead of border for consistent rendering on 3D transforms */
@@ -572,7 +572,7 @@
       pointer-events: none;
       width: 180px;
       height: 180px;
-      object-fit: none;  /*Ensures images 'cover' the area */
+      object-fit: cover;  /*Ensures images 'cover' the area */
   }
 
   /* Positioning and clipping each piece of the icon/image  */   
