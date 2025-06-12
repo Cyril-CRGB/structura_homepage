@@ -150,12 +150,474 @@
     stroke: #0a2f4d;
     stroke-width: 0.2;
   }
+
+  /* --- HERO --- */
+  .hero-bg {
+    background: linear-gradient(135deg, rgba(242, 242, 242, 0.9) 0%, rgba(217, 217, 217, 0.8) 100%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23374151' fill-opacity='0.1'%3E%3C/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 60px 60px;
+    animation: bgShift 60s ease-in-out infinite;
+  }
+
+  /* --- CUBES --- */
+  /* 3D Scene */
+  .canvas-container {
+      width: 100%;
+      padding-bottom: 100%; /* square aspect ratio box */
+      position: relative;
+      max-width: 500px; /* Max size of the cube container */
+      margin: auto;
+  }
+  /* 3D viewport */
+  .cube-scene {
+      position: absolute;
+      inset: 0; /* = top:0; right:0; bottom:0; left:0; */
+      perspective: 1200px; /* Defines the 3D perspective */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  /* Cube assembly container, handles animation for all the small cubes */
+  .cube-container {
+      position: relative;
+      transform-style: preserve-3d;
+      /*animation: spinDiagonal 20s linear;*/ /*infinite*/ /* Slower, smoother animation */
+      transform: scale(var(--cube-scale, 0.75)) rotateX(25deg) rotateY(25deg); /* Responsive scaling */
+  }
+
+  /* Responsive scale & start animation on large */
+  /* small phones */
+  @media (max-width: 640px) {
+      .cube-container { --cube-scale: 0.6; }
+  }
+  /* tablets & small desktops */
+  @media (min-width: 641px) and (max-width: 1023px) {
+      .cube-container { --cube-scale: 1.2; }
+  }
+  /* large screens */
+  @media (min-width: 1024px) {
+      .cube-container { --cube-scale: 1; animation: spinDiagonal 6s linear;}
+  }
+
+  /* Individual small cube styling */
+  .cube {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      transform-style: preserve-3d;
+      transition: all 0.8s ease;
+  }
+
+  /* Styling for each face of a small cube */
+  .cube-face {
+      position: relative; /* absolute */
+      width: 60px;
+      height: 60px;
+      /* Outline instead of border for consistent rendering on 3D transforms */
+      outline: 1px solid rgba(100, 100, 100, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden; /* For icon clipping */
+  }
+
+  /* Positioning each face to form a cube */
+  .cube-face.front  { transform: rotateY(0deg) translateZ(30px); }
+  .cube-face.back   { transform: rotateY(180deg) translateZ(30px); }
+  .cube-face.right  { transform: rotateY(90deg) translateZ(30px); }
+  .cube-face.left   { transform: rotateY(-90deg) translateZ(30px); }
+  .cube-face.top    { transform: rotateX(90deg) translateZ(30px); }
+  .cube-face.bottom { transform: rotateX(-90deg) translateZ(30px); }
+
+  /* Color utility classes */
+  .color-1 { background-color: #D03C4B; }
+  .color-2 { background-color: #3FB6F0; }
+  .color-3 { background-color: #F75759; }
+  .color-4 { background-color: #083F67; }
+  .color-5 { background-color: #f2f2f2; }
+  .color-6 { background-color: #d9d9d9; }
+  .color-7 { background-color: #2e2a2a; }
+
+  @media (min-width: 641px) {
+      /* Core cube - glowing green */
+      .core-cube .cube-face {
+          background: 
+              /* Crystalline surface reflections - geometric patterns */
+              linear-gradient(30deg, transparent 20%, rgba(255, 255, 255, 0.15) 21%, rgba(255, 255, 255, 0.15) 22%, transparent 23%),
+              linear-gradient(60deg, transparent 35%, rgba(255, 255, 255, 0.08) 36%, rgba(255, 255, 255, 0.08) 37%, transparent 38%),
+              linear-gradient(-30deg, transparent 40%, rgba(0, 255, 136, 0.2) 41%, rgba(0, 255, 136, 0.2) 42%, transparent 43%),
+              linear-gradient(120deg, transparent 55%, rgba(255, 255, 255, 0.1) 56%, rgba(255, 255, 255, 0.1) 57%, transparent 58%),
+              
+              /* Internal energy nodes - scattered light points */
+              radial-gradient(circle at 25% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 3%, transparent 8%),
+              radial-gradient(circle at 70% 20%, rgba(0, 255, 136, 0.8) 0%, rgba(0, 255, 136, 0.3) 4%, transparent 10%),
+              radial-gradient(circle at 30% 75%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.2) 2%, transparent 6%),
+              radial-gradient(circle at 80% 65%, rgba(0, 255, 136, 0.6) 0%, rgba(0, 255, 136, 0.2) 3%, transparent 8%),
+              radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 5%, transparent 12%),
+              
+              /* Core energy matrix - translucent base */
+              radial-gradient(ellipse at center,
+                  rgba(255, 255, 255, 0.95) 0%,      /* Brilliant white center */
+                  rgba(200, 255, 220, 0.9) 8%,       /* Pale green-white blend */
+                  rgba(150, 255, 180, 0.85) 15%,     /* Luminescent pale green */
+                  rgba(0, 255, 136, 0.8) 25%,        /* Core green */
+                  rgba(0, 255, 136, 0.7) 40%,        /* Translucent green */
+                  rgba(0, 204, 102, 0.6) 60%,        /* Deeper green edge */
+                  rgba(0, 153, 76, 0.5) 80%          /* Dark green border */
+              );
+          
+          /* Multi-layered crystalline glow effects */
+          box-shadow: 
+              /* Inner crystalline highlights */
+              inset 0 0 25px rgba(255, 255, 255, 0.4),
+              inset 0 0 50px rgba(0, 255, 136, 0.3),
+              inset 2px 2px 8px rgba(255, 255, 255, 0.3),
+              inset -2px -2px 8px rgba(0, 255, 136, 0.2),
+              inset 0 0 80px rgba(0, 255, 136, 0.1),
+              
+              /* Outer luminescent aura - brilliant glow */
+              0 0 12px rgba(0, 255, 136, 0.9), /*30*/
+              0 0 24px rgba(0, 255, 136, 0.7), /*60*/
+              0 0 40px rgba(0, 255, 136, 0.5), /*100*/
+              0 0 60px rgba(0, 255, 136, 0.3), /*150*/
+              0 0 100px rgba(0, 255, 136, 0.2); /*250*/
+          
+          /* Crystalline edge definition */
+          outline: 2px solid rgba(255, 255, 255, 0.4);
+          outline-offset: -1px;
+          
+          /* Subtle surface texture */
+          backdrop-filter: blur(0.3px);
+          
+          /* Pulsing energy animation */
+          animation: energyCore 2.5s ease-in-out alternate; /*infinite*/
+      }
+      
+      .facing-cube-upfront {
+          background: 
+              /* Complex geometric surface patterns */
+              repeating-linear-gradient(
+                  45deg,
+                  transparent 0px,
+                  rgba(255, 255, 255, 0.05) 1px,
+                  transparent 2px,
+                  transparent 20px
+              ),
+              repeating-linear-gradient(
+                  -45deg,
+                  transparent 0px,
+                  rgba(0, 255, 136, 0.1) 1px,
+                  transparent 2px,
+                  transparent 15px
+              ),
+              
+              /* Hexagonal energy patterns */
+              radial-gradient(circle at 25% 25%, rgba(0, 255, 136, 0.3) 0%, transparent 30%),
+              radial-gradient(circle at 75% 25%, rgba(0, 255, 136, 0.2) 0%, transparent 25%),
+              radial-gradient(circle at 25% 75%, rgba(0, 255, 136, 0.2) 0%, transparent 25%),
+              radial-gradient(circle at 75% 75%, rgba(0, 255, 136, 0.3) 0%, transparent 30%),
+              
+              /* Core energy matrix */
+              radial-gradient(ellipse at center,
+                  rgba(255, 255, 255, 0.95) 0%,
+                  rgba(180, 255, 200, 0.9) 5%,
+                  rgba(0, 255, 136, 0.85) 15%,
+                  rgba(0, 255, 136, 0.7) 30%,
+                  rgba(0, 255, 136, 0.5) 50%,
+                  rgba(0, 255, 136, 0.3) 70%,
+                  rgba(46, 42, 42, 0.9) 100%
+              ),
+              #2e2a2a;
+          
+          box-shadow: 
+              /* Multi-layered crystalline effects */
+              inset 0 0 20px rgba(255, 255, 255, 0.4),
+              inset 0 0 40px rgba(0, 255, 136, 0.3),
+              inset 0 0 80px rgba(0, 255, 136, 0.2),
+              0 0 13px rgba(0, 255, 136, 0.9), /*30 */
+              0 0 25px rgba(0, 255, 136, 0.7), /*60 */
+              0 0 50px rgba(0, 255, 136, 0.5), /*120 */
+              0 0 100px rgba(0, 255, 136, 0.3); /*240 */
+          
+          border: 2px solid rgba(0, 255, 136, 0.5);
+          animation: crystallineShimmer 4s ease-in-out; /*infinite*/
+      }
+
+      .corner-glow-top-left { 
+          background: 
+              /* Glow layer on top */
+              radial-gradient(
+                  ellipse 120px 120px at top left, 
+                  rgba(0, 255, 136, 0.3) 0%,     /* Visible glow start */
+                  rgba(0, 255, 136, 0.2) 15%,    /* Medium glow */
+                  rgba(0, 255, 136, 0.1) 30%,    /* Soft glow */
+                  rgba(0, 255, 136, 0.05) 45%,   /* Very faint */
+                  transparent 65%                /* Transparent end */
+              ),
+              /* Solid dark background underneath */
+              #2e2a2a;
+      }
+
+      .corner-glow-top-right { 
+          background:
+              radial-gradient(
+                  ellipse 120px 120px at top right, 
+                  rgba(0, 255, 136, 0.3) 0%, 
+                  rgba(0, 255, 136, 0.2) 15%, 
+                  rgba(0, 255, 136, 0.1) 30%, 
+                  rgba(0, 255, 136, 0.05) 45%, 
+                  transparent 65%
+              ),
+              #2e2a2a;
+      }
+
+      .corner-glow-bottom-left { 
+          background: 
+              radial-gradient(
+                  ellipse 120px 120px at bottom left, 
+                  rgba(0, 255, 136, 0.3) 0%, 
+                  rgba(0, 255, 136, 0.2) 15%, 
+                  rgba(0, 255, 136, 0.1) 30%, 
+                  rgba(0, 255, 136, 0.05) 45%, 
+                  transparent 65%
+              ),
+              #2e2a2a;
+      }
+
+      .corner-glow-bottom-right { 
+          background: 
+              radial-gradient(
+                  ellipse 120px 120px at bottom right, 
+                  rgba(0, 255, 136, 0.3) 0%, 
+                  rgba(0, 255, 136, 0.2) 15%, 
+                  rgba(0, 255, 136, 0.1) 30%, 
+                  rgba(0, 255, 136, 0.05) 45%, 
+                  transparent 65%
+              ),
+              #2e2a2a;
+      }
+
+      .edge-glow-top { 
+          background: 
+              linear-gradient(
+                  to bottom, 
+                  rgba(0, 255, 136, 0.25) 0%,    /* Softer edge reflection */
+                  rgba(0, 255, 136, 0.15) 20%,   /* Quick fade */
+                  rgba(0, 255, 136, 0.08) 40%,   /* Subtle presence */
+                  rgba(0, 255, 136, 0.03) 60%,   /* Very faint */
+                  transparent 80%                 /* Transparent end */
+              ),
+              #2e2a2a;
+      }
+
+      .edge-glow-left { 
+          background: 
+              linear-gradient(
+                  to right, 
+                  rgba(0, 255, 136, 0.25) 0%, 
+                  rgba(0, 255, 136, 0.15) 20%, 
+                  rgba(0, 255, 136, 0.08) 40%, 
+                  rgba(0, 255, 136, 0.03) 60%, 
+                  transparent 80%
+              ),
+              #2e2a2a;
+      }
+
+      .edge-glow-right { 
+          background: 
+              linear-gradient(
+                  to left, 
+                  rgba(0, 255, 136, 0.25) 0%, 
+                  rgba(0, 255, 136, 0.15) 20%, 
+                  rgba(0, 255, 136, 0.08) 40%, 
+                  rgba(0, 255, 136, 0.03) 60%, 
+                  transparent 80%
+              ),
+              #2e2a2a;
+      }
+
+      .edge-glow-bottom { 
+          background: 
+              linear-gradient(
+                  to top, 
+                  rgba(0, 255, 136, 0.25) 0%, 
+                  rgba(0, 255, 136, 0.15) 20%, 
+                  rgba(0, 255, 136, 0.08) 40%, 
+                  rgba(0, 255, 136, 0.03) 60%, 
+                  transparent 80%
+              ),
+              #2e2a2a;
+      }
+  }
+
+  @media (max-width: 640px) {
+      /* Core cube - glowing green */
+      .core-cube .cube-face {
+          background: linear-gradient(45deg, #00ff88, #00cc66);
+          box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.9);
+          border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+      
+      /* facing core cube upfront - glowing green */
+      .facing-cube-upfront {
+          background: radial-gradient(circle at center, #00ff88 70%, #2e2a2a 90%);
+          box-shadow: 
+              inset 0 0 10px #00ff88,
+              inset 0 0 200px #00ff88aa;
+      }
+
+      /* For top-left corner: */
+      .corner-glow-top-left {
+          background: radial-gradient(circle at top left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%);
+      }
+      
+      /*For top-right corner:*/
+      .corner-glow-top-right {
+          background: radial-gradient(circle at top right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%);
+      }
+
+      /*For bottom-left corner:*/
+      .corner-glow-bottom-left {
+          background: radial-gradient(circle at bottom left, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%);
+      }
+
+      /*For bottom-right corner:*/
+      .corner-glow-bottom-right {
+          background: radial-gradient(circle at bottom right, #00ff88 0%, #00ff88aa 20%, #2e2a2a 40%);
+      }
+
+      /*For the top edge (where top and front faces meet):*/
+      .edge-glow-top {
+          background: linear-gradient(to bottom, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%);
+      }
+
+      /*For the left edge (where left and front faces meet):*/
+      .edge-glow-left {
+          background: linear-gradient(to right, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%);
+      }
+
+      /*For the right edge (where right and front faces meet):*/       
+      .edge-glow-right {
+          background: linear-gradient(to left, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%);
+      }
+
+      /*For the bottom edge (where bottom and front faces meet):*/       
+      .edge-glow-bottom {
+          background: linear-gradient(to top, #00ff88 0%, #00ff88aa 30%, #2e2a2a 60%);
+      }
+  }
+
+  /* Positioning of each small cube in 3D space (recalculated) */
+  .cube:nth-child(1) { transform: translate3d(-90px, -90px, -90px); }
+  .cube:nth-child(2) { transform: translate3d(-30px, -90px, -90px); }
+  .cube:nth-child(3) { transform: translate3d(30px, -90px, -90px); }
+  .cube:nth-child(4) { transform: translate3d(-90px, -30px, -90px); }
+  .cube:nth-child(5) { transform: translate3d(-30px, -30px, -90px); }
+  .cube:nth-child(6) { transform: translate3d(30px, -30px, -90px); }
+  .cube:nth-child(7) { transform: translate3d(-90px, 30px, -90px); }
+  .cube:nth-child(8) { transform: translate3d(-30px, 30px, -90px); }
+  .cube:nth-child(9) { transform: translate3d(30px, 30px, -90px); }
+  .cube:nth-child(10) { transform: translate3d(-90px, -90px, -30px); }
+  .cube:nth-child(11) { transform: translate3d(-30px, -90px, -30px); }
+  .cube:nth-child(12) { transform: translate3d(30px, -90px, -30px); }
+  .cube:nth-child(13) { transform: translate3d(-90px, -30px, -30px); }
+  .cube:nth-child(14) { transform: translate3d(-30px, -30px, -30px); }
+  .cube:nth-child(15) { transform: translate3d(30px, -30px, -30px); }
+  .cube:nth-child(16) { transform: translate3d(-90px, 30px, -30px); }
+  .cube:nth-child(17) { transform: translate3d(-30px, 30px, -30px); }
+  .cube:nth-child(18) { transform: translate3d(30px, 30px, -30px); }
+  .cube:nth-child(19) { transform: translate3d(-90px, -90px, 30px); }
+  .cube:nth-child(20) { transform: translate3d(-30px, -90px, 30px); }
+  .cube:nth-child(21) { transform: translate3d(30px, -90px, 30px); }
+  .cube:nth-child(22) { transform: translate3d(-90px, -30px, 30px); }
+  .cube:nth-child(23) { transform: translate3d(-30px, -30px, 30px); }
+  .cube:nth-child(24) { transform: translate3d(30px, -30px, 30px); }
+  .cube:nth-child(25) { transform: translate3d(-90px, 30px, 30px); }
+  .cube:nth-child(26) { transform: translate3d(-30px, 30px, 30px); }
+  .cube:nth-child(27) { transform: translate3d(30px, 30px, 30px); }
+
+  /* Exploded view animation on hover (recalculated) */
+  .cube-container:hover .cube:nth-child(1) { transform: translate3d(-150px, -150px, -150px); }
+  .cube-container:hover .cube:nth-child(2) { transform: translate3d(-30px, -150px, -150px); }
+  .cube-container:hover .cube:nth-child(3) { transform: translate3d(90px, -150px, -150px); }
+  .cube-container:hover .cube:nth-child(4) { transform: translate3d(-150px, -30px, -150px); }
+  .cube-container:hover .cube:nth-child(5) { transform: translate3d(-30px, -30px, -150px); }
+  .cube-container:hover .cube:nth-child(6) { transform: translate3d(90px, -30px, -150px); }
+  .cube-container:hover .cube:nth-child(7) { transform: translate3d(-150px, 90px, -150px); }
+  .cube-container:hover .cube:nth-child(8) { transform: translate3d(-30px, 90px, -150px); }
+  .cube-container:hover .cube:nth-child(9) { transform: translate3d(90px, 90px, -150px); }
+  .cube-container:hover .cube:nth-child(10) { transform: translate3d(-150px, -150px, -30px); }
+  .cube-container:hover .cube:nth-child(11) { transform: translate3d(-30px, -150px, -30px); }
+  .cube-container:hover .cube:nth-child(12) { transform: translate3d(90px, -150px, -30px); }
+  .cube-container:hover .cube:nth-child(13) { transform: translate3d(-150px, -30px, -30px); }
+  .cube-container:hover .cube:nth-child(15) { transform: translate3d(90px, -30px, -30px); }
+  .cube-container:hover .cube:nth-child(16) { transform: translate3d(-150px, 90px, -30px); }
+  .cube-container:hover .cube:nth-child(17) { transform: translate3d(-30px, 90px, -30px); }
+  .cube-container:hover .cube:nth-child(18) { transform: translate3d(90px, 90px, -30px); }
+  .cube-container:hover .cube:nth-child(19) { transform: translate3d(-150px, -150px, 90px); }
+  .cube-container:hover .cube:nth-child(20) { transform: translate3d(-30px, -150px, 90px); }
+  .cube-container:hover .cube:nth-child(21) { transform: translate3d(90px, -150px, 90px); }
+  .cube-container:hover .cube:nth-child(22) { transform: translate3d(-150px, -30px, 90px); }
+  .cube-container:hover .cube:nth-child(23) { transform: translate3d(-30px, -30px, 90px); }
+  .cube-container:hover .cube:nth-child(24) { transform: translate3d(90px, -30px, 90px); }
+  .cube-container:hover .cube:nth-child(25) { transform: translate3d(-150px, 90px, 90px); }
+  .cube-container:hover .cube:nth-child(26) { transform: translate3d(-30px, 90px, 90px); }
+  .cube-container:hover .cube:nth-child(27) { transform: translate3d(90px, 90px, 90px); }
+
+  /* Icon Styling */
+  .icon-piece {
+      font-size: 180px; /* 3x the cube size (60px) */
+      color: #ffffff;
+      position: absolute;
+      pointer-events: none;
+      width: 180px;
+      height: 180px;
+      object-fit: none;  /*Ensures images 'cover' the area */
+  }
+
+  /* Positioning and clipping each piece of the icon/image  */   
+  .piece-1 .icon-piece { top: 0; left: 0; clip-path: polygon(0 0, 33.33% 0, 33.33% 33.33%, 0 33.33%); }
+  .piece-2 .icon-piece { top: 0; left: -60px; clip-path: polygon(33.33% 0, 66.66% 0, 66.66% 33.33%, 33.33% 33.33%); }
+  .piece-3 .icon-piece { top: 0; left: -120px; clip-path: polygon(66.66% 0, 100% 0, 100% 33.33%, 66.66% 33.33%); }
+  .piece-4 .icon-piece { top: -60px; left: 0; clip-path: polygon(0 33.33%, 33.33% 33.33%, 33.33% 66.66%, 0 66.66%); }
+  .piece-5 .icon-piece { top: -60px; left: -60px; clip-path: polygon(33.33% 33.33%, 66.66% 33.33%, 66.66% 66.66%, 33.33% 66.66%); }
+  .piece-6 .icon-piece { top: -60px; left: -120px; clip-path: polygon(66.66% 33.33%, 100% 33.33%, 100% 66.66%, 66.66% 66.66%); }
+  .piece-7 .icon-piece { top: -120px; left: 0; clip-path: polygon(0 66.66%, 33.33% 66.66%, 33.33% 100%, 0 100%); }
+  .piece-8 .icon-piece { top: -120px; left: -60px; clip-path: polygon(33.33% 66.66%, 66.66% 66.66%, 66.66% 100%, 33.33% 100%); }
+  .piece-9 .icon-piece { top: -120px; left: -120px; clip-path: polygon(66.66% 66.66%, 100% 66.66%, 100% 100%, 66.66% 100%); }  
+
+  /* --- IMAGE LOGO STRUCTURA --- */
+  .cube-face.bottom {
+      position: relative !important;    /* for absolute children */
+      overflow: hidden !important;      /* clip to 60×60 window */
+      font-size: 60px !important;
+      width: 1em !important;
+      height: 1em !important;       /* 1em == 60px */
+  }
+
+  .cube-face.bottom .full-image {
+      display: block;
+      width: 3em;            /* 180px */
+      height: auto;
+      object-fit: none;      /* don’t scale—just crop */
+  }        
+
+  .piece-1 .full-image { object-position:   0%   0%; }
+  .piece-2 .full-image { object-position:  50%   0%; }
+  .piece-3 .full-image { object-position: 100%   0%; }
+  .piece-4 .full-image { object-position:   0%  50%; }
+  .piece-5 .full-image { object-position:  50%  50%; }
+  .piece-6 .full-image { object-position: 100%  50%; }
+  .piece-7 .full-image { object-position:   0% 100%; }
+  .piece-8 .full-image { object-position:  50% 100%; }
+  .piece-9 .full-image { object-position: 100% 100%; }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Utilities Layer: Keyframes and low-level utilities
    ───────────────────────────────────────────────────────────────────────────── */
 @layer utilities {
+  /* --- BASE --- */
   /* Keyframe animation for floating effect */
   @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -175,5 +637,77 @@
     to {
       stroke-dashoffset: 141.37;
     }
+  }
+
+  /* --- HERO --- */
+    @keyframes bgShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  }
+
+  /* --- CUBES --- */
+  /* Animation for the cube rotation
+  @keyframes spinDiagonal {
+      0%   { transform: scale(var(--cube-scale, 0.75)) rotate3d(1, 1, 0, 25deg); }
+      100% { transform: scale(var(--cube-scale, 0.75)) rotate3d(1, 1, 0, 385deg); }
+  }  */
+  @keyframes spinDiagonal {
+      0% {
+          transform: 
+          scale(var(--cube-scale,0.75))
+          rotateX(25deg)
+          rotateY(25deg);
+      }
+      100% {
+          transform: 
+          scale(var(--cube-scale,0.75))
+          /* add 360° on top of the original 25° on each axis*/
+          rotateX(calc(25deg + 360deg))
+          rotateY(calc(25deg + 360deg));
+      }
+  }
+
+  /* Crystalline shimmer animation */
+  @keyframes crystallineShimmer {
+      0%, 100% {
+          background-position: 0% 0%, 0% 0%, 25% 25%, 75% 25%, 25% 75%, 75% 75%, center;
+      }
+      50% {
+          background-position: 5% 5%, -5% 5%, 30% 30%, 70% 20%, 20% 70%, 80% 80%, center;
+      }
+  }
+
+  /* Animated energy core pulsing */
+  @keyframes energyCore {
+      0% {
+          box-shadow: 
+              inset 0 0 25px rgba(255, 255, 255, 0.4),
+              inset 0 0 50px rgba(0, 255, 136, 0.3),
+              inset 2px 2px 8px rgba(255, 255, 255, 0.3),
+              inset -2px -2px 8px rgba(0, 255, 136, 0.2),
+              inset 0 0 80px rgba(0, 255, 136, 0.1),
+              0 0 12px rgba(0, 255, 136, 0.9), /*30*/
+              0 0 24px rgba(0, 255, 136, 0.7), /*60*/
+              0 0 40px rgba(0, 255, 136, 0.5), /*100*/
+              0 0 60px rgba(0, 255, 136, 0.3), /*150*/
+              0 0 100px rgba(0, 255, 136, 0.2); /*250*/
+          
+          background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 25% 30%, 70% 20%, 30% 75%, 80% 65%, 50% 40%, center;
+      }
+      100% {
+          box-shadow: 
+              inset 0 0 35px rgba(255, 255, 255, 0.5),
+              inset 0 0 70px rgba(0, 255, 136, 0.4),
+              inset 3px 3px 12px rgba(255, 255, 255, 0.4),
+              inset -3px -3px 12px rgba(0, 255, 136, 0.3),
+              inset 0 0 120px rgba(0, 255, 136, 0.15),
+              0 0 13px rgba(0, 255, 136, 1), /*45*/
+              0 0 26px rgba(0, 255, 136, 0.8), /*90*/
+              0 0 43px rgba(0, 255, 136, 0.6), /*150*/
+              0 0 63px rgba(0, 255, 136, 0.4), /*220*/
+              0 0 100px rgba(0, 255, 136, 0.25); /*350*/
+          
+          background-position: 2% 2%, 1% 1%, -1% 1%, 1% -1%, 27% 32%, 68% 18%, 32% 77%, 82% 67%, 48% 38%, center;
+      }
   }
 }
