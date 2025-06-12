@@ -27,7 +27,7 @@
 @layer components {
   /* Gradient text styling for headings */
   .gradient-text {
-    background: linear-gradient(55deg, #E54656, #1E97D7);
+    background: linear-gradient(135deg, #E54656, #1E97D7);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -58,7 +58,7 @@
 
   /* Glassmorphism effect */
   .glass-morphism {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.05);
     border: 2px solid rgba(255, 255, 255, 0.9);
   }
 
