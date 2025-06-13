@@ -104,6 +104,9 @@ or also
 - I was inspired by the fig tree from Paul Klee, I used https://squoosh.app/ to convert the format into WebP.
 <img src="assets/images/Fig Tree, by Paul Klee.jfif" alt="ReadmePicture9">
 
+New logo 2 was upscaled with [bigjpg](https://bigjpg.com/), to vectorize and get a svg: https://vectorizer.io
+
+
 ## Deployment:
 1. Log in to GitHub and locat the [GitHub Repository](https://github.com/Cyril-CRGB/structura_homepage)
 2. At the top of the Repository, locate the "Settings" Button on the menu.
