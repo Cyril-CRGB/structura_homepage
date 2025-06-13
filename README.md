@@ -2,7 +2,9 @@
 # MY STATIC PERSONAL WEBPAGE 
 ## structura-homepage
 
-<img src="assets/images/structura_homepage.jpg" alt="ReadmePicture1">
+<img src="assets/images/structura_homepage_2.jpg" height="288" alt="ReadmePicture1">
+<img src="assets/images/Expanding_cube.jpg" height="288" alt="ReadmePicture1">
+<img src="assets/images/NEW_LOGO_4_improved.png" height="288" alt="ReadmePicture1">
 
 ## Project description:
 This website is designed for **my personal use**. 
@@ -13,71 +15,69 @@ This website is designed for **my personal use**.
 
 'Tree' represents growth and productivity through its fruits. The right people, like branches, produce the right results."
 
-## Features:
-'fruits', on click gives away what i can do.
+'Cube' represents complexity and solution driven.
 
+## Features:
 'de fr en', on click reload the page with translations.
 
-'linkedIn', on click redirect on my linkedIn page.
+'linkedIn', 'X', 'Github', 'Slack' on click redirect on my page.
 
-'contact me', on click send me a message. https://formspree.io/
+'contact me', on click send me a message: [formspree](https://formspree.io/)
 
-## Theme
-
-#D03C4B
-#E54656
-#F75759
-#FC6B6D
-#3FB6F0
-#2BA6E6
-#1E97D7
-#1786D2
-#0C75C7
-#083F67
-#0a2f4d
-#f2f2f2
-#d9d9d9
-#B1B1B1
-
-#f8f6f0
-#ffffff
-rgba(10, 47, 77, 0.8)
-rgba(0, 0, 0, 0.2)
+## Color Theme
+| Color Name | Hex Code | Preview |
+|------------|----------|---------|
+| Red  ++++  | `#D03C4B` | ![#D03C4B](https://img.shields.io/badge/-%23D03C4B-D03C4B) |
+| Red  +++   | `#E54656` | ![#D03C4B](https://img.shields.io/badge/-%23E54656-E54656) |
+| Red  ++    | `#F75759` | ![#F75759](https://img.shields.io/badge/-%23F75759-F75759) |
+| Red  +     | `#FC6B6D` | ![#FC6B6D](https://img.shields.io/badge/-%23FC6B6D-FC6B6D) |
+| Blue +++++ | `#0A2F4D` | ![#0A2F4D](https://img.shields.io/badge/-%230A2F4D-0A2F4D) |
+| Blue ++++  | `#083F67` | ![#083F67](https://img.shields.io/badge/-%23083F67-083F67) |
+| Blue +++   | `#0C75C7` | ![#0C75C7](https://img.shields.io/badge/-%230C75C7-0C75C7) |
+| Blue ++    | `#1786D2` | ![#1786D2](https://img.shields.io/badge/-%231786D2-1786D2) |
+| Blue +     | `#1E97D7` | ![#1E97D7](https://img.shields.io/badge/-%231E97D7-1E97D7) |
+| Blue -     | `#2BA6E6` | ![#2BA6E6](https://img.shields.io/badge/-%232BA6E6-2BA6E6) |
+| Blue --    | `#3FB6F0` | ![#3FB6F0](https://img.shields.io/badge/-%233FB6F0-3FB6F0) |
+| Gray ++++  | `#B1B1B1` | ![#B1B1B1](https://img.shields.io/badge/-%23B1B1B1-B1B1B1) |
+| Gray +++   | `#D9D9D9` | ![#D9D9D9](https://img.shields.io/badge/-%23D9D9D9-D9D9D9) |
+| Gray ++    | `#F2F2F2` | ![#F2F2F2](https://img.shields.io/badge/-%23F2F2F2-F2F2F2) |
+| Gray +     | `#F8F6F0` | ![#F8F6F0](https://img.shields.io/badge/-%23F8F6F0-F8F6F0) |
+| White      | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF) |
 
 for socialmedia icons:
-- https://fontawesome.com/icons/linkedin?f=brands&s=solid
-- https://fontawesome.com/icons/x-twitter?f=brands&s=solid
-or also
-- https://icons8.com/icon/ud9VVQzOPag8/x
+- [fontawesome](https://fontawesome.com/icons/)
+- [icons8](https://icons8.com/icons)
+
+for companies' logo:
+- [simple-icons](https://simpleicons.org/)
 
 ## Testing:
 
 ### Tests
-- I tested the HTML code with https://validator.w3.org/#validate_by_input, all ok
-- I tested the CSS code with https://jigsaw.w3.org/css-validator/#validate_by_input, all ok
+- I tested the HTML code with [validator](https://validator.w3.org/#validate_by_input), all ok
+- I tested the CSS code with [jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_input), all ok
 - I tested the Javascript, there are a few 'old version' code. 
 - I tested different web browsers Chrome and Edge, all ok
 - I tested different screen sizes, all ok (the site is responsive)
 
 ### The performances
 - I tested my code with Lighthouse:
-<img src="assets/images/structura_Lighthouse performances 5.jpg" alt="ReadmePicture3">
+
+<img src="assets/images/structura_Lighthouse performances 5.jpg" height="288" alt="ReadmePicture3">
 
 ### SEO 
 - Google Search Console, adding a 'sitemap.xml' a 'ld+json' in the head of the page
-- [see also google Marketing Platform](https://marketingplatform.google.com/) for google analytics and Tag manager
+- for more see also [Google Marketing Platform](https://marketingplatform.google.com/) for google analytics and Tag manager
 
 ### Privacy / Terms / Cookies
-- I used https://termly.com/
-
-- Privacy Policy (Essential) - Must disclose:
+I used [termly](https://termly.com/) for the Privacy Policy (Essential) - it should disclose:
 * That contact form data goes to Formspree
 * What happens to submitted information
 * That you don't collect other personal data
 * Basic visitor rights
 
+Other possible documents to provide the user (especially if Google Marketing Platform is implemented):
 - Terms of Service (Recommended) - Protects you from liability and sets usage rules
-
 - Cookie Policy - Only if you add Google Analytics, Facebook Pixel, or other tracking later
 
 ### Technologies Used
@@ -87,25 +87,34 @@ or also
 
 ### Special library
 - Tailwindcss
-- because i have "build": "tailwindcss -i ./src/input.css -o ./public/output.css --minify" inside package.json, i can only command 'npm install' (if not already done)
-  then 'npm run dev', finally 'npm run build'. For instance after modification of 'src/input.css'
+
+Sidenotes:
+* because I have <<"build": "tailwindcss -i ./src/input.css -o ./public/output.css --minify">> inside 'package.json', I can only run the command:
+* 'npm install' (if not already done),
+* then 'npm run dev', 
+* finally 'npm run build'. 
+* For instance after modification of 'src/input.css'
 
 ## Credits:
 
 ### Code
-- I found help on <https://stackoverflow.com/>
+- I found help on https://stackoverflow.com/
 - I also used CodeInstitute examples 
-- Thanks to https://favicon.io/favicon-converter/ for helping with formating the favicon
+
 
 ### Content
 - All content was written by myself 
 
 ### Media
-- I was inspired by the fig tree from Paul Klee, I used https://squoosh.app/ to convert the format into WebP.
-<img src="assets/images/Fig Tree, by Paul Klee.jfif" alt="ReadmePicture9">
+- I was inspired by the fig tree from Paul Klee:
 
-New logo 2 was upscaled with [bigjpg](https://bigjpg.com/), to vectorize and get a svg: https://vectorizer.io
+<img src="assets/images/Fig Tree, by Paul Klee.jfif" height="288" alt="ReadmePicture9">
 
+- Thanks to [squoosh](https://squoosh.app/) for helping with converting the format into WebP.
+
+- Thanks to [bigjpg](https://bigjpg.com/) for helping with upscaling 'New logo 2', and to [vectorizer](https://vectorizer.io/) for vectorizing it and getting a svg.
+
+- Thanks to [favicon.io](https://favicon.io/favicon-converter/) for helping with formating the favicon.
 
 ## Deployment:
 1. Log in to GitHub and locat the [GitHub Repository](https://github.com/Cyril-CRGB/structura_homepage)
