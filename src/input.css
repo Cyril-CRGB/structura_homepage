@@ -27,7 +27,7 @@
 @layer components {
   /* Gradient text styling for headings */
   .gradient-text {
-    background: linear-gradient(0deg, #D03C4B, #1E97D7);
+    background: linear-gradient(90deg, #D03C4B, #1E97D7);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
